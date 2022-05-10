@@ -3,11 +3,20 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:clientemobile/utils/push_nofitications.dart';
-import 'package:clientemobile/views/dashboard_page.dart';
-import 'package:clientemobile/views/profile_page.dart';
+import 'package:socios_qido/utils/push_nofitications.dart';
+import 'package:socios_qido/views/bitacoraInfoWidget.dart';
+import 'package:socios_qido/views/bitacoraWidget.dart';
+import 'package:socios_qido/views/dashboard_page.dart';
+import 'package:socios_qido/views/imagenesWidget.dart';
+import 'package:socios_qido/views/infoPaciente1Widget.dart';
+import 'package:socios_qido/views/listaPacientesWidget.dart';
+import 'package:socios_qido/views/loginWidget.dart';
+import 'package:socios_qido/views/login_page.dart';
+import 'package:socios_qido/views/pacientesAsignados.dart';
+import 'package:socios_qido/views/profile_page.dart';
 
-import 'views/login_page.dart';
+// import 'views/login_page.dart';
+import 'views/loginWidget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +76,14 @@ class _MyAppState extends State<MyApp> {
       FirebaseAuth.instance.currentUser == null ? '/' : '/dashboard',
       routes: {
         '/dashboard': (context) => DashboardPage(user: user),
-        '/profile': (context) => ProfilePage(user: user)
+        '/profile': (context) => ProfilePage(user: user),
+        '/pacientesAsignados': (context) => PacientesAsignadosPage(user: user),
+        // '/loginWidget': (context) => LoginWidget(user: user),
+        '/listaPacientesWidget': (context) => ListaPacientesWidget(user: user),
+        '/infoPaciente1Widget': (context) => InfoPaciente1Widget(user: user),
+        '/bitacoraWidget': (context) => BitacoraWidget(user: user),
+        '/bitacoraInfoWidget': (context) => BitacoraInfoWidget(user: user),
+        '/imagenesWidget': (context) => ImagenesWidget(user: user),
       },
       theme: ThemeData(
         brightness: Brightness.light,
@@ -89,7 +105,7 @@ class _MyAppState extends State<MyApp> {
           bodyText1: TextStyle(fontSize: 18.0),
         ),
       ),
-      home: LoginPage(),
+      home: LoginWidget(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:clientemobile/utils/fire_auth.dart';
-import 'package:clientemobile/utils/validator.dart';
-import 'package:clientemobile/views/profile_page.dart';
+import 'package:socios_qido/utils/fire_auth.dart';
+import 'package:socios_qido/utils/validator.dart';
+import 'package:socios_qido/views/profile_page.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

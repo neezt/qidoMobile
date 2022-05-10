@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:clientemobile/utils/fire_auth.dart';
-import 'package:clientemobile/views/login_page.dart';
-import 'package:clientemobile/views/menu_page.dart';
+import 'package:socios_qido/utils/fire_auth.dart';
+import 'package:socios_qido/views/login_page.dart';
+import 'package:socios_qido/views/menu_page.dart';
 
 class ProfilePage extends StatefulWidget {
   User? user;

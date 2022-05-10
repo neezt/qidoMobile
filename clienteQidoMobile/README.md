@@ -1,6 +1,6 @@
-# clientemobile
+# socios_qido
 
-A new Flutter project.
+Aplicacion para socios qido
 
 ## Getting Started
 

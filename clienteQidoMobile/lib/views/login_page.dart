@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:clientemobile/utils/fire_auth.dart';
-import 'package:clientemobile/utils/validator.dart';
-import 'package:clientemobile/views/dashboard_page.dart';
-import 'package:clientemobile/views/profile_page.dart';
-import 'package:clientemobile/views/register_page.dart';
+import 'package:socios_qido/utils/fire_auth.dart';
+import 'package:socios_qido/utils/validator.dart';
+import 'package:socios_qido/views/dashboard_page.dart';
+import 'package:socios_qido/views/profile_page.dart';
+import 'package:socios_qido/views/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Qido Clientes'),
+          title: Text('Qido Socios'),
         ),
         body: FutureBuilder(
           future: _initializeFirebase(),
