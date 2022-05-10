@@ -70,6 +70,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFFF8F8F8),
+        resizeToAvoidBottomInset : false, // configuracion de teclado
         body: FutureBuilder(
           future: _initializeFirebase(),
           builder: (context, snapshot) {
@@ -115,232 +116,239 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 0),
-                                  child: TextFormField(
-                                    controller: _emailTextController,
-                                    focusNode: _focusEmail,
-                                    validator: (value) => Validator.validateEmail(
-                                      email: value,
-                                    ),
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Usuario',
-                                      labelStyle: TextStyle(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF95A1AC),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                      ),
-                                      hintStyle: TextStyle(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF95A1AC),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
+                    Form(
+                          key: _formKey,
+                            child: Column(
+                                children: <Widget>[
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 5, 0, 0),
+                                        child: TextFormField(
+                                          controller: _emailTextController,
+                                          focusNode: _focusEmail,
+                                          validator: (value) => Validator.validateEmail(
+                                            email: value,
                                           ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFDBE2E7),
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFDBE2E7),
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              16, 24, 0, 24),
-                                    ),
-                                    style: TextStyle(
-                                          fontFamily: 'Outfit',
-                                          color: Color(0xFF0F1113),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: _passwordTextController,
-                                  focusNode: _focusPassword,
-                                  obscureText: !passwordVisibility,
-                                  decoration: InputDecoration(
-                                    labelText: 'Contraseña',
-                                    labelStyle: TextStyle(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF95A1AC),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    hintStyle: TextStyle(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF95A1AC),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFDBE2E7),
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFDBE2E7),
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            16, 24, 24, 24),
-                                    suffixIcon: InkWell(
-                                      onTap: () => setState(
-                                        () => passwordVisibility =
-                                            !passwordVisibility,
-                                      ),
-                                      child: Icon(
-                                        passwordVisibility
-                                            ? Icons.visibility_outlined
-                                            : Icons.visibility_off_outlined,
-                                        color: Color(0xFF95A1AC),
-                                        size: 22,
-                                      ),
-                                    ),
-                                  ),
-                                  style: TextStyle(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF0F1113),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  print('Button-ForgotPassword pressed ...');
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  textStyle: TextStyle(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF00D8D6),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                      fixedSize: Size(182, 30),
-                                      elevation: 0,
-                                      primary: Colors.transparent,
-                                      onPrimary: Color(0xFF00D8D6),
-                                ),
-                
-                                child: Text('¿Olvide la contraseña?'),
-                                // text: '¿Olvide la contraseña?',
-                                // options: FFButtonOptions(
-                                //   // color: Color(0x00FFFFFF),
-                                //   elevation: 0,
-                                //   borderSide: BorderSide(
-                                //     color: Colors.transparent,
-                                //     width: 1,
-                                //   ),
-                                //   borderRadius: 0,
-                                // ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () async {
-                                    _focusEmail.unfocus();
-                                    _focusPassword.unfocus();
-
-                                    if (_formKey.currentState!
-                                        .validate()) {
-                                      setState(() {
-                                        _isProcessing = true;
-                                      });
-
-                                      User? user = await FireAuth
-                                          .signInUsingEmailPassword(
-                                        email: _emailTextController.text,
-                                        password:
-                                        _passwordTextController.text,
-                                      );
-
-                                      setState(() {
-                                        _isProcessing = false;
-                                      });
-
-                                      if (user != null) {
-                                        Navigator.of(context)
-                                            .pushReplacement(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                DashboardPage(user: user),
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: 'Usuario',
+                                            labelStyle: TextStyle(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF95A1AC),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                            ),
+                                            hintStyle: TextStyle(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF95A1AC),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0xFFDBE2E7),
+                                                width: 2,
+                                              ),
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0xFFDBE2E7),
+                                                width: 2,
+                                              ),
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            filled: true,
+                                            fillColor: Colors.white,
+                                            contentPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 24, 0, 24),
                                           ),
-                                        );
-                                      }
-                                    }
-                                  },
-                                style: ElevatedButton.styleFrom(
-                                  textStyle: TextStyle(
-                                    fontFamily: 'Lexend Deca',
-                                        color: Colors.white,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                  ),
-                                  fixedSize: Size(150, 50),
-                                  primary: Color(0xFF0F1113),
-                                  // onPrimary: Color(0xFF0F1113),
-                                  elevation: 3,
-                                  onSurface: Colors.transparent,
+                                          style: TextStyle(
+                                                fontFamily: 'Outfit',
+                                                color: Color(0xFF0F1113),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                child: Text('Iniciar Sesión'),
-                                // text: 'Iniciar Sesión',
-                                // options: FFButtonOptions(
-                                //   borderSide: BorderSide(
-                                //     color: Colors.transparent,
-                                //     width: 1,
-                                //   ),
-                                //   borderRadius: 8,
-                                // ),
                               ),
-                            ],
-                          ),
-                        ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: TextFormField(
+                                        controller: _passwordTextController,
+                                        focusNode: _focusPassword,
+                                        obscureText: !passwordVisibility,
+                                        decoration: InputDecoration(
+                                          labelText: 'Contraseña',
+                                          labelStyle: TextStyle(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF95A1AC),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                          hintStyle: TextStyle(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF95A1AC),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFDBE2E7),
+                                              width: 2,
+                                            ),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFDBE2E7),
+                                              width: 2,
+                                            ),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 24, 24, 24),
+                                          suffixIcon: InkWell(
+                                            onTap: () => setState(
+                                              () => passwordVisibility =
+                                                  !passwordVisibility,
+                                            ),
+                                            child: Icon(
+                                              passwordVisibility
+                                                  ? Icons.visibility_outlined
+                                                  : Icons.visibility_off_outlined,
+                                              color: Color(0xFF95A1AC),
+                                              size: 22,
+                                            ),
+                                          ),
+                                        ),
+                                        style: TextStyle(
+                                              fontFamily: 'Outfit',
+                                              color: Color(0xFF0F1113),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        print('Button-ForgotPassword pressed ...');
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        textStyle: TextStyle(
+                                              fontFamily: 'Outfit',
+                                              color: Color(0xFF00D8D6),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                            fixedSize: Size(182, 30),
+                                            elevation: 0,
+                                            primary: Colors.transparent,
+                                            onPrimary: Color(0xFF00D8D6),
+                                      ),
+
+                                      child: Text('¿Olvide la contraseña?'),
+                                      // text: '¿Olvide la contraseña?',
+                                      // options: FFButtonOptions(
+                                      //   // color: Color(0x00FFFFFF),
+                                      //   elevation: 0,
+                                      //   borderSide: BorderSide(
+                                      //     color: Colors.transparent,
+                                      //     width: 1,
+                                      //   ),
+                                      //   borderRadius: 0,
+                                      // ),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                          _focusEmail.unfocus();
+                                          _focusPassword.unfocus();
+
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            setState(() {
+                                              _isProcessing = true;
+                                            });
+
+                                            User? user = await FireAuth
+                                                .signInUsingEmailPassword(
+                                              email: _emailTextController.text,
+                                              password:
+                                              _passwordTextController.text,
+                                            );
+
+                                            setState(() {
+                                              _isProcessing = false;
+                                            });
+
+                                            if (user != null) {
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DashboardPage(user: user),
+                                                ),
+                                              );
+                                            }
+                                          }
+                                        },
+                                      style: ElevatedButton.styleFrom(
+                                        textStyle: TextStyle(
+                                          fontFamily: 'Lexend Deca',
+                                              color: Colors.white,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold,
+                                        ),
+                                        fixedSize: Size(150, 50),
+                                        primary: Color(0xFF0F1113),
+                                        // onPrimary: Color(0xFF0F1113),
+                                        elevation: 3,
+                                        onSurface: Colors.transparent,
+                                      ),
+                                      child: Text('Iniciar Sesión'),
+                                      // text: 'Iniciar Sesión',
+                                      // options: FFButtonOptions(
+                                      //   borderSide: BorderSide(
+                                      //     color: Colors.transparent,
+                                      //     width: 1,
+                                      //   ),
+                                      //   borderRadius: 8,
+                                      // ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                                ],
+                            ),
+                      ),
                       ],
                     ),
                   ),
