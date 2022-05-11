@@ -50,6 +50,7 @@ dependencies:
   smooth_page_indicator: 1.0.0+2
   timeago: 3.1.0
   url_launcher: 6.0.15
+  http: 
 
 dev_dependencies:
   flutter_test:

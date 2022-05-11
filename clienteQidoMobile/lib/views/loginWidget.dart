@@ -14,6 +14,10 @@ import 'package:socios_qido/views/pacientesAsignados.dart';
 import 'package:provider/provider.dart';
 import 'package:socios_qido/views/menu_page.dart';
 import 'package:socios_qido/main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:socios_qido/views/usertoken.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -34,9 +38,25 @@ class _LoginWidgetState extends State<LoginWidget> {
   late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  String stringResponse = '';
+  List listResponse = [];
+  Map mapResponse = {};
+
+  Future fetchData() async {
+    http.Response response;
+    response = await http.get(Uri.parse('http://localhost/public/cotizador/datosCotizador'));
+    if (response.statusCode==200) {
+      setState(() {
+        mapResponse = json.decode(response.body);
+        mapResponse = mapResponse['polizas'][0];
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    fetchData();
     // emailAddressController = TextEditingController(text: 'usuario.cliente');
     // passwordController = TextEditingController(text: '123456789qwerty');
     passwordVisibility = false;
@@ -310,6 +330,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             });
 
                                             if (user != null) {
+                                              user.getIdToken().then((String token1) {
+                                                token = token1;
+                                                print('Token: $token');
                                               Navigator.of(context)
                                                   .pushReplacement(
                                                 MaterialPageRoute(
@@ -317,6 +340,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       DashboardPage(user: user),
                                                 ),
                                               );
+                                              });
+                                              // print('Token: $token');
+                                              // Navigator.of(context)
+                                              //     .pushReplacement(
+                                              //   MaterialPageRoute(
+                                              //     builder: (context) =>
+                                              //         DashboardPage(user: user),
+                                              //   ),
+                                              // );
                                             }
                                           }
                                         },
