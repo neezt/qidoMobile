@@ -335,8 +335,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             });
 
                                             if (user != null) {
-                                              token = await FireAuth.fetchData(_emailTextController.text,_passwordTextController.text);
-                                              print('Token: $token');
                                               Navigator.of(context)
                                                   .pushReplacement(
                                                 MaterialPageRoute(

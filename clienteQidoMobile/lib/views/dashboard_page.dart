@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:socios_qido/views/usertoken.dart';
 
 import '../logic/models/mysql.dart';
+import '../utils/fire_auth.dart';
 
 const kAppTitle = 'Bienvenido';
 const kStateType = 'Provider';
@@ -45,7 +46,7 @@ class _DashboardPage extends State<DashboardPage> {
 
   Future fetchData() async {
     http.Response response;
-    response = await http.get(Uri.parse('http://localhost/public/colaborador/colaborador'), headers: {HttpHeaders.authorizationHeader: token,});
+    response = await http.get(Uri.parse('http://localhost/public/colaborador/colaborador'), headers: {"Token": FireAuth.token,});
     if (response.statusCode==200) {
       setState(() {
         mapResponse = json.decode(response.body);
@@ -58,7 +59,7 @@ class _DashboardPage extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
 
-    print('TokenDash: $_currentUser');
+    print('TokenDash: ' + FireAuth.token);
     return Scaffold(
       appBar: AppBar(
         title: Text(kAppTitle),

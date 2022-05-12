@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class FireAuth {
-
+  static String token="";
   // For registering a new user
   static Future<User?> registerUsingEmailPassword({
     required String name,
@@ -50,7 +50,7 @@ class FireAuth {
         password: password,
       );
       user = userCredential.user;
-
+      fetchData(email, password);
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -80,7 +80,8 @@ class FireAuth {
         }));
     if (response.statusCode==200) {
       Map mapResponse =  json.decode(response.body);
-      return mapResponse['refreshToken'];
+      token= mapResponse['refreshToken'];
+      print("otro $token");
     }
     return "";
   }
