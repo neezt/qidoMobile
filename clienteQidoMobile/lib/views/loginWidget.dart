@@ -44,12 +44,12 @@ class _LoginWidgetState extends State<LoginWidget> {
   Map<String, String> get headers => {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "token": "xxxx",
+    "token": token,
   };
 
   Future fetchData() async {
     http.Response response;
-    response = await http.get(Uri.parse('http://localhost/public/cotizador/datosCotizador'),headers: headers);
+    response = await http.get(Uri.parse('http://localhost/public/cotizador/datosCotizador'));
     if (response.statusCode==200) {
       setState(() {
         mapResponse = json.decode(response.body);

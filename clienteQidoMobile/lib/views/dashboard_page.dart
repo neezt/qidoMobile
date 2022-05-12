@@ -45,11 +45,12 @@ class _DashboardPage extends State<DashboardPage> {
 
   Future fetchData() async {
     http.Response response;
-    response = await http.get(Uri.parse('http://localhost/public/colaborador/colaboradoresCompletos'), headers: {HttpHeaders.authorizationHeader: token,});
+    response = await http.get(Uri.parse('http://localhost/public/colaborador/colaborador'), headers: {HttpHeaders.authorizationHeader: token,});
     if (response.statusCode==200) {
       setState(() {
         mapResponse = json.decode(response.body);
         // mapResponse = mapResponse['polizas'][0];
+        print('YES $mapResponse');
       });
     }
   }
