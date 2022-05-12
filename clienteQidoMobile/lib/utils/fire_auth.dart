@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class FireAuth {
+
   // For registering a new user
   static Future<User?> registerUsingEmailPassword({
     required String name,
@@ -47,6 +50,8 @@ class FireAuth {
         password: password,
       );
       user = userCredential.user;
+
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -66,4 +71,18 @@ class FireAuth {
 
     return refreshedUser;
   }
+
+  static Future<String> fetchData(String email,String password) async {
+    http.Response response;
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/login/iniciar'),
+        body: jsonEncode(<String, String>{
+          'email': email,"password":password
+        }));
+    if (response.statusCode==200) {
+      Map mapResponse =  json.decode(response.body);
+      return mapResponse['refreshToken'];
+    }
+    return "";
+  }
+
 }

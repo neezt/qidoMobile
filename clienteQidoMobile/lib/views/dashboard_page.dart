@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socios_qido/views/menu_page.dart';
-import 'package:socios_qido/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -58,7 +56,8 @@ class _DashboardPage extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('TokenDash: $token');
+
+    print('TokenDash: $_currentUser');
     return Scaffold(
       appBar: AppBar(
         title: Text(kAppTitle),
