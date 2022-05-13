@@ -47,11 +47,11 @@ class _MyAppState extends State<MyApp> {
     firebaseMessaging.titleCtlr.stream.listen(_changeTitle);
 
     super.initState();
-    _sub = FirebaseAuth.instance.userChanges().listen((event) {
-      _navigatorKey.currentState!.pushReplacementNamed(
-        event != null ? '/dashboard' : '/',
-      );
-    });
+    // _sub = FirebaseAuth.instance.userChanges().listen((event) {
+    //   _navigatorKey.currentState!.pushReplacementNamed(
+    //     event != null ? '/dashboard' : '/',
+    //   );
+    // });
   }
 
   _changeData(String msg) => setState(() => notificationData = msg);

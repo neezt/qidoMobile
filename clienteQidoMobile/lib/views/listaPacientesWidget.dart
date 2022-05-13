@@ -16,7 +16,27 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socios_qido/views/menu_page.dart';
 import 'package:socios_qido/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:socios_qido/utils/fire_auth.dart';
+import 'package:socios_qido/utils/validator.dart';
+import 'package:socios_qido/views/dashboard_page.dart';
+import 'package:socios_qido/views/listaPacientesWidget.dart';
+import 'package:socios_qido/views/profile_page.dart';
+import 'package:socios_qido/views/register_page.dart';
 
+import 'package:page_transition/page_transition.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:socios_qido/views/pacientesAsignados.dart';
+import 'package:provider/provider.dart';
+import 'package:socios_qido/views/menu_page.dart';
+import 'package:socios_qido/main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:socios_qido/views/usertoken.dart';
+import './usertoken.dart';
 class ListaPacientesWidget extends StatefulWidget {
   // const ListaPacientesWidget({Key key}) : super(key: key);
     // final User? user;
@@ -38,6 +58,52 @@ class _ListaPacientesWidgetState extends State<ListaPacientesWidget> {
 
   late User? _currentUser = widget.user;
 
+    String stringResponse = '';
+  List listResponse = [];
+  List listResponse1 = [];
+  Map mapResponse = {};
+  Map mapResponse1 = {};
+  Future fetchData() async {
+    http.Response response;
+    response = await http.post(Uri.parse('http://10.0.2.2/public/colaborador/colaboradores'), headers: {"Token": FireAuth.token,});
+    if (response.statusCode==200) {
+      setState(() {
+        mapResponse = json.decode(response.body);
+        listResponse = mapResponse['data'];
+        for (var i = 0; i < listResponse.length; i++) {
+          listResponse1.add(mapResponse['data'][i]['correoElectronico'].toString());
+          print('listResponse: $listResponse1');
+        }
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  // Future<FirebaseApp> _initializeFirebase() async {
+  //   FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+  //   User? user = FirebaseAuth.instance.currentUser;
+
+  //   if (user != null) {
+  //     if(listResponse1.contains(_emailTextController.text)) {
+  //       Navigator.of(context).pushReplacement(
+  //       MaterialPageRoute(
+  //         builder: (context) => DashboardPage(
+  //           user: user,
+  //         ),
+  //       ),
+  //     );
+  //     }
+  //   }
+
+  //   return firebaseApp;
+  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +112,20 @@ class _ListaPacientesWidgetState extends State<ListaPacientesWidget> {
       appBar: AppBar(
         backgroundColor: Color(0xFF00D8D6),
         automaticallyImplyLeading: false,
+        leading: IconButton(
+          // borderColor: Colors.transparent,
+          // borderRadius: 30,
+          // borderWidth: 1,
+          // buttonSize: 60,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.white,
+            size: 30,
+          ),
+          onPressed: () async {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Pacientes',
           style: TextStyle(

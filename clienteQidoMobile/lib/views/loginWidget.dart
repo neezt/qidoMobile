@@ -18,6 +18,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:socios_qido/views/usertoken.dart';
+import './usertoken.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -37,23 +38,42 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  String stringResponse = '';
-  List listResponse = [];
-  Map mapResponse = {};
   Map<String, String> get headers => {
     "Content-Type": "application/json",
     "Accept": "application/json",
     "token": token,
   };
 
+  // Future fetchData() async {
+  //   http.Response response;
+  //   response = await http.get(Uri.parse('http://localhost/public/cotizador/datosCotizador'));
+  //   if (response.statusCode==200) {
+  //     setState(() {
+  //       mapResponse = json.decode(response.body);
+  //       mapResponse = mapResponse['polizas'][0];
+  //     });
+  //   }
+  // }
+
+  String stringResponse = '';
+  List listResponse = [];
+  List listResponse1 = [];
+  Map mapResponse = {};
+  Map mapResponse1 = {};
   Future fetchData() async {
     http.Response response;
-    response = await http.get(Uri.parse('http://localhost/public/cotizador/datosCotizador'));
+    response = await http.post(Uri.parse('http://10.0.2.2/public/colaborador/colaboradores'), headers: {"Token": FireAuth.token,});
+    // print('response: $response');
     if (response.statusCode==200) {
       setState(() {
         mapResponse = json.decode(response.body);
-        mapResponse = mapResponse['polizas'][0];
+        listResponse = mapResponse['data'];
+        for (var i = 0; i < listResponse.length; i++) {
+          listResponse1.add(mapResponse['data'][i]['correoElectronico'].toString());
+          print('listResponse: $listResponse1');
+        }
+        // mapResponse = mapResponse['polizas'][0];
+        print('YES $mapResponse');
       });
     }
   }
@@ -61,7 +81,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   void initState() {
     super.initState();
-    fetchData();
+    // fetchData();
     // emailAddressController = TextEditingController(text: 'usuario.cliente');
     // passwordController = TextEditingController(text: '123456789qwerty');
     passwordVisibility = false;
@@ -73,17 +93,34 @@ class _LoginWidgetState extends State<LoginWidget> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.of(context).pushReplacement(
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => DashboardPage(
+      //       user: user,
+      //     ),
+      //   ),
+      // );
+      await fetchData();
+      if(listResponse1.contains(_emailTextController.text)) {
+        email = _emailTextController.text;
+        Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => DashboardPage(
             user: user,
           ),
         ),
       );
+      }
     }
 
     return firebaseApp;
   }
+
+  // revisarCorreo() async {
+  //   await fetchData();
+  //   listResponse1.where(())
+  //   print(_emailTextController.text);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -335,13 +372,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             });
 
                                             if (user != null) {
-                                              Navigator.of(context)
-                                                  .pushReplacement(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DashboardPage(user: user),
-                                                ),
-                                              );
+                                              // Navigator.of(context)
+                                              //     .pushReplacement(
+                                              //   MaterialPageRoute(
+                                              //     builder: (context) =>
+                                              //         DashboardPage(user: user),
+                                              //   ),
+                                              // );
                                               // print('Token: $token');
                                               // Navigator.of(context)
                                               //     .pushReplacement(
