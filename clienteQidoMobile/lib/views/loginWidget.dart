@@ -87,6 +87,16 @@ class _LoginWidgetState extends State<LoginWidget> {
     passwordVisibility = false;
   }
 
+  idController() {
+    for (var i = 0; i < listResponse.length; i++) {
+          if (listResponse[i]['correoElectronico'].toString() == _emailTextController.text) {
+            idColaborador = listResponse[i]['idColaborador'];
+            break;
+          }
+          print('idColaborador: $idColaborador');
+        }
+  }
+
   Future<FirebaseApp> _initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
@@ -101,8 +111,10 @@ class _LoginWidgetState extends State<LoginWidget> {
       //   ),
       // );
       await fetchData();
+      
       if(listResponse1.contains(_emailTextController.text)) {
         email = _emailTextController.text;
+        await idController();        
         Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => DashboardPage(
