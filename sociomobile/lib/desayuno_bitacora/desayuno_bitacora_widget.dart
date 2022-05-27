@@ -1,3 +1,4 @@
+import '../comida_bitacora/comida_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -7,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class AlimentoBitacoraCopyCopyWidget extends StatefulWidget {
-  const AlimentoBitacoraCopyCopyWidget({Key key}) : super(key: key);
+import '../bitacoravariables.dart';
+
+class DesayunoBitacoraWidget extends StatefulWidget {
+  const DesayunoBitacoraWidget({Key key}) : super(key: key);
 
   @override
-  _AlimentoBitacoraCopyCopyWidgetState createState() =>
-      _AlimentoBitacoraCopyCopyWidgetState();
+  _DesayunoBitacoraWidgetState createState() => _DesayunoBitacoraWidgetState();
 }
 
-class _AlimentoBitacoraCopyCopyWidgetState
-    extends State<AlimentoBitacoraCopyCopyWidget> {
+class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
   double sliderValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -82,7 +83,7 @@ class _AlimentoBitacoraCopyCopyWidgetState
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                           child: Text(
-                            'Pregunta 3/3',
+                            'Pregunta 1/3',
                             style: FlutterFlowTheme.of(context).bodyText2,
                           ),
                         ),
@@ -90,7 +91,7 @@ class _AlimentoBitacoraCopyCopyWidgetState
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
-                          percent: 0.99,
+                          percent: 0.3,
                           width: MediaQuery.of(context).size.width * 0.96,
                           lineHeight: 12,
                           animation: true,
@@ -105,7 +106,7 @@ class _AlimentoBitacoraCopyCopyWidgetState
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 100, 0, 0),
                         child: Text(
-                          'Cena',
+                          'Desayuno',
                           style: FlutterFlowTheme.of(context).title1,
                         ),
                       ),
@@ -154,7 +155,7 @@ class _AlimentoBitacoraCopyCopyWidgetState
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
                             Text(
-                              'Poco',
+                              'Normal',
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
                             Text(
@@ -171,12 +172,25 @@ class _AlimentoBitacoraCopyCopyWidgetState
                               FlutterFlowTheme.of(context).primaryColor,
                           inactiveColor: FlutterFlowTheme.of(context).lineColor,
                           min: 0,
-                          max: 3,
-                          value: sliderValue ??= 1.5,
-                          divisions: 2,
-                          onChanged: (newValue) {
-                            setState(() => sliderValue = newValue);
+                          max: 4,
+                          value: sliderValue ??= 2,
+                          divisions: 4,
+                          onChanged: (newValue) {  setState(() => sliderValue = newValue);
+                            cambiarTexto(sliderValue);
                           },
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              textoAlimento,
+                              style: FlutterFlowTheme.of(context).title3,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -185,9 +199,34 @@ class _AlimentoBitacoraCopyCopyWidgetState
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      text: 'Atrás',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).grayIcon,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
@@ -198,13 +237,13 @@ class _AlimentoBitacoraCopyCopyWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: RegistroBitacoraV2Widget(),
+                            child: ComidaBitacoraWidget(),
                           ),
                         );
                       },
-                      text: 'Listo',
+                      text: 'Siguiente',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
@@ -229,4 +268,28 @@ class _AlimentoBitacoraCopyCopyWidgetState
       ),
     );
   }
+}
+var textoAlimento = "";
+ cambiarTexto(sliderValue){
+  if(sliderValue == 0){
+    textoAlimento = "1: Nada";
+    desayunoBitacora = 1;
+  }
+  if(sliderValue == 1){
+    textoAlimento = "2: Poco";
+    desayunoBitacora = 2;
+  }
+  if(sliderValue == 2){
+    textoAlimento = "3: Normal";
+    desayunoBitacora = 3;
+  }
+  if(sliderValue == 3){
+    textoAlimento = "4: Más de lo normal";
+    desayunoBitacora = 4;
+  }
+  if(sliderValue == 4){
+    textoAlimento = "5: Mucho";
+    desayunoBitacora = 5;
+  }
+
 }

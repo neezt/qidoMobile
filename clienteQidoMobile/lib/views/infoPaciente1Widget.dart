@@ -22,13 +22,58 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socios_qido/views/menu_page.dart';
 import 'package:socios_qido/main.dart';
+import 'package:http/http.dart' as http;
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:socios_qido/views/infoPaciente1Widget.dart';
+import 'package:socios_qido/views/loginWidget.dart';
+import 'package:socios_qido/views/pacientesAsignados.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:socios_qido/views/menu_page.dart';
+import 'package:socios_qido/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:socios_qido/utils/fire_auth.dart';
+import 'package:socios_qido/utils/validator.dart';
+import 'package:socios_qido/views/dashboard_page.dart';
+// import 'package:socios_qido/views/listaPacientesWidget.dart';
+import 'package:socios_qido/views/profile_page.dart';
+import 'package:socios_qido/views/register_page.dart';
+
+import 'package:page_transition/page_transition.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:socios_qido/views/pacientesAsignados.dart';
+import 'package:provider/provider.dart';
+import 'package:socios_qido/views/menu_page.dart';
+import 'package:socios_qido/main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:socios_qido/views/usertoken.dart';
+import './usertoken.dart';
+
 
 import './bitacoraWidget.dart';
 
 class InfoPaciente1Widget extends StatefulWidget {
   // const InfoPaciente1Widget({Key key}) : super(key: key);
     final User? user;
-    const InfoPaciente1Widget({required this.user});
+    final int id;
+    final List list;
+    final List procedimientos;
+    const InfoPaciente1Widget({required this.user, required this.id, required this.list, required this.procedimientos});
 
   @override
   _InfoPaciente1WidgetState createState() => _InfoPaciente1WidgetState();
@@ -36,10 +81,82 @@ class InfoPaciente1Widget extends StatefulWidget {
 
 class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _isSendingVerification = false;
+  bool _isSigningOut = false;
+
   late User? _currentUser = widget.user;
-  
+
+    Map<String, String> get headers => {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "token": token,
+  };
+
+  late int _currentId = widget.id;
+  late List _currentList = widget.list;
+  late List _currentProcedimientos = widget.procedimientos;
+  late String _size = _currentList[_currentId].toString();
+
+  //     String stringResponse = '';
+  // List listResponse = [];
+  // List listResponse1 = [];
+  // List idClientes = [];
+  // Map mapResponse = {};
+  // Map mapResponse1 = {};
+  // Future fetchData() async {
+  //   http.Response response;
+  //   var id = _currentList[_currentId]['idCliente'];
+  //   response = await http.get(Uri.parse('http://10.0.2.2/public/cliente/colaboradoresByCliente?cliente=$id'), headers: {"Token": FireAuth.token,});
+  //   if (response.statusCode==200) {
+  //     setState(() {
+  //       mapResponse = json.decode(response.body);
+  //       listResponse = mapResponse['data'];
+  //       for (var i = 0; i < listResponse.length; i++) {
+  //         listResponse1.add(mapResponse['data'][i]['idServicio']);
+  //       }
+
+  //       // int listLen = 0;
+  //       // listLen = listResponse[0].length;
+  //       print('listResponseListaaa: $listResponse1');
+  //     });
+  //   }
+  //   fetchData1();
+  // }
+
+  // String stringResponse1 = '';
+  // List listResponse2 = [];
+  // List listResponse3 = [];
+  // List idClientes1 = [];
+  // Map mapResponse2 = {};
+  // Map mapResponse3 = {};
+  // Future fetchData1() async {
+  //   http.Response response;
+  //   var idServicio = listResponse1[0];
+  //   response = await http.get(Uri.parse('http://10.0.2.2/public/cliente/bitacorasByServicio?idServicio=$idServicio'), headers: {"Token": FireAuth.token,});
+  //   if (response.statusCode==200) {
+  //     setState(() {
+  //       mapResponse2 = json.decode(response.body);
+  //       listResponse2 = mapResponse2['data'];
+  //       for (var i = 0; i < listResponse2.length; i++) {
+  //         listResponse3.add(mapResponse2['data'][i]);
+  //       }
+  //       int listLen3 = 0;
+  //       listLen3 = listResponse3.length;
+  //       print('listResponseListaaa111: $listResponse3');
+  //     });
+  //   }
+  // }
+
+  //   @override
+  // void initState() {
+  //   super.initState();
+  //   fetchData();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    print("procedimeintops $_size");
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -98,7 +215,8 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Adolfo Lozano',
+                              // 'Adolfo Lozano',
+                              _currentList[_currentId]['nombrecompleto'],
                               style:
                                   TextStyle(
                                         fontFamily: 'Lexend Deca',
@@ -107,19 +225,19 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                              child: Text(
-                                'Colaborador Asignado: Juan Perez',
-                                style: TextStyle(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xB4FFFFFF),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ),
+                            // Padding(
+                            //   padding:
+                            //       EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                            //   child: Text(
+                            //     'Colaborador Asignado: Juan Perez',
+                            //     style: TextStyle(
+                            //           fontFamily: 'Lexend Deca',
+                            //           color: Color(0xB4FFFFFF),
+                            //           fontSize: 14,
+                            //           fontWeight: FontWeight.normal,
+                            //         ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -165,7 +283,8 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                                   ),
                             ),
                             Text(
-                              '24',
+                              // '24',
+                              _currentList[_currentId]['idCliente'],
                               style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
@@ -216,7 +335,8 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                                   ),
                             ),
                             Text(
-                              'Adolfo Lozano',
+                              // 'Adolfo Lozano',
+                              _currentList[_currentId]['nombrecompleto'],
                               style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
@@ -267,7 +387,7 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                                   ),
                             ),
                             Text(
-                              '+52 81-1111-1111',
+                              _currentList[_currentId]['telefonoContacto'],
                               style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
@@ -318,7 +438,8 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                                   ),
                             ),
                             Text(
-                              'Dr. Francisco Garza',
+                              // 'Dr. Francisco Garza',
+                              _currentList[_currentId]['nombreMedico'],
                               style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
@@ -373,7 +494,8 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                               height: 200,
                               decoration: BoxDecoration(),
                               child: AutoSizeText(
-                                'La persona que se quede a cuidar a don Juan debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que él a veces es un poco terco. Debes ser limpia, por que a don Juan no le gusta el desorde',
+                                // 'La persona que se quede a cuidar a don Juan debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que él a veces es un poco terco. Debes ser limpia, por que a don Juan no le gusta el desorde',
+                                _currentProcedimientos[_currentId][0],
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
@@ -395,7 +517,7 @@ class _InfoPaciente1WidgetState extends State<InfoPaciente1Widget> {
                   await Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BitacoraWidget(user: _currentUser,),
+                      builder: (context) => BitacoraWidget(user: _currentUser, idCliente: _currentList[_currentId]['idCliente'],),
                     ),
                   );
                 },

@@ -1,12 +1,15 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../presion_bitacora/presion_bitacora_widget.dart';
+import '../presion_sistolica_bitacora/presion_sistolica_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
+import '../bitacoravariables.dart';
 
 class TemperaturaBitacoraWidget extends StatefulWidget {
   const TemperaturaBitacoraWidget({Key key}) : super(key: key);
@@ -18,6 +21,8 @@ class TemperaturaBitacoraWidget extends StatefulWidget {
 
 class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
   double sliderValue;
+  double temperatura = 36.0;
+  String radioButtonValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -95,9 +100,9 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                           lineHeight: 12,
                           animation: true,
                           progressColor:
-                              FlutterFlowTheme.of(context).primaryColor,
+                          FlutterFlowTheme.of(context).primaryColor,
                           backgroundColor:
-                              FlutterFlowTheme.of(context).lineColor,
+                          FlutterFlowTheme.of(context).lineColor,
                           barRadius: Radius.circular(24),
                           padding: EdgeInsets.zero,
                         ),
@@ -105,11 +110,11 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Temperatura: 110',
+                          'Temperatura: $temperatura',
                           style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Lexend Deca',
-                                fontWeight: FontWeight.w600,
-                              ),
+                            fontFamily: 'Lexend Deca',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                       Padding(
@@ -120,7 +125,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                               child: Container(
                                 width: 200,
                                 height: 200,
@@ -133,12 +138,12 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 25, 0, 0),
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0, 25, 0, 0),
                                           child: Image.asset(
                                             'assets/images/icons8-temperature.gif',
                                             width: 130,
@@ -156,18 +161,107 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
-                        child: Slider.adaptive(
-                          activeColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          inactiveColor: FlutterFlowTheme.of(context).lineColor,
-                          min: 0,
-                          max: 3,
-                          value: sliderValue ??= 1.5,
-                          divisions: 2,
-                          onChanged: (newValue) {
-                            setState(() => sliderValue = newValue);
-                          },
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                              child: FFButtonWidget(
+                                onPressed: () {
+
+                                  //decrecerTemperatura();
+                                  setState(() {
+                                    temperatura = temperatura - .1;
+                                    temperaturaBitacora = temperatura;
+                                  });
+                                },
+                                text: '-',
+                                options: FFButtonOptions(
+                                  width: 80,
+                                  height: 80,
+                                  color:
+                                  FlutterFlowTheme.of(context).background,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                    fontFamily: 'Lexend Deca',
+                                    fontSize: 60,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 45,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              child: FFButtonWidget(
+                                onPressed: () {
+                                  //print('Button pressed ...');
+                                  // aumentarTemperatura();
+                                  setState(() {
+                                    temperatura = temperatura + .1;
+                                    temperaturaBitacora = temperatura;
+                                  });
+
+                                },
+                                text: '+',
+                                options: FFButtonOptions(
+                                  width: 80,
+                                  height: 80,
+                                  color: FlutterFlowTheme.of(context).background,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                    fontFamily: 'Lexend Deca',
+                                    fontSize: 60,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 45,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FlutterFlowRadioButton(
+                              options: ['No aplica'].toList(),
+                              onChanged: (value) {
+                                setState(() => radioButtonValue = value);
+                              },
+                              optionHeight: 25,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                fontFamily: 'Lexend Deca',
+                                color: Colors.black,
+                              ),
+                              buttonPosition: RadioButtonPosition.left,
+                              direction: Axis.vertical,
+                              radioButtonColor: Colors.blue,
+                              inactiveRadioButtonColor: Color(0x8A000000),
+                              toggleable: true,
+                              horizontalAlignment: WrapAlignment.start,
+                              verticalAlignment: WrapCrossAlignment.start,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -176,9 +270,34 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      text: 'Atrás',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).grayIcon,
+                        textStyle:
+                        FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                        ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
@@ -189,20 +308,20 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PresionBitacoraWidget(),
+                            child: PresionSistolicaBitacoraWidget(),
                           ),
                         );
                       },
                       text: 'Siguiente',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.white,
-                                ),
+                        FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                        ),
                         elevation: 3,
                         borderSide: BorderSide(
                           color: Colors.transparent,
@@ -220,4 +339,13 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
       ),
     );
   }
+  aumentarTemperatura(){
+    temperatura = 37;
+  }
+  decrecerTemperatura(){
+    temperatura = 35;
+  }
 }
+
+
+

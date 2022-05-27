@@ -218,7 +218,7 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                   children: [
                     Expanded(
                       child: Text(
-                        'La persona que se quede a cuidar a don Juan debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que él a veces es un poco terco. Debes ser limpia, por que a don Juan no le gusta el desorden.',
+                        'La persona que se quede a cuidar a doña Rosario debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que ella a veces es un poco terca. Se debe ser limpio ya que a doña Rosario no le gusta el desorden.',
                         style: FlutterFlowTheme.of(context).bodyText2.override(
                               fontFamily: 'Lexend Deca',
                               color: Color(0xFF57636C),
@@ -261,7 +261,7 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                     width: double.infinity,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: FlutterFlowTheme.of(context).gray200,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
@@ -284,7 +284,8 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                                         .subtitle1
                                         .override(
                                           fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF090F13),
+                                          color: FlutterFlowTheme.of(context)
+                                              .grayIcon,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                         ),

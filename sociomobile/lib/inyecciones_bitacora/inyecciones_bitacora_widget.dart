@@ -17,6 +17,7 @@ class InyeccionesBitacoraWidget extends StatefulWidget {
 }
 
 class _InyeccionesBitacoraWidgetState extends State<InyeccionesBitacoraWidget> {
+  var Inyecciones = "";
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController myBioController;
 
@@ -145,7 +146,7 @@ class _InyeccionesBitacoraWidgetState extends State<InyeccionesBitacoraWidget> {
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
-                                    hintText: 'Your bio',
+                                    hintText: 'Escriba aquí...',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText2
                                         .override(
@@ -198,9 +199,34 @@ class _InyeccionesBitacoraWidgetState extends State<InyeccionesBitacoraWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      text: 'Atrás',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).grayIcon,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
@@ -215,9 +241,9 @@ class _InyeccionesBitacoraWidgetState extends State<InyeccionesBitacoraWidget> {
                           ),
                         );
                       },
-                      text: 'Siguiente pregunta',
+                      text: 'Siguiente',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:

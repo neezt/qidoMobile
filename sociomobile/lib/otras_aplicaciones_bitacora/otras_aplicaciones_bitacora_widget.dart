@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
+import '../terapias_bitacora/terapias_bitacora_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -145,7 +146,7 @@ class _OtrasAplicacionesBitacoraWidgetState
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
-                                    hintText: 'Your bio',
+                                    hintText: 'Escriba aquí...',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText2
                                         .override(
@@ -198,9 +199,42 @@ class _OtrasAplicacionesBitacoraWidgetState
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: TerapiasBitacoraWidget(),
+                          ),
+                        );
+                      },
+                      text: 'Atrás',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
@@ -217,7 +251,7 @@ class _OtrasAplicacionesBitacoraWidgetState
                       },
                       text: 'Listo',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:

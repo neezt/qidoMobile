@@ -1,12 +1,16 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../azucar_bitacora/azucar_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../metrica_extra_bitacora/metrica_extra_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
+import '../bitacoravariables.dart';
 
 class OxigenoBitacoraWidget extends StatefulWidget {
   const OxigenoBitacoraWidget({Key key}) : super(key: key);
@@ -81,7 +85,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                           child: Text(
-                            'Métrica 4/5',
+                            'Métrica 5/5',
                             style: FlutterFlowTheme.of(context).bodyText2,
                           ),
                         ),
@@ -89,7 +93,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
-                          percent: 0.8,
+                          percent: 0.99,
                           width: MediaQuery.of(context).size.width * 0.96,
                           lineHeight: 12,
                           animation: true,
@@ -104,7 +108,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Nivel de oxígeno: 110',
+                          'Nivel de oxígeno: $oxigeno %' ,
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Lexend Deca',
                                 fontWeight: FontWeight.w600,
@@ -160,12 +164,13 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                           activeColor:
                               FlutterFlowTheme.of(context).primaryColor,
                           inactiveColor: FlutterFlowTheme.of(context).lineColor,
-                          min: 0,
-                          max: 3,
-                          value: sliderValue ??= 1.5,
-                          divisions: 2,
+                          min: 80,
+                          max: 100,
+                          value: sliderValue ??= 97,
+                          divisions: 20,
                           onChanged: (newValue) {
                             setState(() => sliderValue = newValue);
+                            cambiarOxigeno(sliderValue);
                           },
                         ),
                       ),
@@ -175,7 +180,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Padding(
@@ -188,13 +193,46 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: MetricaExtraBitacoraWidget(),
+                            child: AzucarBitacoraWidget(),
                           ),
                         );
                       },
-                      text: 'Siguiente',
+                      text: 'Atrás',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: RegistroBitacoraV2Widget(),
+                          ),
+                        );
+                      },
+                      text: 'Listo',
+                      options: FFButtonOptions(
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
@@ -219,4 +257,9 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
       ),
     );
   }
+}
+double oxigeno = 97;
+cambiarOxigeno(oxi){
+  oxigeno = oxi;
+  oxigenoBitacora = oxigeno.toInt();
 }

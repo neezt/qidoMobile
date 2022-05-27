@@ -1,4 +1,5 @@
-import '../alimento_bitacora_copy_copy/alimento_bitacora_copy_copy_widget.dart';
+import '../cena_bitacora/cena_bitacora_widget.dart';
+import '../desayuno_bitacora/desayuno_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -8,16 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class AlimentoBitacoraCopyWidget extends StatefulWidget {
-  const AlimentoBitacoraCopyWidget({Key key}) : super(key: key);
+import '../bitacoravariables.dart';
+
+class ComidaBitacoraWidget extends StatefulWidget {
+  const ComidaBitacoraWidget({Key key}) : super(key: key);
 
   @override
-  _AlimentoBitacoraCopyWidgetState createState() =>
-      _AlimentoBitacoraCopyWidgetState();
+  _ComidaBitacoraWidgetState createState() => _ComidaBitacoraWidgetState();
 }
 
-class _AlimentoBitacoraCopyWidgetState
-    extends State<AlimentoBitacoraCopyWidget> {
+class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
   double sliderValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -155,7 +156,7 @@ class _AlimentoBitacoraCopyWidgetState
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
                             Text(
-                              'Poco',
+                              'Normal',
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
                             Text(
@@ -172,12 +173,25 @@ class _AlimentoBitacoraCopyWidgetState
                               FlutterFlowTheme.of(context).primaryColor,
                           inactiveColor: FlutterFlowTheme.of(context).lineColor,
                           min: 0,
-                          max: 3,
-                          value: sliderValue ??= 1.5,
-                          divisions: 2,
-                          onChanged: (newValue) {
-                            setState(() => sliderValue = newValue);
+                          max: 4,
+                          value: sliderValue ??= 2,
+                          divisions: 4,
+                          onChanged: (newValue) {setState(() => sliderValue = newValue);
+                          cambiarTexto(sliderValue);
                           },
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              textoAlimento,
+                              style: FlutterFlowTheme.of(context).title3,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -186,7 +200,7 @@ class _AlimentoBitacoraCopyWidgetState
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Padding(
@@ -199,13 +213,46 @@ class _AlimentoBitacoraCopyWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: AlimentoBitacoraCopyCopyWidget(),
+                            child: DesayunoBitacoraWidget(),
                           ),
                         );
                       },
-                      text: 'Siguiente pregunta',
+                      text: 'Atrás',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: CenaBitacoraWidget(),
+                          ),
+                        );
+                      },
+                      text: 'Siguiente',
+                      options: FFButtonOptions(
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
@@ -230,4 +277,28 @@ class _AlimentoBitacoraCopyWidgetState
       ),
     );
   }
+}
+var textoAlimento = "";
+cambiarTexto(sliderValue){
+  if(sliderValue == 0){
+    textoAlimento = "1: Nada";
+    comidaBitacora = 1;
+  }
+  if(sliderValue == 1){
+    textoAlimento = "2: Poco";
+    comidaBitacora = 2;
+  }
+  if(sliderValue == 2){
+    textoAlimento = "3: Normal";
+    comidaBitacora = 3;
+  }
+  if(sliderValue == 3){
+    textoAlimento = "4: Más de lo normal";
+    comidaBitacora = 4;
+  }
+  if(sliderValue == 4){
+    textoAlimento = "5: Mucho";
+    comidaBitacora = 5;
+  }
+
 }

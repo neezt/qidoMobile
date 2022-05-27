@@ -68,6 +68,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     late  FirebaseAuth auth = FirebaseAuth.instance;
     late User? user = auth.currentUser;
+    late int id = 0;
+    late List list = [];
+    late List procedimientos = [];
+    late String idCliente = "";
     return MaterialApp(
       title: 'Qido Socio',
       debugShowCheckedModeBanner: false,
@@ -80,8 +84,8 @@ class _MyAppState extends State<MyApp> {
         '/pacientesAsignados': (context) => PacientesAsignadosPage(user: user),
         // '/loginWidget': (context) => LoginWidget(user: user),
         '/listaPacientesWidget': (context) => ListaPacientesWidget(user: user),
-        '/infoPaciente1Widget': (context) => InfoPaciente1Widget(user: user),
-        '/bitacoraWidget': (context) => BitacoraWidget(user: user),
+        '/infoPaciente1Widget': (context) => InfoPaciente1Widget(user: user, id: id, list: list, procedimientos: procedimientos),
+        '/bitacoraWidget': (context) => BitacoraWidget(user: user, idCliente: idCliente),
         '/bitacoraInfoWidget': (context) => BitacoraInfoWidget(user: user),
         '/imagenesWidget': (context) => ImagenesWidget(user: user),
       },

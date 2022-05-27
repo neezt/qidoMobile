@@ -208,8 +208,8 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(40),
-                                    child: Image.asset(
-                                      'assets/images/bigstock-Beautiful-Portrait-Of-An-Elder-5884730-e1395250928579.jpg',
+                                    child: Image.network(
+                                      'https://img.icons8.com/ios/344/user-female-circle.png',
                                       width: 60,
                                       height: 60,
                                       fit: BoxFit.cover,
@@ -313,7 +313,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(40),
                                   child: Image.network(
-                                    'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
+                                    'https://img.icons8.com/ios/344/user-female-circle.png',
                                     width: 60,
                                     height: 60,
                                     fit: BoxFit.cover,
@@ -414,7 +414,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(40),
                                   child: Image.network(
-                                    'https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
+                                    'https://img.icons8.com/ios/344/user-female-circle.png',
                                     width: 60,
                                     height: 60,
                                     fit: BoxFit.cover,
@@ -515,7 +515,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(40),
                                   child: Image.network(
-                                    'https://images.unsplash.com/photo-1533689476487-034f57831a58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA4fHx1c2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+                                    'https://img.icons8.com/ios/344/user-female-circle.png',
                                     width: 60,
                                     height: 60,
                                     fit: BoxFit.cover,

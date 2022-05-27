@@ -1,6 +1,7 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,23 @@ class ActividadesBitacoraWidget extends StatefulWidget {
 }
 
 class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
+  List<String> actvidades;
+
+  bool dormir = false;
+  bool caminar = false;
+  bool verTV = false;
+  bool tomarElSol = false;
+  bool banoSolo = false;
+  bool banoAsistido = false;
+  bool ejercicioSolo = false;
+  bool juegosMentales = false;
+  bool cambioDePosicion = false;
+  bool defecar = false;
+  bool orinar = false;
+  bool cambioPanal = false;
+  bool vomitar = false;
+  bool visitaFamiliar = false;
+  bool salidaFamiliar = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -1027,6 +1045,49 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                             ),
                           ],
                         ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                    reverseDuration: Duration(milliseconds: 0),
+                                    child: RegistroBitacoraV2Widget(),
+                                  ),
+                                );
+                              },
+                              text: 'Listo',
+                              options: FFButtonOptions(
+                                width: 300,
+                                height: 50,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 40,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

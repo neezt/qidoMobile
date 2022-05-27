@@ -3,10 +3,13 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../oxigeno_bitacora/oxigeno_bitacora_widget.dart';
+import '../presion_diastolica_bitacora/presion_diastolica_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
+import '../bitacoravariables.dart';
 
 class AzucarBitacoraWidget extends StatefulWidget {
   const AzucarBitacoraWidget({Key key}) : super(key: key);
@@ -81,7 +84,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                           child: Text(
-                            'Métrica 3/5',
+                            'Métrica 4/5',
                             style: FlutterFlowTheme.of(context).bodyText2,
                           ),
                         ),
@@ -89,7 +92,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
-                          percent: 0.6,
+                          percent: 0.8,
                           width: MediaQuery.of(context).size.width * 0.96,
                           lineHeight: 12,
                           animation: true,
@@ -104,7 +107,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Nivel de azúcar: 110',
+                          'Nivel de azúcar: $azucar',
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Lexend Deca',
                                 fontWeight: FontWeight.w600,
@@ -160,12 +163,13 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                           activeColor:
                               FlutterFlowTheme.of(context).primaryColor,
                           inactiveColor: FlutterFlowTheme.of(context).lineColor,
-                          min: 0,
-                          max: 3,
-                          value: sliderValue ??= 1.5,
-                          divisions: 2,
+                          min: 60,
+                          max: 350,
+                          value: sliderValue ??= 100,
+                          divisions: 290,
                           onChanged: (newValue) {
                             setState(() => sliderValue = newValue);
+                            cambiarAzucar(sliderValue);
                           },
                         ),
                       ),
@@ -175,9 +179,42 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: PresionDiastolicaBitacoraWidget(),
+                          ),
+                        );
+                      },
+                      text: 'Atrás',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
@@ -194,7 +231,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                       },
                       text: 'Siguiente',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
@@ -219,4 +256,9 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
       ),
     );
   }
+}
+double azucar = 100;
+cambiarAzucar(azu){
+  azucar = azu;
+  glucosaBitacora = azucar.toInt();
 }

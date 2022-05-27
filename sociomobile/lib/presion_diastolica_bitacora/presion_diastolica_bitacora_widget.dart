@@ -3,19 +3,24 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../presion_sistolica_bitacora/presion_sistolica_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class PresionBitacoraWidget extends StatefulWidget {
-  const PresionBitacoraWidget({Key key}) : super(key: key);
+import '../bitacoravariables.dart';
+
+class PresionDiastolicaBitacoraWidget extends StatefulWidget {
+  const PresionDiastolicaBitacoraWidget({Key key}) : super(key: key);
 
   @override
-  _PresionBitacoraWidgetState createState() => _PresionBitacoraWidgetState();
+  _PresionDiastolicaBitacoraWidgetState createState() =>
+      _PresionDiastolicaBitacoraWidgetState();
 }
 
-class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
+class _PresionDiastolicaBitacoraWidgetState
+    extends State<PresionDiastolicaBitacoraWidget> {
   double sliderValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -81,7 +86,7 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                           child: Text(
-                            'Métrica 2/5',
+                            'Métrica 3/5',
                             style: FlutterFlowTheme.of(context).bodyText2,
                           ),
                         ),
@@ -89,7 +94,7 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
-                          percent: 0.4,
+                          percent: 0.6,
                           width: MediaQuery.of(context).size.width * 0.96,
                           lineHeight: 12,
                           animation: true,
@@ -104,7 +109,7 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Presión arterial: 110',
+                          'Presión diastólica: $presionDiastolica',
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Lexend Deca',
                                 fontWeight: FontWeight.w600,
@@ -169,12 +174,13 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
                           activeColor:
                               FlutterFlowTheme.of(context).primaryColor,
                           inactiveColor: FlutterFlowTheme.of(context).lineColor,
-                          min: 0,
-                          max: 3,
-                          value: sliderValue ??= 1.5,
-                          divisions: 2,
+                          min: 50,
+                          max: 130,
+                          value: sliderValue ??= 80,
+                          divisions: 70,
                           onChanged: (newValue) {
                             setState(() => sliderValue = newValue);
+                            cambiarPresionDiastolica(sliderValue);
                           },
                         ),
                       ),
@@ -184,9 +190,42 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: PresionSistolicaBitacoraWidget(),
+                          ),
+                        );
+                      },
+                      text: 'Atrás',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 40,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
@@ -203,7 +242,7 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
                       },
                       text: 'Siguiente',
                       options: FFButtonOptions(
-                        width: 300,
+                        width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
@@ -228,4 +267,9 @@ class _PresionBitacoraWidgetState extends State<PresionBitacoraWidget> {
       ),
     );
   }
+}
+double presionDiastolica = 80;
+cambiarPresionDiastolica (diast){
+  presionDiastolica = diast;
+  presionDiastolicaBitacora = presionDiastolica.toInt();
 }
