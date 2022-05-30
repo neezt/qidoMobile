@@ -1,3 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qido_colaboradores/utils/fire_auth.dart';
+import 'package:qido_colaboradores/utils/validator.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -13,24 +17,30 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController emailController;
-  TextEditingController passwordController;
+  final _formKey = GlobalKey<FormState>();
+
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+
+  final _focusEmail = FocusNode();
+  final _focusPassword = FocusNode();
+
+  bool _isProcessing = false;
+
   bool passwordVisibility;
 
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController(text: 'usuario.colaborador');
-    passwordController = TextEditingController(text: '123456789qwerty');
     passwordVisibility = false;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      key: _formKey,
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      resizeToAvoidBottomInset : false, // configuracion de teclado
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -64,18 +74,6 @@ class _LoginWidgetState extends State<LoginWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Bienvenido',
-                          style: FlutterFlowTheme.of(context).title1,
-                        ),
-                      ],
-                    ),
-                  ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -119,147 +117,232 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                    child: TextFormField(
-                      controller: emailController,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'Correo Electronico',
-                        labelStyle: FlutterFlowTheme.of(context).bodyText1,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xFFE6E6E6),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xFFE6E6E6),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        filled: true,
-                        fillColor: FlutterFlowTheme.of(context).tertiaryColor,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.of(context).primaryDark,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 0),
-                    child: TextFormField(
-                      controller: passwordController,
-                      obscureText: !passwordVisibility,
-                      decoration: InputDecoration(
-                        labelText: 'Clave',
-                        labelStyle: FlutterFlowTheme.of(context).bodyText1,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xFFE6E6E6),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xFFE6E6E6),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        filled: true,
-                        fillColor: FlutterFlowTheme.of(context).tertiaryColor,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(16, 20, 24, 20),
-                        suffixIcon: InkWell(
-                          onTap: () => setState(
-                            () => passwordVisibility = !passwordVisibility,
-                          ),
-                          child: Icon(
-                            passwordVisibility
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            color: FlutterFlowTheme.of(context).grayIcon,
-                            size: 22,
-                          ),
-                        ),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.of(context).primaryDark,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 12),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Olvidé mi clave',
-                            options: FFButtonOptions(
-                              width: 170,
-                              height: 50,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF00D8D6),
-                                    fontSize: 14,
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 5, 0, 0),
+                                  child: TextFormField(
+                                    controller: _emailTextController,
+                                    focusNode: _focusEmail,
+                                    validator: (value) => Validator.validateEmail(
+                                      email: value,
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Usuario',
+                                      labelStyle: TextStyle(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFF95A1AC),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      hintStyle: TextStyle(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFF95A1AC),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFDBE2E7),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFDBE2E7),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      contentPadding:
+                                      EdgeInsetsDirectional.fromSTEB(
+                                          16, 24, 0, 24),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Outfit',
+                                      color: Color(0xFF0F1113),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                                   ),
-                              elevation: 0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
+                                ),
                               ),
-                              borderRadius: 12,
-                            ),
+                            ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ListaPacientesV2Widget(),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _passwordTextController,
+                                  focusNode: _focusPassword,
+                                  obscureText: !passwordVisibility,
+                                  decoration: InputDecoration(
+                                    labelText: 'Contraseña',
+                                    labelStyle: TextStyle(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF95A1AC),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    hintStyle: TextStyle(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF95A1AC),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFDBE2E7),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFDBE2E7),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    contentPadding:
+                                    EdgeInsetsDirectional.fromSTEB(
+                                        16, 24, 24, 24),
+                                    suffixIcon: InkWell(
+                                      onTap: () => setState(
+                                            () => passwordVisibility =
+                                        !passwordVisibility,
+                                      ),
+                                      child: Icon(
+                                        passwordVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        color: Color(0xFF95A1AC),
+                                        size: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    color: Color(0xFF0F1113),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                 ),
-                              );
-                            },
-                            text: 'Entrar',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 50,
-                              color: Color(0xFF00D8D6),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  print('Button-ForgotPassword pressed ...');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  textStyle: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    color: Color(0xFF00D8D6),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  fixedSize: Size(182, 30),
+                                  elevation: 0,
+                                  primary: Colors.transparent,
+                                  onPrimary: Color(0xFF00D8D6),
+                                ),
+
+                                child: Text('¿Olvide la contraseña?'),
+                              ),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  _focusEmail.unfocus();
+                                  _focusPassword.unfocus();
+
+                                  if (_formKey.currentState
+                                      .validate()) {
+                                    setState(() {
+                                      _isProcessing = true;
+                                    });
+
+                                    User user = await FireAuth
+                                        .signInUsingEmailPassword(
+                                      email: _emailTextController.text,
+                                      password:
+                                      _passwordTextController.text,
+                                    );
+
+                                    setState(() {
+                                      _isProcessing = false;
+                                    });
+
+                                    if (user != null) {
+                                       Navigator.of(context)
+                                           .pushReplacement(
+                                         MaterialPageRoute(
+                                           builder: (context) =>
+                                               ListaPacientesV2Widget(user: user),
+                                         ),
+                                       );
+                                      // print('Token: $token');
+                                      // Navigator.of(context)
+                                      //     .pushReplacement(
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //         DashboardPage(user: user),
+                                      //   ),
+                                      // );
+                                    }
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  textStyle: TextStyle(
                                     fontFamily: 'Lexend Deca',
                                     color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                              elevation: 2,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
+                                  fixedSize: Size(150, 50),
+                                  primary: Color(0xFF0F1113),
+                                  // onPrimary: Color(0xFF0F1113),
+                                  elevation: 3,
+                                  onSurface: Colors.transparent,
+                                ),
+                                child: Text('Iniciar Sesión'),
+                                // text: 'Iniciar Sesión',
+                                // options: FFButtonOptions(
+                                //   borderSide: BorderSide(
+                                //     color: Colors.transparent,
+                                //     width: 1,
+                                //   ),
+                                //   borderRadius: 8,
+                                // ),
                               ),
-                              borderRadius: 30,
-                            ),
+                            ],
                           ),
                         ),
                       ],
