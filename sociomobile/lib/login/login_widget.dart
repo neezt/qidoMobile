@@ -9,6 +9,17 @@ import '../lista_pacientes_v2/lista_pacientes_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'package:page_transition/page_transition.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import '../usertoken.dart';
+
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key key}) : super(key: key);
 
@@ -29,10 +40,43 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   bool passwordVisibility;
 
+  String stringResponse = '';
+  List listResponse = [];
+  List listResponse1 = [];
+  Map mapResponse = {};
+  Map mapResponse1 = {};
+  Future fetchData() async {
+    http.Response response;
+    response = await http.post(Uri.parse('http://10.0.2.2/public/colaborador/colaboradores'), headers: {"Token": FireAuth.token,});
+    // print('response: $response');
+    if (response.statusCode==200) {
+      setState(() {
+        mapResponse = json.decode(response.body);
+        listResponse = mapResponse['data'];
+        for (var i = 0; i < listResponse.length; i++) {
+          listResponse1.add(mapResponse['data'][i]['correoElectronico'].toString());
+          print('listResponse: $listResponse1');
+        }
+        // mapResponse = mapResponse['polizas'][0];
+        print('YES $mapResponse');
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     passwordVisibility = false;
+  }
+
+  idController() {
+    for (var i = 0; i < listResponse.length; i++) {
+          if (listResponse[i]['correoElectronico'].toString() == _emailTextController.text) {
+            idColaborador = listResponse[i]['idColaborador'];
+            break;
+          }
+          print('idColaborador: $idColaborador');
+        }
   }
 
   @override
@@ -301,21 +345,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     });
 
                                     if (user != null) {
-                                       Navigator.of(context)
-                                           .pushReplacement(
-                                         MaterialPageRoute(
-                                           builder: (context) =>
-                                               ListaPacientesV2Widget(user: user),
-                                         ),
-                                       );
-                                      // print('Token: $token');
-                                      // Navigator.of(context)
-                                      //     .pushReplacement(
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) =>
-                                      //         DashboardPage(user: user),
-                                      //   ),
-                                      // );
+
+                                      await fetchData();
+
+                                      if(listResponse1.contains(_emailTextController.text)) {
+                                        email = _emailTextController.text;
+                                        await idController();        
+                                        Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) => ListaPacientesV2Widget(
+                                            user: user,
+                                          ),
+                                        ),
+                                      );
+                                      }
+
+                                      //  Navigator.of(context)
+                                      //      .pushReplacement(
+                                      //    MaterialPageRoute(
+                                      //      builder: (context) =>
+                                      //          ListaPacientesV2Widget(user: user),
+                                      //    ),
+                                      //  );
                                     }
                                   }
                                 },
