@@ -20,8 +20,46 @@ import 'package:http/http.dart' as http;
 
 import '../bitacoravariables.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../flutter_flow/flutter_flow_animations.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../pagina_perfil_v3/pagina_perfil_v3_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../usertoken.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qido_colaboradores/utils/fire_auth.dart';
+import 'package:qido_colaboradores/utils/validator.dart';
+
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import '../lista_pacientes_v2/lista_pacientes_v2_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'package:page_transition/page_transition.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import '../usertoken.dart';
+
 class RegistroBitacoraV2Widget extends StatefulWidget {
-  // const RegistroBitacoraV2Widget({Key key}) : super(key: key);
+  const RegistroBitacoraV2Widget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+
+    final int idTemp;
+    final List listTemp;
+    final String idPaciente;
+    final String nombrePaciente;
 
   @override
   _RegistroBitacoraV2WidgetState createState() =>
@@ -33,7 +71,7 @@ class _RegistroBitacoraV2WidgetState extends State<RegistroBitacoraV2Widget> {
   Map<String, String> get headers => {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "token": "AIwUaOm1wO51_PSRBUtR6JsGSFTAEEZqLJq8EYFvNzZb6rfVaEw-Ty-4NS244Jlu2JZiSiLCtS0y1P11hhdcfPQek5lAZDrL89V7QruKDWRyn3LCdTbLCPkneJ7-AHzMcZE5bcH07yI3kQ7F1BEdXKBul1ap66-aFwZGJX50i1o5v8Pp9kSqpdh_98pvF_QYUNld2xYjpEZG",
+    "token": token,
   };
 
   
@@ -48,12 +86,14 @@ Future grabarBitacora() async {
     'presionDiastolicaBitacora': presionDiastolicaBitacora,
     'glucosaBitacora': glucosaBitacora,
     'oxigenoBitacora': oxigenoBitacora,
+    'idServicioBitacora': idServicioBitacora,
+    'idColaboradorBitacora': widget.idPaciente,
   };
 
   var body = json.encode(data);
 
     http.Response response;
-    response = await http.post(Uri.parse('http://10.0.2.2/public/bitacora/create'), headers: {"Token": "AIwUaOm1wO51_PSRBUtR6JsGSFTAEEZqLJq8EYFvNzZb6rfVaEw-Ty-4NS244Jlu2JZiSiLCtS0y1P11hhdcfPQek5lAZDrL89V7QruKDWRyn3LCdTbLCPkneJ7-AHzMcZE5bcH07yI3kQ7F1BEdXKBul1ap66-aFwZGJX50i1o5v8Pp9kSqpdh_98pvF_QYUNld2xYjpEZG",}, body: body);
+    response = await http.post(Uri.parse('http://10.0.2.2/public/bitacora/create'), headers: {"Token": FireAuth.token,}, body: body);
     // if (response.statusCode==200) {
     //   setState(() {
     //     mapResponse = json.decode(response.body);
@@ -106,12 +146,16 @@ Future grabarBitacora() async {
                       size: 24,
                     ),
                     onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PaginaPerfilV3Widget(),
-                        ),
-                      );
+                                  // Navigator.pop(context);
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: PaginaPerfilV3Widget(id: widget.idTemp, list: widget.listTemp),
+                          ),
+                        );
                     },
                   ),
                   Expanded(
@@ -135,7 +179,8 @@ Future grabarBitacora() async {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                             child: Text(
-                              'Nombre: Rosario Armenta - ID: 24',
+                              'Nombre: ${widget.nombrePaciente} - ID: ${widget.idPaciente}',
+                              // 'Nombre: Rosario Armenta - ID: 24',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -162,7 +207,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DesayunoBitacoraWidget(),
+                    builder: (context) => DesayunoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -175,7 +220,7 @@ Future grabarBitacora() async {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DesayunoBitacoraWidget(),
+                          builder: (context) => DesayunoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                         ),
                       );
                     },
@@ -239,7 +284,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ActividadesBitacoraWidget(),
+                    builder: (context) => ActividadesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -305,7 +350,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EstadoDeAnimoBitacoraWidget(),
+                    builder: (context) => EstadoDeAnimoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -375,7 +420,7 @@ Future grabarBitacora() async {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TemperaturaBitacoraWidget(),
+                        builder: (context) => TemperaturaBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                       ),
                     );
                   },
@@ -442,7 +487,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => InyeccionesBitacoraWidget(),
+                    builder: (context) => InyeccionesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -632,13 +677,13 @@ Future grabarBitacora() async {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  grabarBitacora();
-                  // await Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => BitacoraCompletadaWidget(),
-                  //   ),
-                  // );
+                  await grabarBitacora();
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BitacoraCompletadaWidget(),
+                    ),
+                  );
                 } else {
                   return;
                 }

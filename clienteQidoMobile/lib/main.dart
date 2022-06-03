@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> {
     late List list = [];
     late List procedimientos = [];
     late String idCliente = "";
+    late int idTemp = 0;
     return MaterialApp(
       title: 'Qido Socio',
       debugShowCheckedModeBanner: false,
@@ -86,7 +87,7 @@ class _MyAppState extends State<MyApp> {
         '/listaPacientesWidget': (context) => ListaPacientesWidget(user: user),
         '/infoPaciente1Widget': (context) => InfoPaciente1Widget(user: user, id: id, list: list, procedimientos: procedimientos),
         '/bitacoraWidget': (context) => BitacoraWidget(user: user, idCliente: idCliente),
-        '/bitacoraInfoWidget': (context) => BitacoraInfoWidget(user: user),
+        '/bitacoraInfoWidget': (context) => BitacoraInfoWidget(user: user, list: list, idTemp: idTemp,),
         '/imagenesWidget': (context) => ImagenesWidget(user: user),
       },
       theme: ThemeData(

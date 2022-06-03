@@ -9,7 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class OtrasAplicacionesBitacoraWidget extends StatefulWidget {
-  const OtrasAplicacionesBitacoraWidget({Key key}) : super(key: key);
+  const OtrasAplicacionesBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+
+  final String idPaciente, nombrePaciente;
+  final int idTemp;
+  final List listTemp;
 
   @override
   _OtrasAplicacionesBitacoraWidgetState createState() =>
@@ -59,7 +63,7 @@ class _OtrasAplicacionesBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -212,7 +216,7 @@ class _OtrasAplicacionesBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: TerapiasBitacoraWidget(),
+                            child: TerapiasBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
@@ -245,7 +249,7 @@ class _OtrasAplicacionesBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: RegistroBitacoraV2Widget(),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

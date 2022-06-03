@@ -6,3 +6,5 @@ int presionSistolicaBitacora = 0;
 int presionDiastolicaBitacora = 0;
 int glucosaBitacora = 0;
 int oxigenoBitacora = 0;
+int idServicioBitacora = 0;
+int idColaboradorBitacora = 0;

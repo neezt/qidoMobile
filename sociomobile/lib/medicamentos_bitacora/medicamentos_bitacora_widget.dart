@@ -10,7 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class MedicamentosBitacoraWidget extends StatefulWidget {
-  const MedicamentosBitacoraWidget({Key key}) : super(key: key);
+  const MedicamentosBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+
+  final String idPaciente, nombrePaciente;
+  final int idTemp;
+  final List listTemp;
 
   @override
   _MedicamentosBitacoraWidgetState createState() =>
@@ -61,7 +65,7 @@ class _MedicamentosBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -214,7 +218,7 @@ class _MedicamentosBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: InyeccionesBitacoraWidget(),
+                            child: InyeccionesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
@@ -247,7 +251,7 @@ class _MedicamentosBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: TerapiasBitacoraWidget(),
+                            child: TerapiasBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

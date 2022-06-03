@@ -12,7 +12,11 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class TemperaturaBitacoraWidget extends StatefulWidget {
-  const TemperaturaBitacoraWidget({Key key}) : super(key: key);
+  const TemperaturaBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp}) : super(key: key);
+
+  final String idPaciente1, nombrePaciente1;
+  final int idTemp;
+  final List listTemp;
 
   @override
   _TemperaturaBitacoraWidgetState createState() =>
@@ -57,7 +61,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -308,7 +312,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PresionSistolicaBitacoraWidget(),
+                            child: PresionSistolicaBitacoraWidget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

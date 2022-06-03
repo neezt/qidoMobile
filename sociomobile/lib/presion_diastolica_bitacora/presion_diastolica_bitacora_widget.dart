@@ -12,7 +12,11 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class PresionDiastolicaBitacoraWidget extends StatefulWidget {
-  const PresionDiastolicaBitacoraWidget({Key key}) : super(key: key);
+  const PresionDiastolicaBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+
+    final String idPaciente, nombrePaciente;
+    final int idTemp;
+    final List listTemp;
 
   @override
   _PresionDiastolicaBitacoraWidgetState createState() =>
@@ -56,7 +60,7 @@ class _PresionDiastolicaBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -203,7 +207,7 @@ class _PresionDiastolicaBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PresionSistolicaBitacoraWidget(),
+                            child: PresionSistolicaBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
@@ -236,7 +240,7 @@ class _PresionDiastolicaBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: AzucarBitacoraWidget(),
+                            child: AzucarBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

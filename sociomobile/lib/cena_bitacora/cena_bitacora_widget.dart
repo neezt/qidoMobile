@@ -11,7 +11,11 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class CenaBitacoraWidget extends StatefulWidget {
-  const CenaBitacoraWidget({Key key}) : super(key: key);
+  const CenaBitacoraWidget({Key key, this.idPaciente3, this.nombrePaciente3, this.idTemp, this.listTemp}) : super(key: key);
+
+  final int idTemp;
+  final List listTemp;
+  final String idPaciente3,nombrePaciente3;
 
   @override
   _CenaBitacoraWidgetState createState() => _CenaBitacoraWidgetState();
@@ -53,7 +57,7 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente3, nombrePaciente: widget.nombrePaciente3, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -212,7 +216,7 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: ComidaBitacoraWidget(),
+                            child: ComidaBitacoraWidget(idPaciente2: widget.idPaciente3, nombrePaciente2: widget.nombrePaciente3, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
@@ -245,7 +249,7 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: RegistroBitacoraV2Widget(),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente3, nombrePaciente: widget.nombrePaciente3, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

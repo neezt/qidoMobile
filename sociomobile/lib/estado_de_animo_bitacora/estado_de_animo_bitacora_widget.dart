@@ -9,10 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 class EstadoDeAnimoBitacoraWidget extends StatefulWidget {
   const EstadoDeAnimoBitacoraWidget({
     Key key,
-    this.progreso,
+    this.progreso, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp,
   }) : super(key: key);
 
   final double progreso;
+
+  final String idPaciente1, nombrePaciente1;
+  final int idTemp;
+  final List listTemp;
 
   @override
   _EstadoDeAnimoBitacoraWidgetState createState() =>
@@ -73,7 +77,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RegistroBitacoraV2Widget(),
+                    builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -1043,7 +1047,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
                                     reverseDuration: Duration(milliseconds: 0),
-                                    child: RegistroBitacoraV2Widget(),
+                                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                                   ),
                                 );
                               },

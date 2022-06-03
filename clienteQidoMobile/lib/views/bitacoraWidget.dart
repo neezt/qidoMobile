@@ -154,7 +154,9 @@ class _BitacoraWidgetState extends State<BitacoraWidget> {
   Map mapResponse3 = {};
   Future fetchData1() async {
     http.Response response;
+    
     var idServicio = listResponse1[0];
+    print("IMPRIMIRRR: $idServicio");
     response = await http.get(Uri.parse('http://10.0.2.2/public/cliente/bitacorasByServicio?idServicio=$idServicio'), headers: {"Token": FireAuth.token,});
     if (response.statusCode==200) {
       setState(() {
@@ -342,7 +344,7 @@ class _BitacoraWidgetState extends State<BitacoraWidget> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    BitacoraInfoWidget(user: _currentUser,),
+                                                    BitacoraInfoWidget(user: _currentUser, list: listResponse3, idTemp: i)
                                               ),
                                             );
                                           },

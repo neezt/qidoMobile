@@ -9,6 +9,9 @@ import 'package:lottie/lottie.dart';
 class BitacoraCompletadaWidget extends StatefulWidget {
   const BitacoraCompletadaWidget({Key key}) : super(key: key);
 
+  // final int idTemp;
+  // final List listTemp;
+
   @override
   _BitacoraCompletadaWidgetState createState() =>
       _BitacoraCompletadaWidgetState();

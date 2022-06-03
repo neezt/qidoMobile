@@ -11,7 +11,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class DesayunoBitacoraWidget extends StatefulWidget {
-  const DesayunoBitacoraWidget({Key key}) : super(key: key);
+  const DesayunoBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp}) : super(key: key);
+
+  final int idTemp;
+  final List listTemp;
+  final String idPaciente1;
+  final String nombrePaciente1;
 
   @override
   _DesayunoBitacoraWidgetState createState() => _DesayunoBitacoraWidgetState();
@@ -53,7 +58,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -237,7 +242,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: ComidaBitacoraWidget(),
+                            child: ComidaBitacoraWidget(idPaciente2: widget.idPaciente1, nombrePaciente2: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

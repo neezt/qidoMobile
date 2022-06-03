@@ -12,7 +12,11 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class ComidaBitacoraWidget extends StatefulWidget {
-  const ComidaBitacoraWidget({Key key}) : super(key: key);
+  const ComidaBitacoraWidget({Key key, this.idPaciente2, this.nombrePaciente2, this.idTemp, this.listTemp}) : super(key: key);
+
+  final int idTemp;
+  final List listTemp;
+  final String idPaciente2,nombrePaciente2;
 
   @override
   _ComidaBitacoraWidgetState createState() => _ComidaBitacoraWidgetState();
@@ -54,7 +58,7 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente2, nombrePaciente: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -213,7 +217,7 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: DesayunoBitacoraWidget(),
+                            child: DesayunoBitacoraWidget(idPaciente1: widget.idPaciente2, nombrePaciente1: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
@@ -246,7 +250,7 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: CenaBitacoraWidget(),
+                            child: CenaBitacoraWidget(idPaciente3: widget.idPaciente2, nombrePaciente3: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

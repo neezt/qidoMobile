@@ -22,11 +22,53 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socios_qido/views/menu_page.dart';
 import 'package:socios_qido/main.dart';
+// import '../flutter_flow/flutter_flow_theme.dart';
+// import '../flutter_flow/flutter_flow_util.dart';
+// import '../info_paciente1/info_paciente1_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:socios_qido/views/infoPaciente1Widget.dart';
+import 'package:socios_qido/views/loginWidget.dart';
+import 'package:socios_qido/views/pacientesAsignados.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:socios_qido/views/menu_page.dart';
+import 'package:socios_qido/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:socios_qido/utils/fire_auth.dart';
+import 'package:socios_qido/utils/validator.dart';
+import 'package:socios_qido/views/dashboard_page.dart';
+import 'package:socios_qido/views/listaPacientesWidget.dart';
+import 'package:socios_qido/views/profile_page.dart';
+import 'package:socios_qido/views/register_page.dart';
+
+import 'package:page_transition/page_transition.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:socios_qido/views/pacientesAsignados.dart';
+import 'package:provider/provider.dart';
+import 'package:socios_qido/views/menu_page.dart';
+import 'package:socios_qido/main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:socios_qido/views/usertoken.dart';
+import './usertoken.dart';
 
 class BitacoraInfoWidget extends StatefulWidget {
   // const BitacoraInfoWidget({Key key}) : super(key: key);
     final User? user;
-    const BitacoraInfoWidget({required this.user});
+    const BitacoraInfoWidget({required this.user, required this.list, required this.idTemp});
+
+    final List list;
+    final int idTemp;
   @override
   _BitacoraInfoWidgetState createState() => _BitacoraInfoWidgetState();
 }
@@ -34,6 +76,47 @@ class BitacoraInfoWidget extends StatefulWidget {
 class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
   late User? _currentUser = widget.user;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List listAlimentos = ["Nada", "Poco", "Normal", "Mas de lo Normal", "Mucho"];
+
+  bool _isSendingVerification = false;
+  bool _isSigningOut = false;
+
+    Map<String, String> get headers => {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "token": token,
+  };
+
+    String stringResponse = '';
+  List listResponse = [];
+  List listResponse1 = [];
+  List idClientes = [];
+  Map mapResponse = {};
+  Map mapResponse1 = {};
+  Future fetchData() async {
+    http.Response response;
+    response = await http.get(Uri.parse('http://10.0.2.2/public/bitacora/estadosAnimo'), headers: {"Token": FireAuth.token,});
+    if (response.statusCode==200) {
+      setState(() {
+        mapResponse = json.decode(response.body);
+        listResponse = mapResponse['data'];
+        // int listLen = 0;
+        // listLen = listResponse.length;
+        print('listResponseLista: $listResponse');
+        for (var i = 0; i < listResponse.length; i++) {
+          listResponse1.add(mapResponse['data'][i]['nombre'].toString());
+          print('listResponseListaN: $listResponse1');
+        }
+      });
+    }
+  }
+
+    @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +187,19 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['desayuno'] != "0" && widget.list[widget.idTemp]['desayuno'] != null)
                               Text(
-                                'Nada',
+                                listAlimentos[int.parse(widget.list[widget.idTemp]['desayuno'])-1],
+                                // widget.list[widget.idTemp]['desayuno'],
+                                // 'Nada',
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['desayuno'] == "0" || widget.list[widget.idTemp]['desayuno'] == null)
+                              Text(
+                                'NA',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w300,
@@ -123,8 +217,18 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['comida'] != "0" && widget.list[widget.idTemp]['comida'] != null)
                               Text(
-                                'Poco',
+                                listAlimentos[int.parse(widget.list[widget.idTemp]['comida'])-1],
+                                // 'Poco',
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['comida'] == "0" || widget.list[widget.idTemp]['comida'] == null)
+                              Text(
+                                'NA',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
@@ -142,8 +246,17 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['cena'] != "0" && widget.list[widget.idTemp]['cena'] != null)
                               Text(
-                                'Mucho',
+                                listAlimentos[int.parse(widget.list[widget.idTemp]['cena'])-1],
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['cena'] == "0" || widget.list[widget.idTemp]['cena'] == null)
+                              Text(
+                                'NA',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
@@ -309,20 +422,31 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              if(widget.list[widget.idTemp]['idEstadoAnimo'] != "0" && widget.list[widget.idTemp]['idEstadoAnimo'] != null)
                               Text(
-                                'Con Dolor: ',
+                                listResponse1[int.parse(widget.list[widget.idTemp]['idEstadoAnimo'])-1],
+                                // 'Con Dolor: ',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['idEstadoAnimo'] == "0" || widget.list[widget.idTemp]['idEstadoAnimo'] == null)
                               Text(
-                                'Medio',
+                                'NA',
+                                // 'Con Dolor: ',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              // Text(
+                              //   'Medio',
+                              //   style: TextStyle(
+                              //         fontFamily: 'Poppins',
+                              //         fontWeight: FontWeight.w500,
+                              //       ),
+                              // ),
                             ],
                           ),
                         ],
@@ -368,7 +492,8 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                     ),
                               ),
                               Text(
-                                '36.5 °C',
+                                widget.list[widget.idTemp]['temperaturaCorporal'],
+                                // '36.5 °C',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w300,
@@ -387,7 +512,8 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                     ),
                               ),
                               Text(
-                                '120/80',
+                                "${widget.list[widget.idTemp]['presionSistolica']}/${widget.list[widget.idTemp]['presionDiastolica']} mmHg",
+                                // '120/80',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w300,
@@ -406,7 +532,8 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                     ),
                               ),
                               Text(
-                                '125 mg/dl',
+                                '${widget.list[widget.idTemp]['glucosa']} mg/dl',
+                                // '125 mg/dl',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w300,
@@ -425,7 +552,8 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                     ),
                               ),
                               Text(
-                                '95 %',
+                                "${widget.list[widget.idTemp]['saturacionOxigeno']} %",
+                                // '95 %',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w300,
@@ -475,13 +603,18 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
-                              Text(
-                                'Insulina',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
+                              Icon(
+                                            Icons.image_search,
+                                            color: Color(0xFF39D2C0),
+                                            size: 30,
+                                          ),
+                              // Text(
+                              //   'Insulina',
+                              //   style: TextStyle(
+                              //         fontFamily: 'Poppins',
+                              //         fontWeight: FontWeight.w300,
+                              //       ),
+                              // ),
                             ],
                           ),
                           Row(
@@ -494,34 +627,39 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
-                              Text(
-                                'Metformina',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
+                              Icon(
+                                            Icons.image_search,
+                                            color: Color(0xFF39D2C0),
+                                            size: 30,
+                                          ),
+                              // Text(
+                              //   'Metformina',
+                              //   style: TextStyle(
+                              //         fontFamily: 'Poppins',
+                              //         fontWeight: FontWeight.w300,
+                              //       ),
+                              // ),
                             ],
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Terapias físicas: ',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                              Text(
-                                'Termoterapia',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Terapias físicas: ',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w600,
+                          //           ),
+                          //     ),
+                          //     Text(
+                          //       'Termoterapia',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w300,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                       theme: ExpandableThemeData(
