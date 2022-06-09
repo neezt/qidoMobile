@@ -296,97 +296,213 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                       expanded: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Durmió: ',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                          Row(children: [
+                                                          Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEEEE),
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              Text(
-                                '30 min',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w300,
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, -0.21),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 30, 0, 20),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 35, 0, 0),
+                                            child: Text(
+                                              'Salida familiar',
+                                              // style:
+                                              //     FlutterFlowTheme.of(context)
+                                              //         .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Caminó ',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 30),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Image.network(
+                                            'https://img.icons8.com/color/344/leave-house.png',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'vio TV',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                            ),
+                                                          Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEEEE),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, -0.21),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 30, 0, 20),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 35, 0, 0),
+                                            child: Text(
+                                              'Ejercicio',
+                                              // style:
+                                              //     FlutterFlowTheme.of(context)
+                                              //         .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Tomo el sol',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 30),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Image.network(
+                                            'https://img.icons8.com/color/344/stepper.png',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Se baño solo',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Tuvo visita familiar',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Hizo Pipí',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],)
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Durmió: ',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w600,
+                          //           ),
+                          //     ),
+                          //     Text(
+                          //       '30 min',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w300,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Caminó ',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'vio TV',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Tomo el sol',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Se baño solo',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Tuvo visita familiar',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisSize: MainAxisSize.max,
+                          //   children: [
+                          //     Text(
+                          //       'Hizo Pipí',
+                          //       style: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                       theme: ExpandableThemeData(
@@ -423,14 +539,71 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               if(widget.list[widget.idTemp]['idEstadoAnimo'] != "0" && widget.list[widget.idTemp]['idEstadoAnimo'] != null)
-                              Text(
-                                listResponse1[int.parse(widget.list[widget.idTemp]['idEstadoAnimo'])-1],
-                                // 'Con Dolor: ',
-                                style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                              Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEEEE),
+                                borderRadius: BorderRadius.circular(20),
                               ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, -0.21),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 30, 0, 20),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 35, 0, 0),
+                                            child: Text(
+                                              'Buen Humor',
+                                              // style:
+                                              //     FlutterFlowTheme.of(context)
+                                              //         .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 30),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Image.network(
+                                            'https://img.icons8.com/color/344/smiling.png',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                              // Text(
+                              //   listResponse1[int.parse(widget.list[widget.idTemp]['idEstadoAnimo'])-1],
+                              //   // 'Con Dolor: ',
+                              //   style: TextStyle(
+                              //         fontFamily: 'Poppins',
+                              //         fontWeight: FontWeight.w600,
+                              //       ),
+                              // ),
                               if(widget.list[widget.idTemp]['idEstadoAnimo'] == "0" || widget.list[widget.idTemp]['idEstadoAnimo'] == null)
                               Text(
                                 'NA',
@@ -491,8 +664,18 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['temperaturaCorporal'] != "0" && widget.list[widget.idTemp]['temperaturaCorporal'] != null)
                               Text(
-                                widget.list[widget.idTemp]['temperaturaCorporal'],
+                                "${widget.list[widget.idTemp]['temperaturaCorporal']}°C",
+                                // '36.5 °C',
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['temperaturaCorporal'] == "0" || widget.list[widget.idTemp]['temperaturaCorporal'] == null)
+                              Text(
+                                'NA',
                                 // '36.5 °C',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -511,8 +694,18 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['presionSistolica'] != "0" && widget.list[widget.idTemp]['presionSistolica'] != null && widget.list[widget.idTemp]['presionDiastolica'] != "0" && widget.list[widget.idTemp]['presionDiastolica'] != null)
                               Text(
                                 "${widget.list[widget.idTemp]['presionSistolica']}/${widget.list[widget.idTemp]['presionDiastolica']} mmHg",
+                                // '120/80',
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['presionSistolica'] == "0" || widget.list[widget.idTemp]['presionSistolica'] == null || widget.list[widget.idTemp]['presionDiastolica'] == "0" || widget.list[widget.idTemp]['presionDiastolica'] == null)
+                              Text(
+                                'NA',
                                 // '120/80',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -531,8 +724,18 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['glucosa'] != "0" && widget.list[widget.idTemp]['glucosa'] != null)
                               Text(
                                 '${widget.list[widget.idTemp]['glucosa']} mg/dl',
+                                // '125 mg/dl',
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['glucosa'] == "0" || widget.list[widget.idTemp]['glucosa'] == null)
+                              Text(
+                                'NA',
                                 // '125 mg/dl',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -551,8 +754,18 @@ class _BitacoraInfoWidgetState extends State<BitacoraInfoWidget> {
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
+                              if(widget.list[widget.idTemp]['saturacionOxigeno'] != "0" && widget.list[widget.idTemp]['saturacionOxigeno'] != null)
                               Text(
                                 "${widget.list[widget.idTemp]['saturacionOxigeno']} %",
+                                // '95 %',
+                                style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                              ),
+                              if(widget.list[widget.idTemp]['saturacionOxigeno'] == "0" || widget.list[widget.idTemp]['saturacionOxigeno'] == null)
+                              Text(
+                                "NA",
                                 // '95 %',
                                 style: TextStyle(
                                       fontFamily: 'Poppins',
