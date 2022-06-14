@@ -2,6 +2,9 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
+import '../flutter_flow/flutter_flow_radio_button.dart';
+
 import '../oxigeno_bitacora/oxigeno_bitacora_widget.dart';
 import '../presion_diastolica_bitacora/presion_diastolica_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
@@ -24,6 +27,8 @@ class AzucarBitacoraWidget extends StatefulWidget {
 
 class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
   double sliderValue;
+  String radioButtonValue;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -97,7 +102,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
                           percent: 0.8,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:
@@ -111,7 +116,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Nivel de azúcar: $azucar',
+                          'Nivel de azúcar: $azucar ',
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Lexend Deca',
                                 fontWeight: FontWeight.w600,
@@ -175,6 +180,35 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                             setState(() => sliderValue = newValue);
                             cambiarAzucar(sliderValue);
                           },
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FlutterFlowRadioButton(
+                              options: ['No aplica'].toList(),
+                              onChanged: (value) {
+                                setState(() => radioButtonValue = value);
+                              },
+                              optionHeight: 25,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                fontFamily: 'Lexend Deca',
+                                color: Colors.black,
+                              ),
+                              buttonPosition: RadioButtonPosition.left,
+                              direction: Axis.vertical,
+                              radioButtonColor: Colors.blue,
+                              inactiveRadioButtonColor: Color(0x8A000000),
+                              toggleable: true,
+                              horizontalAlignment: WrapAlignment.start,
+                              verticalAlignment: WrapCrossAlignment.start,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -261,7 +295,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
     );
   }
 }
-double azucar = 100;
+int azucar = 100;
 cambiarAzucar(azu){
   azucar = azu;
   glucosaBitacora = azucar.toInt();

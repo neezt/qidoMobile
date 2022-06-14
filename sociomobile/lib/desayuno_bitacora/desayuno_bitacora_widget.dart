@@ -97,7 +97,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
                           percent: 0.3,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:
@@ -118,7 +118,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
                         child: Text(
-                          'En la escala del 1 -3 ¿Qué tanto comió?',
+                          'En la escala del 1 - 5 ¿Qué tanto comió?',
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                       ),
@@ -246,7 +246,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                           ),
                         );
                       },
-                      text: 'Siguiente',
+                      text: 'Listo',
                       options: FFButtonOptions(
                         width: 150,
                         height: 50,

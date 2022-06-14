@@ -1,4 +1,5 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../flutter_flow/flutter_flow_radio_button.dart';
 
 import '../azucar_bitacora/azucar_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -25,6 +26,8 @@ class OxigenoBitacoraWidget extends StatefulWidget {
 
 class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
   double sliderValue;
+  String radioButtonValue;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -98,7 +101,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
                           percent: 0.99,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:
@@ -176,6 +179,34 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                             setState(() => sliderValue = newValue);
                             cambiarOxigeno(sliderValue);
                           },
+                        ),
+                      ),Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FlutterFlowRadioButton(
+                              options: ['No aplica'].toList(),
+                              onChanged: (value) {
+                                setState(() => radioButtonValue = value);
+                              },
+                              optionHeight: 25,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                fontFamily: 'Lexend Deca',
+                                color: Colors.black,
+                              ),
+                              buttonPosition: RadioButtonPosition.left,
+                              direction: Axis.vertical,
+                              radioButtonColor: Colors.blue,
+                              inactiveRadioButtonColor: Color(0x8A000000),
+                              toggleable: true,
+                              horizontalAlignment: WrapAlignment.start,
+                              verticalAlignment: WrapCrossAlignment.start,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -262,7 +293,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
     );
   }
 }
-double oxigeno = 97;
+int oxigeno = 97;
 cambiarOxigeno(oxi){
   oxigeno = oxi;
   oxigenoBitacora = oxigeno.toInt();

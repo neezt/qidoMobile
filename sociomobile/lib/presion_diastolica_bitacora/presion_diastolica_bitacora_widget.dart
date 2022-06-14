@@ -3,6 +3,8 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/flutter_flow_radio_button.dart';
+
 import '../presion_sistolica_bitacora/presion_sistolica_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,9 @@ class PresionDiastolicaBitacoraWidget extends StatefulWidget {
 
 class _PresionDiastolicaBitacoraWidgetState
     extends State<PresionDiastolicaBitacoraWidget> {
-  double sliderValue;
+
+  String radioButtonValue;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -99,7 +103,7 @@ class _PresionDiastolicaBitacoraWidgetState
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
                           percent: 0.6,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:
@@ -173,19 +177,106 @@ class _PresionDiastolicaBitacoraWidgetState
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
-                        child: Slider.adaptive(
-                          activeColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          inactiveColor: FlutterFlowTheme.of(context).lineColor,
-                          min: 50,
-                          max: 130,
-                          value: sliderValue ??= 80,
-                          divisions: 70,
-                          onChanged: (newValue) {
-                            setState(() => sliderValue = newValue);
-                            cambiarPresionDiastolica(sliderValue);
-                          },
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                              child: FFButtonWidget(
+                                onPressed: () {
+
+
+                                  setState(() {
+                                    presionDiastolica = presionDiastolica - 1;
+                                    presionDiastolicaBitacora = presionDiastolica;
+                                  });
+                                },
+                                text: '-',
+                                options: FFButtonOptions(
+                                  width: 80,
+                                  height: 80,
+                                  color:
+                                  FlutterFlowTheme.of(context).background,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                    fontFamily: 'Lexend Deca',
+                                    fontSize: 60,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 45,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              child: FFButtonWidget(
+                                onPressed: () {
+
+                                  setState(() {
+                                    presionDiastolica = presionDiastolica + 1;
+                                    presionDiastolicaBitacora = presionDiastolica;
+                                  });
+
+                                },
+                                text: '+',
+                                options: FFButtonOptions(
+                                  width: 80,
+                                  height: 80,
+                                  color: FlutterFlowTheme.of(context).background,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                    fontFamily: 'Lexend Deca',
+                                    fontSize: 60,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 45,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FlutterFlowRadioButton(
+                              options: ['No aplica'].toList(),
+                              onChanged: (value) {
+                                setState(() => radioButtonValue = value);
+                              },
+                              optionHeight: 25,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                fontFamily: 'Lexend Deca',
+                                color: Colors.black,
+                              ),
+                              buttonPosition: RadioButtonPosition.left,
+                              direction: Axis.vertical,
+                              radioButtonColor: Colors.blue,
+                              inactiveRadioButtonColor: Color(0x8A000000),
+                              toggleable: true,
+                              horizontalAlignment: WrapAlignment.start,
+                              verticalAlignment: WrapCrossAlignment.start,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -272,7 +363,7 @@ class _PresionDiastolicaBitacoraWidgetState
     );
   }
 }
-double presionDiastolica = 80;
+int presionDiastolica = 80;
 cambiarPresionDiastolica (diast){
   presionDiastolica = diast;
   presionDiastolicaBitacora = presionDiastolica.toInt();

@@ -100,7 +100,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
                           percent: 0.2,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:

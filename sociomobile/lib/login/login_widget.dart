@@ -47,14 +47,20 @@ class _LoginWidgetState extends State<LoginWidget> {
   Map mapResponse1 = {};
   Future fetchData() async {
     http.Response response;
-    response = await http.post(Uri.parse('http://10.0.2.2/public/colaborador/colaboradores'), headers: {"Token": FireAuth.token,});
+    response = await http.post(
+        Uri.parse('http://10.0.2.2/public/colaborador/colaboradores'),
+        headers: {
+          "Token": FireAuth.token,
+        });
     // print('response: $response');
-    if (response.statusCode==200) {
+    print(FireAuth.token);
+    if (response.statusCode == 200) {
       setState(() {
         mapResponse = json.decode(response.body);
         listResponse = mapResponse['data'];
         for (var i = 0; i < listResponse.length; i++) {
-          listResponse1.add(mapResponse['data'][i]['correoElectronico'].toString());
+          listResponse1
+              .add(mapResponse['data'][i]['correoElectronico'].toString());
           print('listResponse: $listResponse1');
         }
         // mapResponse = mapResponse['polizas'][0];
@@ -71,12 +77,13 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   idController() {
     for (var i = 0; i < listResponse.length; i++) {
-          if (listResponse[i]['correoElectronico'].toString() == _emailTextController.text) {
-            idColaborador = listResponse[i]['idColaborador'];
-            break;
-          }
-          print('idColaborador: $idColaborador');
-        }
+      if (listResponse[i]['correoElectronico'].toString() ==
+          _emailTextController.text) {
+        idColaborador = listResponse[i]['idColaborador'];
+        break;
+      }
+      print('idColaborador: $idColaborador');
+    }
   }
 
   @override
@@ -84,19 +91,19 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Scaffold(
       key: _formKey,
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      resizeToAvoidBottomInset : false, // configuracion de teclado
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xFFEEEEEE),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: Image.asset(
-              'assets/images/sniff_hero@2x.jpg',
-            ).image,
-          ),
-        ),
+      resizeToAvoidBottomInset: false, // configuracion de teclado
+      body: SingleChildScrollView(
+        //width: double.infinity,
+        //height: double.infinity,
+        //decoration: BoxDecoration(
+         // color: Color(0xFFEEEEEE),
+         // image: DecorationImage(
+        //    fit: BoxFit.cover,
+         //   image: Image.asset(
+          //    'assets/images/sniff_hero@2x.jpg',
+         //   ).image,
+       //   ),
+     //   ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,7 +173,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -178,7 +185,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   child: TextFormField(
                                     controller: _emailTextController,
                                     focusNode: _focusEmail,
-                                    validator: (value) => Validator.validateEmail(
+                                    validator: (value) =>
+                                        Validator.validateEmail(
                                       email: value,
                                     ),
                                     obscureText: false,
@@ -213,8 +221,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          16, 24, 0, 24),
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              16, 24, 0, 24),
                                     ),
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
@@ -229,7 +237,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -270,12 +278,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     filled: true,
                                     fillColor: Colors.white,
                                     contentPadding:
-                                    EdgeInsetsDirectional.fromSTEB(
-                                        16, 24, 24, 24),
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16, 24, 24, 24),
                                     suffixIcon: InkWell(
                                       onTap: () => setState(
-                                            () => passwordVisibility =
-                                        !passwordVisibility,
+                                        () => passwordVisibility =
+                                            !passwordVisibility,
                                       ),
                                       child: Icon(
                                         passwordVisibility
@@ -298,7 +306,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -319,7 +327,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   primary: Colors.transparent,
                                   onPrimary: Color(0xFF00D8D6),
                                 ),
-
                                 child: Text('¿Olvide la contraseña?'),
                               ),
                               ElevatedButton(
@@ -327,17 +334,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   _focusEmail.unfocus();
                                   _focusPassword.unfocus();
 
-                                  if (_formKey.currentState
-                                      .validate()) {
+                                  if (_formKey.currentState.validate()) {
                                     setState(() {
                                       _isProcessing = true;
                                     });
 
-                                    User user = await FireAuth
-                                        .signInUsingEmailPassword(
+                                    User user =
+                                        await FireAuth.signInUsingEmailPassword(
                                       email: _emailTextController.text,
-                                      password:
-                                      _passwordTextController.text,
+                                      password: _passwordTextController.text,
                                     );
 
                                     setState(() {
@@ -345,19 +350,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     });
 
                                     if (user != null) {
-
                                       await fetchData();
 
-                                      if(listResponse1.contains(_emailTextController.text)) {
+                                      if (listResponse1.contains(
+                                          _emailTextController.text)) {
                                         email = _emailTextController.text;
-                                        await idController();        
+                                        await idController();
                                         Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) => ListaPacientesV2Widget(
-                                            user: user,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ListaPacientesV2Widget(
+                                              user: user,
+                                            ),
                                           ),
-                                        ),
-                                      );
+                                        );
                                       }
 
                                       //  Navigator.of(context)

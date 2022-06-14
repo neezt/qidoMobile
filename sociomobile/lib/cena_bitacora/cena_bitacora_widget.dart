@@ -96,7 +96,7 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
                           percent: 0.99,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:
@@ -117,7 +117,7 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
                         child: Text(
-                          'En la escala del 1 -3 ¿Qué tanto comió?',
+                          'En la escala del 1 - 5 ¿Qué tanto comió?',
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                       ),

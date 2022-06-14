@@ -1,3 +1,5 @@
+import '../backend/firebase_storage/storage.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -6,6 +8,8 @@ import '../inyecciones_bitacora/inyecciones_bitacora_widget.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import '../terapias_bitacora/terapias_bitacora_widget.dart';
 import 'package:flutter/material.dart';
+import '../flutter_flow/upload_media.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -24,6 +28,8 @@ class MedicamentosBitacoraWidget extends StatefulWidget {
 class _MedicamentosBitacoraWidgetState
     extends State<MedicamentosBitacoraWidget> {
   var Medicamentos = "";
+  String uploadedFileUrl = 'https://img.icons8.com/color/344/camera.png';
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController myBioController;
 
@@ -95,7 +101,7 @@ class _MedicamentosBitacoraWidgetState
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                           child: Text(
-                            'Pregunta 2/4',
+                            'Pregunta 2/2',
                             style: FlutterFlowTheme.of(context).bodyText2,
                           ),
                         ),
@@ -103,8 +109,8 @@ class _MedicamentosBitacoraWidgetState
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
                         child: LinearPercentIndicator(
-                          percent: 0.5,
-                          width: MediaQuery.of(context).size.width * 0.96,
+                          percent: 0.99,
+                          width: MediaQuery.of(context).size.width * 0.94,
                           lineHeight: 12,
                           animation: true,
                           progressColor:
@@ -125,7 +131,7 @@ class _MedicamentosBitacoraWidgetState
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
                         child: Text(
-                          'Escriba abajo los medicamentos que fueron suministrados:',
+                          'Capture abajo los medicamentos que fueron suministrados:',
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                       ),
@@ -133,66 +139,89 @@ class _MedicamentosBitacoraWidgetState
                         padding: EdgeInsetsDirectional.fromSTEB(2, 44, 2, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 0, 20, 12),
-                                child: TextFormField(
-                                  controller: myBioController,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF95A1AC),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    hintText: 'Escriba aquí...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF95A1AC),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            20, 24, 0, 24),
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
+
+                            Image.network(
+
+                              uploadedFileUrl,
+                              //'https://picsum.photos/seed/846/600',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(2, 44, 2, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Padding(
+                              padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 32, 0, 32),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                    context: context,
+                                    allowPhoto: true,
+                                  );
+                                  if (selectedMedia != null &&
+                                      selectedMedia.every((m) =>
+                                          validateFileFormat(
+                                              m.storagePath, context))) {
+                                    showUploadMessage(
+                                      context,
+                                      'Uploading file...',
+                                      showLoading: true,
+                                    );
+                                    final downloadUrls = (await Future.wait(
+                                        selectedMedia.map((m) async =>
+                                        await uploadData(
+                                            m.storagePath, m.bytes))))
+                                        .where((u) => u != null)
+                                        .toList();
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                    if (downloadUrls != null &&
+                                        downloadUrls.length ==
+                                            selectedMedia.length) {
+                                      setState(() =>
+                                      uploadedFileUrl = downloadUrls.first);
+                                      showUploadMessage(
+                                        context,
+                                        'Success!',
+                                      );
+                                    } else {
+                                      showUploadMessage(
+                                        context,
+                                        'Failed to upload media',
+                                      );
+                                      return;
+                                    }
+                                  }
+                                },
+                                text: 'Tomar foto',
+                                options: FFButtonOptions(
+                                  width: 150,
+                                  height: 50,
+                                  color:
+                                  FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
                                       .override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF090F13),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: 3,
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                  ),
+                                  elevation: 3,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 40,
                                 ),
                               ),
                             ),
@@ -251,20 +280,20 @@ class _MedicamentosBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: TerapiasBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
-                      text: 'Siguiente',
+                      text: 'Listo',
                       options: FFButtonOptions(
                         width: 150,
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.white,
-                                ),
+                        FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                        ),
                         elevation: 3,
                         borderSide: BorderSide(
                           color: Colors.transparent,
@@ -283,3 +312,4 @@ class _MedicamentosBitacoraWidgetState
     );
   }
 }
+String uploadedFileUrl = 'https://img.icons8.com/color/344/camera.png';

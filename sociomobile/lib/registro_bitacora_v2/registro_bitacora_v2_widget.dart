@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:qido_colaboradores/alimentacion_bitacora/alimentacion_bitacora_widget.dart';
+
 import '../actividades_bitacora/actividades_bitacora_widget.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../bitacora_completada/bitacora_completada_widget.dart';
@@ -220,7 +222,7 @@ Future grabarBitacora() async {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DesayunoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                          builder: (context) => AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
                         ),
                       );
                     },

@@ -371,57 +371,7 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 3,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).gray200,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Consultar bitácoras',
-                                    style: FlutterFlowTheme.of(context)
-                                        .subtitle1
-                                        .override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: FlutterFlowTheme.of(context)
-                                              .grayIcon,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                 child: InkWell(

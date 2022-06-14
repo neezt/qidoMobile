@@ -41,8 +41,7 @@ class ListaPacientesV2Widget extends StatefulWidget {
 
 class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
     with TickerProviderStateMixin {
-
-      final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   // late User? _currentUser = widget.user;
 
   bool _isSendingVerification = false;
@@ -50,13 +49,13 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
 
   // User? _currentUser = widget.user;
 
-    Map<String, String> get headers => {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "token": token,
-  };
+  Map<String, String> get headers => {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": token,
+      };
 
-    String stringResponse = '';
+  String stringResponse = '';
   List listResponse = [];
   List listResponse1 = [];
   List idClientes = [];
@@ -65,17 +64,23 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
   String listLen = "";
   Future fetchData() async {
     http.Response response;
-    response = await http.post(Uri.parse('http://10.0.2.2/public/colaborador/pacientesByColaborador?idColaborador=$idColaborador'), headers: {"Token": FireAuth.token,});
+    response = await http.post(
+        Uri.parse(
+            'http://10.0.2.2/public/colaborador/pacientesByColaborador?idColaborador=$idColaborador'),
+        headers: {
+          "Token": FireAuth.token,
+        });
     print(response.statusCode);
-    if (response.statusCode==200) {
+    if (response.statusCode == 200) {
       setState(() {
         mapResponse = json.decode(response.body);
         listResponse = mapResponse['data'];
-        
+
         listLen = listResponse.length.toString();
         print('listResponseLista: $listResponse');
         for (var i = 0; i < listResponse.length; i++) {
-          listResponse1.add(mapResponse['data'][i]['nombrecompleto'].toString());
+          listResponse1
+              .add(mapResponse['data'][i]['nombrecompleto'].toString());
           idClientes.add(mapResponse['data'][i]['cliente'].toString());
           print('listResponseListaN: $listResponse1');
         }
@@ -158,7 +163,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
       this,
     );
 
-    textController = TextEditingController(text: 'Ros');
+    textController = TextEditingController(text: '');
   }
 
   @override
@@ -248,132 +253,135 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                     scrollDirection: Axis.vertical,
                     children: [
                       for (var i = 0; i < listResponse.length; i++)
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PaginaPerfilV3Widget(id: i, list: listResponse),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 0,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  offset: Offset(0, 1),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(40),
-                                    child: Image.network(
-                                      'https://img.icons8.com/ios/344/user-female-circle.png',
-                                      width: 60,
-                                      height: 60,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 0, 0, 0),
-                                          child: Text(
-                                            listResponse1[i],
-                                            // 'Rosario Armenta',
-                                            style: FlutterFlowTheme.of(context)
-                                                .subtitle1,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 4, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 0, 0, 0),
-                                                child: Text(
-                                                  'id: ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText2,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(1, 0, 0, 0),
-                                                child: Text(
-                                                  idClientes[i],
-                                                  // 'ID: 24',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText2,
-                                                ),
-                                              ),
-                                              // Padding(
-                                              //   padding: EdgeInsetsDirectional
-                                              //       .fromSTEB(4, 0, 0, 0),
-                                              //   child: Text(
-                                              //     'name@domain.com',
-                                              //     style: FlutterFlowTheme.of(
-                                              //             context)
-                                              //         .bodyText2,
-                                              //   ),
-                                              // ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Card(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    elevation: 1,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 4, 4, 4),
-                                      child: Icon(
-                                        Icons.keyboard_arrow_right_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24,
-                                      ),
-                                    ),
-                                  ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PaginaPerfilV3Widget(
+                                      id: i, list: listResponse),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 0,
+                                    color:
+                                        FlutterFlowTheme.of(context).lineColor,
+                                    offset: Offset(0, 1),
+                                  )
                                 ],
                               ),
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(40),
+                                      child: Image.network(
+                                        'https://img.icons8.com/ios/344/user-female-circle.png',
+                                        width: 60,
+                                        height: 60,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 0, 0, 0),
+                                            child: Text(
+                                              listResponse1[i],
+                                              // 'Rosario Armenta',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 4, 0, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 0, 0, 0),
+                                                  child: Text(
+                                                    'Id: ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText2,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(1, 0, 0, 0),
+                                                  child: Text(
+                                                    idClientes[i],
+                                                    // 'ID: 24',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText2,
+                                                  ),
+                                                ),
+                                                // Padding(
+                                                //   padding: EdgeInsetsDirectional
+                                                //       .fromSTEB(4, 0, 0, 0),
+                                                //   child: Text(
+                                                //     'name@domain.com',
+                                                //     style: FlutterFlowTheme.of(
+                                                //             context)
+                                                //         .bodyText2,
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Card(
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      elevation: 1,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4, 4, 4, 4),
+                                        child: Icon(
+                                          Icons.keyboard_arrow_right_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ).animated(
-                            [animationsMap['containerOnPageLoadAnimation1']]),
-                      ),
+                          ).animated(
+                              [animationsMap['containerOnPageLoadAnimation1']]),
+                        ),
                       // Padding(
                       //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
                       //   child: Container(
