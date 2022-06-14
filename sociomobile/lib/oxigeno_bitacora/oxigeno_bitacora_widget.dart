@@ -25,7 +25,7 @@ class OxigenoBitacoraWidget extends StatefulWidget {
 }
 
 class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
-  double sliderValue;
+
   String radioButtonValue;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -115,7 +115,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Nivel de oxígeno: $oxigeno %' ,
+                          'Nivel de oxígeno: $sliderValue %' ,
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Lexend Deca',
                                 fontWeight: FontWeight.w600,
@@ -293,8 +293,9 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
     );
   }
 }
-int oxigeno = 97;
+double sliderValue;
+//int oxigeno = 97;
 cambiarOxigeno(oxi){
-  oxigeno = oxi;
-  oxigenoBitacora = oxigeno.toInt();
+  //oxigeno = oxi;
+  oxigenoBitacora = sliderValue.toInt();
 }

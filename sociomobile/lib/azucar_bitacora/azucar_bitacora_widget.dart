@@ -26,7 +26,6 @@ class AzucarBitacoraWidget extends StatefulWidget {
 }
 
 class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
-  double sliderValue;
   String radioButtonValue;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -116,7 +115,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Nivel de azúcar: $azucar ',
+                          'Nivel de azúcar: $sliderValue ',
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Lexend Deca',
                                 fontWeight: FontWeight.w600,
@@ -295,8 +294,10 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
     );
   }
 }
-int azucar = 100;
+double sliderValue;
+
+//int azucar = 100;
 cambiarAzucar(azu){
-  azucar = azu;
-  glucosaBitacora = azucar.toInt();
+  //azucar = azu;
+  glucosaBitacora = sliderValue.toInt();
 }

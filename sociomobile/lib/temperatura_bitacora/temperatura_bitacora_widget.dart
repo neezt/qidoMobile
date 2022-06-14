@@ -25,7 +25,7 @@ class TemperaturaBitacoraWidget extends StatefulWidget {
 
 class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
   double sliderValue;
-  double temperatura = 36.0;
+
   String radioButtonValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -114,7 +114,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 90, 0, 0),
                         child: Text(
-                          'Temperatura: $temperatura',
+                          'Temperatura: ${temperatura.toStringAsFixed(1)}',
                           style: FlutterFlowTheme.of(context).title1.override(
                             fontFamily: 'Lexend Deca',
                             fontWeight: FontWeight.w600,
@@ -343,13 +343,9 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
       ),
     );
   }
-  aumentarTemperatura(){
-    temperatura = 37;
-  }
-  decrecerTemperatura(){
-    temperatura = 35;
-  }
-}
 
+
+}
+double temperatura = 36.0;
 
 
