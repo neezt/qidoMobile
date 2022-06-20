@@ -1,7 +1,7 @@
 import 'package:mysql1/mysql1.dart';
 
 class MySql {
-  static String host = '10.0.2.2',
+  static String host = 'https://otconsultingback.comercioincoterms.com',
                 user = 'root',
                 password = '',
                 db = 'qido';

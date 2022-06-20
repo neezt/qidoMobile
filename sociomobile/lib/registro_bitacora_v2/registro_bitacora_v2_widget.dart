@@ -83,19 +83,22 @@ Future grabarBitacora() async {
     'desayunoBitacora': desayunoBitacora,
     'comidaBitacora': comidaBitacora,
     'cenaBitacora': cenaBitacora,
+    'estadoAnimoBitacora': estadoAnimoBitacora,
     'temperaturaBitacora': temperaturaBitacora,
     'presionSistolicaBitacora': presionSistolicaBitacora,
     'presionDiastolicaBitacora': presionDiastolicaBitacora,
     'glucosaBitacora': glucosaBitacora,
     'oxigenoBitacora': oxigenoBitacora,
     'idServicioBitacora': idServicioBitacora,
-    'idColaboradorBitacora': widget.idPaciente,
+    'idColaboradorBitacora': idColaboradorBitacora,
+    'actividadesBitacora': actividadesBitacora,
   };
+  print(data);
 
   var body = json.encode(data);
 
     http.Response response;
-    response = await http.post(Uri.parse('http://10.0.2.2/public/bitacora/create'), headers: {"Token": FireAuth.token,}, body: body);
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/create'), headers: {"Token": FireAuth.token,}, body: body);
     // if (response.statusCode==200) {
     //   setState(() {
     //     mapResponse = json.decode(response.body);
@@ -680,6 +683,18 @@ Future grabarBitacora() async {
                     false;
                 if (confirmDialogResponse) {
                   await grabarBitacora();
+                  desayunoBitacora = 0;
+                  comidaBitacora = 0;
+                  cenaBitacora = 0;
+                  estadoAnimoBitacora = null;
+                  temperaturaBitacora = 0.0;
+                  presionSistolicaBitacora = 0;
+                  presionDiastolicaBitacora = 0;
+                  glucosaBitacora = 0;
+                  oxigenoBitacora = 0;
+                  idServicioBitacora = 0;
+                  actividadesBitacora = [];
+                  
                   await Navigator.push(
                     context,
                     MaterialPageRoute(

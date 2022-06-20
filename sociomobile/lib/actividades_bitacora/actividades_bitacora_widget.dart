@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/bitacoravariables.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -110,6 +112,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   dormir = !dormir;
+                                  if(dormir == true){
+                                    actividadesBitacora.add(0);
+                                  } else {
+                                    actividadesBitacora.remove(0);
+                                  }
                                 });
                               },
                               child:
@@ -177,6 +184,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   caminar = !caminar;
+                                  if(caminar == true){
+                                    actividadesBitacora.add(1);
+                                  } else {
+                                    actividadesBitacora.remove(1);
+                                  }
                                 });
                               },
                               child:
@@ -244,6 +256,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   verTV = !verTV;
+                                  if(verTV == true){
+                                    actividadesBitacora.add(2);
+                                  } else {
+                                    actividadesBitacora.remove(2);
+                                  }
                                 });
                               },
                               child:
@@ -322,6 +339,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   tomarElSol = !tomarElSol;
+                                  if(tomarElSol == true){
+                                    actividadesBitacora.add(3);
+                                  } else {
+                                    actividadesBitacora.remove(3);
+                                  }
                                 });
                               },
                               child:
@@ -392,6 +414,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   banoSolo = !banoSolo;
+                                  if(banoSolo == true){
+                                    actividadesBitacora.add(4);
+                                  } else {
+                                    actividadesBitacora.remove(4);
+                                  }
                                 });
                               },
                               child:
@@ -459,6 +486,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   banoAsistido = !banoAsistido;
+                                  if(banoAsistido == true){
+                                    actividadesBitacora.add(5);
+                                  } else {
+                                    actividadesBitacora.remove(5);
+                                  }
                                 });
                               },
                               child:
@@ -565,6 +597,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   ejercicioSolo = !ejercicioSolo;
+                                  if(ejercicioSolo == true){
+                                    actividadesBitacora.add(6);
+                                  } else {
+                                    actividadesBitacora.remove(6);
+                                  }
                                 });
                               },
                               child:
@@ -632,6 +669,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   juegosMentales = !juegosMentales;
+                                  if(juegosMentales == true){
+                                    actividadesBitacora.add(7);
+                                  } else {
+                                    actividadesBitacora.remove(7);
+                                  }
                                 });
                               },
                               child:
@@ -699,6 +741,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   cambioDePosicion = !cambioDePosicion;
+                                  if(cambioDePosicion == true){
+                                    actividadesBitacora.add(8);
+                                  } else {
+                                    actividadesBitacora.remove(8);
+                                  }
                                 });
                               },
                               child:
@@ -782,6 +829,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   orinar = !orinar;
+                                  if(orinar == true){
+                                    actividadesBitacora.add(9);
+                                  } else {
+                                    actividadesBitacora.remove(9);
+                                  }
                                 });
                               },
                               child:
@@ -849,6 +901,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   defecar = !defecar;
+                                  if(defecar == true){
+                                    actividadesBitacora.add(10);
+                                  } else {
+                                    actividadesBitacora.remove(10);
+                                  }
                                 });
                               },
                               child:
@@ -916,6 +973,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   cambioPanal = !cambioPanal;
+                                  if(cambioPanal == true){
+                                    actividadesBitacora.add(11);
+                                  } else {
+                                    actividadesBitacora.remove(11);
+                                  }
                                 });
                               },
                               child:
@@ -992,6 +1054,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   vomitar = !vomitar;
+                                  if(vomitar == true){
+                                    actividadesBitacora.add(12);
+                                  } else {
+                                    actividadesBitacora.remove(12);
+                                  }
                                 });
                               },
                               child:
@@ -1060,6 +1127,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   visitaFamiliar = !visitaFamiliar;
+                                  if(visitaFamiliar == true){
+                                    actividadesBitacora.add(13);
+                                  } else {
+                                    actividadesBitacora.remove(13);
+                                  }
                                 });
                               },
                               child:
@@ -1127,6 +1199,11 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                 setState(() {
                                   // Toggle light when tapped.
                                   salidaFamiliar = !salidaFamiliar;
+                                  if(salidaFamiliar == true){
+                                    actividadesBitacora.add(14);
+                                  } else {
+                                    actividadesBitacora.remove(14);
+                                  }
                                 });
                               },
                               child:

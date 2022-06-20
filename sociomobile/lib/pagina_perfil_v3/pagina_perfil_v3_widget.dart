@@ -74,7 +74,7 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
   String telefonoContacto = "";
   Future fetchData() async {
     http.Response response;
-    response = await http.post(Uri.parse('http://10.0.2.2/public/colaborador/colaboradorById?idCliente=${widget.list[widget.id]['cliente']}'), headers: {"Token": FireAuth.token,});
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/colaborador/colaboradorById?idCliente=${widget.list[widget.id]['cliente']}'), headers: {"Token": FireAuth.token,});
     print(response.statusCode);
     if (response.statusCode==200) {
       setState(() {

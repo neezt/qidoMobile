@@ -294,7 +294,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
     );
   }
 }
-double sliderValue;
+double sliderValue = 60.0;
 
 //int azucar = 100;
 cambiarAzucar(azu){

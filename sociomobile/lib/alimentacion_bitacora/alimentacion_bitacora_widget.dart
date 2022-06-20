@@ -60,7 +60,7 @@ class _AlimentacionBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                   ),
                 );
               },
@@ -89,27 +89,27 @@ class _AlimentacionBitacoraWidgetState
                         alignment: AlignmentDirectional(-1, 0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                          child: Text(
-                            'Pregunta 0/3',
-                            style: FlutterFlowTheme.of(context).bodyText2,
-                          ),
+                          // child: Text(
+                          //   'Pregunta 0/3',
+                          //   style: FlutterFlowTheme.of(context).bodyText2,
+                          // ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
-                        child: LinearPercentIndicator(
-                          percent: 0.01,
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          lineHeight: 12,
-                          animation: true,
-                          progressColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).lineColor,
-                          barRadius: Radius.circular(24),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
+                      //   child: LinearPercentIndicator(
+                      //     percent: 0.01,
+                      //     width: MediaQuery.of(context).size.width * 0.94,
+                      //     lineHeight: 12,
+                      //     animation: true,
+                      //     progressColor:
+                      //         FlutterFlowTheme.of(context).primaryColor,
+                      //     backgroundColor:
+                      //         FlutterFlowTheme.of(context).lineColor,
+                      //     barRadius: Radius.circular(24),
+                      //     padding: EdgeInsets.zero,
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 160, 0, 0),
                         child: Row(
@@ -142,7 +142,7 @@ class _AlimentacionBitacoraWidgetState
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          DesayunoBitacoraWidget(),
+                                          DesayunoBitacoraWidget(idPaciente1: widget.idPaciente1, nombrePaciente1: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                                     ),
                                   );
                                 },
@@ -217,7 +217,7 @@ class _AlimentacionBitacoraWidgetState
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ComidaBitacoraWidget(),
+                                          ComidaBitacoraWidget(idPaciente2: widget.idPaciente1, nombrePaciente2: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                                     ),
                                   );
                                 },
@@ -292,7 +292,7 @@ class _AlimentacionBitacoraWidgetState
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          CenaBitacoraWidget(),
+                                          CenaBitacoraWidget(idPaciente3: widget.idPaciente1, nombrePaciente3: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                                     ),
                                   );
                                 },
@@ -361,38 +361,38 @@ class _AlimentacionBitacoraWidgetState
                   ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Atrás',
-                      options: FFButtonOptions(
-                        width: 150,
-                        height: 50,
-                        color: FlutterFlowTheme.of(context).grayIcon,
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: 40,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisSize: MainAxisSize.max,
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //     Padding(
+              //       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+              //       child: FFButtonWidget(
+              //         onPressed: () {
+              //           print('Button pressed ...');
+              //         },
+              //         text: 'Atrás',
+              //         options: FFButtonOptions(
+              //           width: 150,
+              //           height: 50,
+              //           color: FlutterFlowTheme.of(context).grayIcon,
+              //           textStyle:
+              //               FlutterFlowTheme.of(context).subtitle2.override(
+              //                     fontFamily: 'Lexend Deca',
+              //                     color: Colors.white,
+              //                   ),
+              //           elevation: 3,
+              //           borderSide: BorderSide(
+              //             color: Colors.transparent,
+              //             width: 1,
+              //           ),
+              //           borderRadius: 40,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),

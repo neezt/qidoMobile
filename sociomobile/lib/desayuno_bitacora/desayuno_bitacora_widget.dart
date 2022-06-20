@@ -1,3 +1,4 @@
+import '../alimentacion_bitacora/alimentacion_bitacora_widget.dart';
 import '../comida_bitacora/comida_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -83,31 +84,31 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                          child: Text(
-                            'Pregunta 1/3',
-                            style: FlutterFlowTheme.of(context).bodyText2,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
-                        child: LinearPercentIndicator(
-                          percent: 0.3,
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          lineHeight: 12,
-                          animation: true,
-                          progressColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).lineColor,
-                          barRadius: Radius.circular(24),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: AlignmentDirectional(-1, 0),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                      //     child: Text(
+                      //       'Pregunta 1/3',
+                      //       style: FlutterFlowTheme.of(context).bodyText2,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
+                      //   child: LinearPercentIndicator(
+                      //     percent: 0.3,
+                      //     width: MediaQuery.of(context).size.width * 0.94,
+                      //     lineHeight: 12,
+                      //     animation: true,
+                      //     progressColor:
+                      //         FlutterFlowTheme.of(context).primaryColor,
+                      //     backgroundColor:
+                      //         FlutterFlowTheme.of(context).lineColor,
+                      //     barRadius: Radius.circular(24),
+                      //     padding: EdgeInsets.zero,
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 100, 0, 0),
                         child: Text(
@@ -170,6 +171,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                           ],
                         ),
                       ),
+                      if(desayunoBitacora == 0)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
                         child: Slider.adaptive(
@@ -179,6 +181,22 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                           min: 0,
                           max: 4,
                           value: sliderValue ??= 2,
+                          divisions: 4,
+                          onChanged: (newValue) {  setState(() => sliderValue = newValue);
+                            cambiarTexto(sliderValue);
+                          },
+                        ),
+                      ),
+                      if(desayunoBitacora > 0)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
+                        child: Slider.adaptive(
+                          activeColor:
+                              FlutterFlowTheme.of(context).primaryColor,
+                          inactiveColor: FlutterFlowTheme.of(context).lineColor,
+                          min: 0,
+                          max: 4,
+                          value: sliderValue ??= desayunoBitacora.toDouble()-1,
                           divisions: 4,
                           onChanged: (newValue) {  setState(() => sliderValue = newValue);
                             cambiarTexto(sliderValue);
@@ -207,17 +225,50 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  // Padding(
+                  //   padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                  //   child: FFButtonWidget(
+                  //     onPressed: () {
+                  //       print('Button pressed ...');
+                  //     },
+                  //     text: 'Registrar Otra',
+                  //     options: FFButtonOptions(
+                  //       width: 150,
+                  //       height: 50,
+                  //       color: FlutterFlowTheme.of(context).grayIcon,
+                  //       textStyle:
+                  //           FlutterFlowTheme.of(context).subtitle2.override(
+                  //                 fontFamily: 'Lexend Deca',
+                  //                 color: Colors.white,
+                  //               ),
+                  //       elevation: 3,
+                  //       borderSide: BorderSide(
+                  //         color: Colors.transparent,
+                  //         width: 1,
+                  //       ),
+                  //       borderRadius: 40,
+                  //     ),
+                  //   ),
+                  // ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente1, nombrePaciente1: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                          ),
+                        );
                       },
-                      text: 'Atrás',
+                      text: 'Registrar Otra',
                       options: FFButtonOptions(
                         width: 150,
                         height: 50,
-                        color: FlutterFlowTheme.of(context).grayIcon,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
                                   fontFamily: 'Lexend Deca',
@@ -242,7 +293,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: ComidaBitacoraWidget(idPaciente2: widget.idPaciente1, nombrePaciente2: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },

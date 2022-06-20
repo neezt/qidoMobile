@@ -1,3 +1,4 @@
+import '../alimentacion_bitacora/alimentacion_bitacora_widget.dart';
 import '../comida_bitacora/comida_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -82,31 +83,31 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                          child: Text(
-                            'Pregunta 3/3',
-                            style: FlutterFlowTheme.of(context).bodyText2,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
-                        child: LinearPercentIndicator(
-                          percent: 0.99,
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          lineHeight: 12,
-                          animation: true,
-                          progressColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).lineColor,
-                          barRadius: Radius.circular(24),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: AlignmentDirectional(-1, 0),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                      //     child: Text(
+                      //       'Pregunta 3/3',
+                      //       style: FlutterFlowTheme.of(context).bodyText2,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
+                      //   child: LinearPercentIndicator(
+                      //     percent: 0.99,
+                      //     width: MediaQuery.of(context).size.width * 0.94,
+                      //     lineHeight: 12,
+                      //     animation: true,
+                      //     progressColor:
+                      //         FlutterFlowTheme.of(context).primaryColor,
+                      //     backgroundColor:
+                      //         FlutterFlowTheme.of(context).lineColor,
+                      //     barRadius: Radius.circular(24),
+                      //     padding: EdgeInsets.zero,
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 100, 0, 0),
                         child: Text(
@@ -169,6 +170,7 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                           ],
                         ),
                       ),
+                      if(cenaBitacora == 0)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
                         child: Slider.adaptive(
@@ -178,6 +180,22 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                           min: 0,
                           max: 4,
                           value: sliderValue ??= 2,
+                          divisions: 4,
+                          onChanged: (newValue) {setState(() => sliderValue = newValue);
+                          cambiarTexto(sliderValue);
+                          },
+                        ),
+                      ),
+                      if(cenaBitacora > 0)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
+                        child: Slider.adaptive(
+                          activeColor:
+                              FlutterFlowTheme.of(context).primaryColor,
+                          inactiveColor: FlutterFlowTheme.of(context).lineColor,
+                          min: 0,
+                          max: 4,
+                          value: sliderValue ??= cenaBitacora.toDouble()-1,
                           divisions: 4,
                           onChanged: (newValue) {setState(() => sliderValue = newValue);
                           cambiarTexto(sliderValue);
@@ -216,11 +234,11 @@ class _CenaBitacoraWidgetState extends State<CenaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: ComidaBitacoraWidget(idPaciente2: widget.idPaciente3, nombrePaciente2: widget.nombrePaciente3, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente3, nombrePaciente1: widget.nombrePaciente3, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
-                      text: 'Atrás',
+                      text: 'Registrar Otra',
                       options: FFButtonOptions(
                         width: 150,
                         height: 50,

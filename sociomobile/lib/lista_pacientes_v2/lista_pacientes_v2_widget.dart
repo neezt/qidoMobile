@@ -66,7 +66,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
     http.Response response;
     response = await http.post(
         Uri.parse(
-            'http://10.0.2.2/public/colaborador/pacientesByColaborador?idColaborador=$idColaborador'),
+            'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=$idColaborador'),
         headers: {
           "Token": FireAuth.token,
         });
@@ -288,7 +288,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(40),
                                       child: Image.network(
-                                        'https://img.icons8.com/ios/344/user-female-circle.png',
+                                        'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
                                         width: 60,
                                         height: 60,
                                         fit: BoxFit.cover,
@@ -405,7 +405,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                       //           ClipRRect(
                       //             borderRadius: BorderRadius.circular(40),
                       //             child: Image.network(
-                      //               'https://img.icons8.com/ios/344/user-female-circle.png',
+                      //               'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
                       //               width: 60,
                       //               height: 60,
                       //               fit: BoxFit.cover,
@@ -506,7 +506,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                       //           ClipRRect(
                       //             borderRadius: BorderRadius.circular(40),
                       //             child: Image.network(
-                      //               'https://img.icons8.com/ios/344/user-female-circle.png',
+                      //               'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
                       //               width: 60,
                       //               height: 60,
                       //               fit: BoxFit.cover,
@@ -607,7 +607,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                       //           ClipRRect(
                       //             borderRadius: BorderRadius.circular(40),
                       //             child: Image.network(
-                      //               'https://img.icons8.com/ios/344/user-female-circle.png',
+                      //               'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
                       //               width: 60,
                       //               height: 60,
                       //               fit: BoxFit.cover,

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qido_colaboradores/bitacoravariables.dart';
 import 'package:qido_colaboradores/utils/fire_auth.dart';
 import 'package:qido_colaboradores/utils/validator.dart';
 
@@ -48,7 +49,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   Future fetchData() async {
     http.Response response;
     response = await http.post(
-        Uri.parse('http://10.0.2.2/public/colaborador/colaboradores'),
+        Uri.parse('https://otconsultingback.comercioincoterms.com/colaborador/colaboradores'),
         headers: {
           "Token": FireAuth.token,
         });
@@ -80,6 +81,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       if (listResponse[i]['correoElectronico'].toString() ==
           _emailTextController.text) {
         idColaborador = listResponse[i]['idColaborador'];
+        idColaboradorBitacora = int.parse(idColaborador);
         break;
       }
       print('idColaborador: $idColaborador');
@@ -399,6 +401,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 //   borderRadius: 8,
                                 // ),
                               ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                              'Ver: 1.0.1',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+
                             ],
                           ),
                         ),

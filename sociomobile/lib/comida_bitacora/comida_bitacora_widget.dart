@@ -1,3 +1,4 @@
+import '../alimentacion_bitacora/alimentacion_bitacora_widget.dart';
 import '../cena_bitacora/cena_bitacora_widget.dart';
 import '../desayuno_bitacora/desayuno_bitacora_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -83,31 +84,31 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                          child: Text(
-                            'Pregunta 2/3',
-                            style: FlutterFlowTheme.of(context).bodyText2,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
-                        child: LinearPercentIndicator(
-                          percent: 0.66,
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          lineHeight: 12,
-                          animation: true,
-                          progressColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).lineColor,
-                          barRadius: Radius.circular(24),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: AlignmentDirectional(-1, 0),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                      //     child: Text(
+                      //       'Pregunta 2/3',
+                      //       style: FlutterFlowTheme.of(context).bodyText2,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 0),
+                      //   child: LinearPercentIndicator(
+                      //     percent: 0.66,
+                      //     width: MediaQuery.of(context).size.width * 0.94,
+                      //     lineHeight: 12,
+                      //     animation: true,
+                      //     progressColor:
+                      //         FlutterFlowTheme.of(context).primaryColor,
+                      //     backgroundColor:
+                      //         FlutterFlowTheme.of(context).lineColor,
+                      //     barRadius: Radius.circular(24),
+                      //     padding: EdgeInsets.zero,
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 100, 0, 0),
                         child: Text(
@@ -170,6 +171,7 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                           ],
                         ),
                       ),
+                      if(comidaBitacora == 0)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
                         child: Slider.adaptive(
@@ -179,6 +181,22 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                           min: 0,
                           max: 4,
                           value: sliderValue ??= 2,
+                          divisions: 4,
+                          onChanged: (newValue) {setState(() => sliderValue = newValue);
+                          cambiarTexto(sliderValue);
+                          },
+                        ),
+                      ),
+                      if(comidaBitacora > 0)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
+                        child: Slider.adaptive(
+                          activeColor:
+                              FlutterFlowTheme.of(context).primaryColor,
+                          inactiveColor: FlutterFlowTheme.of(context).lineColor,
+                          min: 0,
+                          max: 4,
+                          value: sliderValue ??= comidaBitacora.toDouble()-1,
                           divisions: 4,
                           onChanged: (newValue) {setState(() => sliderValue = newValue);
                           cambiarTexto(sliderValue);
@@ -217,11 +235,11 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: DesayunoBitacoraWidget(idPaciente1: widget.idPaciente2, nombrePaciente1: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente2, nombrePaciente1: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
-                      text: 'Atrás',
+                      text: 'Registrar Otra',
                       options: FFButtonOptions(
                         width: 150,
                         height: 50,
@@ -250,11 +268,11 @@ class _ComidaBitacoraWidgetState extends State<ComidaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: CenaBitacoraWidget(idPaciente3: widget.idPaciente2, nombrePaciente3: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente2, nombrePaciente: widget.nombrePaciente2, idTemp: widget.idTemp, listTemp: widget.listTemp),
                           ),
                         );
                       },
-                      text: 'Siguiente',
+                      text: 'Listo',
                       options: FFButtonOptions(
                         width: 150,
                         height: 50,
@@ -304,5 +322,5 @@ cambiarTexto(sliderValue){
     textoAlimento = "5: Mucho";
     comidaBitacora = 5;
   }
-
+  print("yessir: $comidaBitacora");
 }

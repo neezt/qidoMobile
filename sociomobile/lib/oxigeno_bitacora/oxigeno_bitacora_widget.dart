@@ -293,7 +293,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
     );
   }
 }
-double sliderValue;
+double sliderValue = 80.0;
 //int oxigeno = 97;
 cambiarOxigeno(oxi){
   //oxigeno = oxi;

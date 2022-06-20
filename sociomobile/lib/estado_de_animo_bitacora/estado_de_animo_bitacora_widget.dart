@@ -1,3 +1,4 @@
+import '../bitacoravariables.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -121,11 +122,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            new GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(feliz == true) {
+                                    feliz = !feliz;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 1;
+                                    feliz = !feliz;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
-                              decoration: BoxDecoration(
+                              decoration: 
+                              BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: feliz? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -178,11 +209,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(buenHumor == true) {
+                                    buenHumor = !buenHumor;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 2;
+                                    buenHumor = !buenHumor;
+                                    feliz = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: buenHumor? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -235,11 +296,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(amoroso == true) {
+                                    amoroso = !amoroso;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 3;
+                                    amoroso = !amoroso;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: amoroso? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -292,6 +383,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
                           ],
                         ),
                       ),
@@ -301,11 +393,40 @@ class _EstadoDeAnimoBitacoraWidgetState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            new GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(triste == true) {
+                                    triste = !triste;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 4;
+                                    triste = !triste;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: triste? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -358,11 +479,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(decaido == true) {
+                                    decaido = !decaido;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 5;
+                                    decaido = !decaido;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: decaido? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -415,11 +566,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(deprimido == true) {
+                                    deprimido = !deprimido;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 6;
+                                    deprimido = !deprimido;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: deprimido? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -472,6 +653,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
                           ],
                         ),
                       ),
@@ -481,11 +663,40 @@ class _EstadoDeAnimoBitacoraWidgetState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            new GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(asustado == true) {
+                                    asustado = !asustado;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 7;
+                                    asustado = !asustado;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: asustado? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -538,11 +749,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(enojado == true) {
+                                    enojado = !enojado;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 8;
+                                    enojado = !enojado;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: enojado? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -595,11 +836,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(nostalgico == true) {
+                                    nostalgico = !nostalgico;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 9;
+                                    nostalgico = !nostalgico;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: nostalgico? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -688,6 +959,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
                           ],
                         ),
                       ),
@@ -697,11 +969,40 @@ class _EstadoDeAnimoBitacoraWidgetState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            new GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(aburrido == true) {
+                                    aburrido = !aburrido;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 10;
+                                    aburrido = !aburrido;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: aburrido? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -754,11 +1055,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(tranquilo == true) {
+                                    tranquilo = !tranquilo;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 11;
+                                    tranquilo = !tranquilo;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: tranquilo? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -811,11 +1142,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(ansioso == true) {
+                                    ansioso = !ansioso;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 12;
+                                    ansioso = !ansioso;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: ansioso? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -868,6 +1229,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
                           ],
                         ),
                       ),
@@ -877,11 +1239,40 @@ class _EstadoDeAnimoBitacoraWidgetState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            new GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(asco == true) {
+                                    asco = !asco;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 13;
+                                    asco = !asco;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: asco? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -934,11 +1325,41 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(dolor == true) {
+                                    dolor = !dolor;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 14;
+                                    dolor = !dolor;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                  }
+                                   
+                                });
+                              },
+                              child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
+                                border: dolor? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Stack(
@@ -1020,6 +1441,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                 ],
                               ),
                             ),
+                        ),
                             Container(
                               width: 100,
                               height: 100,
@@ -1085,3 +1507,17 @@ class _EstadoDeAnimoBitacoraWidgetState
     );
   }
 }
+bool feliz = false;
+bool buenHumor = false;
+bool amoroso = false;
+bool triste = false;
+bool decaido = false;
+bool deprimido = false;
+bool asustado = false;
+bool enojado = false;
+bool nostalgico = false;
+bool aburrido = false;
+bool tranquilo = false;
+bool ansioso = false;
+bool asco = false;
+bool dolor = false;
