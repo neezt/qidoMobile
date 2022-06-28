@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qido_colaboradores/index.dart';
 
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -9,27 +10,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../usertoken.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qido_colaboradores/utils/fire_auth.dart';
 import 'package:qido_colaboradores/utils/validator.dart';
-
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../lista_pacientes_v2/lista_pacientes_v2_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 
 import 'package:page_transition/page_transition.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import '../usertoken.dart';
 
 class ListaPacientesV2Widget extends StatefulWidget {
   final User user;
@@ -382,309 +372,51 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                           ).animated(
                               [animationsMap['containerOnPageLoadAnimation1']]),
                         ),
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                      //   child: Container(
-                      //     width: 100,
-                      //     decoration: BoxDecoration(
-                      //       color: FlutterFlowTheme.of(context)
-                      //           .secondaryBackground,
-                      //       boxShadow: [
-                      //         BoxShadow(
-                      //           blurRadius: 0,
-                      //           color: FlutterFlowTheme.of(context).lineColor,
-                      //           offset: Offset(0, 1),
-                      //         )
-                      //       ],
-                      //     ),
-                      //     child: Padding(
-                      //       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      //       child: Row(
-                      //         mainAxisSize: MainAxisSize.max,
-                      //         children: [
-                      //           ClipRRect(
-                      //             borderRadius: BorderRadius.circular(40),
-                      //             child: Image.network(
-                      //               'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
-                      //               width: 60,
-                      //               height: 60,
-                      //               fit: BoxFit.cover,
-                      //             ),
-                      //           ),
-                      //           Expanded(
-                      //             child: Column(
-                      //               mainAxisSize: MainAxisSize.max,
-                      //               crossAxisAlignment:
-                      //                   CrossAxisAlignment.start,
-                      //               children: [
-                      //                 Padding(
-                      //                   padding: EdgeInsetsDirectional.fromSTEB(
-                      //                       12, 0, 0, 0),
-                      //                   child: Text(
-                      //                     'Rosario Vela',
-                      //                     style: FlutterFlowTheme.of(context)
-                      //                         .subtitle1,
-                      //                   ),
-                      //                 ),
-                      //                 Padding(
-                      //                   padding: EdgeInsetsDirectional.fromSTEB(
-                      //                       0, 4, 0, 0),
-                      //                   child: Row(
-                      //                     mainAxisSize: MainAxisSize.max,
-                      //                     children: [
-                      //                       Padding(
-                      //                         padding: EdgeInsetsDirectional
-                      //                             .fromSTEB(12, 0, 0, 0),
-                      //                         child: Text(
-                      //                           'ID: 54',
-                      //                           style:
-                      //                               FlutterFlowTheme.of(context)
-                      //                                   .bodyText2,
-                      //                         ),
-                      //                       ),
-                      //                       Padding(
-                      //                         padding: EdgeInsetsDirectional
-                      //                             .fromSTEB(4, 0, 0, 0),
-                      //                         child: Text(
-                      //                           'name@domain.com',
-                      //                           style:
-                      //                               FlutterFlowTheme.of(context)
-                      //                                   .bodyText2,
-                      //                         ),
-                      //                       ),
-                      //                     ],
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //           Card(
-                      //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                      //             color: FlutterFlowTheme.of(context)
-                      //                 .primaryBackground,
-                      //             elevation: 1,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(40),
-                      //             ),
-                      //             child: Padding(
-                      //               padding: EdgeInsetsDirectional.fromSTEB(
-                      //                   4, 4, 4, 4),
-                      //               child: Icon(
-                      //                 Icons.keyboard_arrow_right_rounded,
-                      //                 color: FlutterFlowTheme.of(context)
-                      //                     .secondaryText,
-                      //                 size: 24,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ).animated(
-                      //       [animationsMap['containerOnPageLoadAnimation2']]),
-                      // ),
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                      //   child: Container(
-                      //     width: 100,
-                      //     decoration: BoxDecoration(
-                      //       color: FlutterFlowTheme.of(context)
-                      //           .secondaryBackground,
-                      //       boxShadow: [
-                      //         BoxShadow(
-                      //           blurRadius: 0,
-                      //           color: FlutterFlowTheme.of(context).lineColor,
-                      //           offset: Offset(0, 1),
-                      //         )
-                      //       ],
-                      //     ),
-                      //     child: Padding(
-                      //       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      //       child: Row(
-                      //         mainAxisSize: MainAxisSize.max,
-                      //         children: [
-                      //           ClipRRect(
-                      //             borderRadius: BorderRadius.circular(40),
-                      //             child: Image.network(
-                      //               'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
-                      //               width: 60,
-                      //               height: 60,
-                      //               fit: BoxFit.cover,
-                      //             ),
-                      //           ),
-                      //           Expanded(
-                      //             child: Column(
-                      //               mainAxisSize: MainAxisSize.max,
-                      //               crossAxisAlignment:
-                      //                   CrossAxisAlignment.start,
-                      //               children: [
-                      //                 Padding(
-                      //                   padding: EdgeInsetsDirectional.fromSTEB(
-                      //                       12, 0, 0, 0),
-                      //                   child: Text(
-                      //                     'Rosenda Lopez',
-                      //                     style: FlutterFlowTheme.of(context)
-                      //                         .subtitle1,
-                      //                   ),
-                      //                 ),
-                      //                 Padding(
-                      //                   padding: EdgeInsetsDirectional.fromSTEB(
-                      //                       0, 4, 0, 0),
-                      //                   child: Row(
-                      //                     mainAxisSize: MainAxisSize.max,
-                      //                     children: [
-                      //                       Padding(
-                      //                         padding: EdgeInsetsDirectional
-                      //                             .fromSTEB(12, 0, 0, 0),
-                      //                         child: Text(
-                      //                           'ID: 55',
-                      //                           style:
-                      //                               FlutterFlowTheme.of(context)
-                      //                                   .bodyText2,
-                      //                         ),
-                      //                       ),
-                      //                       Padding(
-                      //                         padding: EdgeInsetsDirectional
-                      //                             .fromSTEB(4, 0, 0, 0),
-                      //                         child: Text(
-                      //                           'name@domain.com',
-                      //                           style:
-                      //                               FlutterFlowTheme.of(context)
-                      //                                   .bodyText2,
-                      //                         ),
-                      //                       ),
-                      //                     ],
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //           Card(
-                      //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                      //             color: FlutterFlowTheme.of(context)
-                      //                 .primaryBackground,
-                      //             elevation: 1,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(40),
-                      //             ),
-                      //             child: Padding(
-                      //               padding: EdgeInsetsDirectional.fromSTEB(
-                      //                   4, 4, 4, 4),
-                      //               child: Icon(
-                      //                 Icons.keyboard_arrow_right_rounded,
-                      //                 color: FlutterFlowTheme.of(context)
-                      //                     .secondaryText,
-                      //                 size: 24,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ).animated(
-                      //       [animationsMap['containerOnPageLoadAnimation3']]),
-                      // ),
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                      //   child: Container(
-                      //     width: 100,
-                      //     decoration: BoxDecoration(
-                      //       color: FlutterFlowTheme.of(context)
-                      //           .secondaryBackground,
-                      //       boxShadow: [
-                      //         BoxShadow(
-                      //           blurRadius: 0,
-                      //           color: FlutterFlowTheme.of(context).lineColor,
-                      //           offset: Offset(0, 1),
-                      //         )
-                      //       ],
-                      //     ),
-                      //     child: Padding(
-                      //       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      //       child: Row(
-                      //         mainAxisSize: MainAxisSize.max,
-                      //         children: [
-                      //           ClipRRect(
-                      //             borderRadius: BorderRadius.circular(40),
-                      //             child: Image.network(
-                      //               'https://wearesutd.sutd.edu.sg/wp-content/uploads/2017/11/generic-male-icon-blue.jpg',
-                      //               width: 60,
-                      //               height: 60,
-                      //               fit: BoxFit.cover,
-                      //             ),
-                      //           ),
-                      //           Expanded(
-                      //             child: Column(
-                      //               mainAxisSize: MainAxisSize.max,
-                      //               crossAxisAlignment:
-                      //                   CrossAxisAlignment.start,
-                      //               children: [
-                      //                 Padding(
-                      //                   padding: EdgeInsetsDirectional.fromSTEB(
-                      //                       12, 0, 0, 0),
-                      //                   child: Text(
-                      //                     'Rose Smith',
-                      //                     style: FlutterFlowTheme.of(context)
-                      //                         .subtitle1,
-                      //                   ),
-                      //                 ),
-                      //                 Padding(
-                      //                   padding: EdgeInsetsDirectional.fromSTEB(
-                      //                       0, 4, 0, 0),
-                      //                   child: Row(
-                      //                     mainAxisSize: MainAxisSize.max,
-                      //                     children: [
-                      //                       Padding(
-                      //                         padding: EdgeInsetsDirectional
-                      //                             .fromSTEB(12, 0, 0, 0),
-                      //                         child: Text(
-                      //                           'ID: 78',
-                      //                           style:
-                      //                               FlutterFlowTheme.of(context)
-                      //                                   .bodyText2,
-                      //                         ),
-                      //                       ),
-                      //                       Padding(
-                      //                         padding: EdgeInsetsDirectional
-                      //                             .fromSTEB(4, 0, 0, 0),
-                      //                         child: Text(
-                      //                           'name@domain.com',
-                      //                           style:
-                      //                               FlutterFlowTheme.of(context)
-                      //                                   .bodyText2,
-                      //                         ),
-                      //                       ),
-                      //                     ],
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //           Card(
-                      //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                      //             color: FlutterFlowTheme.of(context)
-                      //                 .primaryBackground,
-                      //             elevation: 1,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(40),
-                      //             ),
-                      //             child: Padding(
-                      //               padding: EdgeInsetsDirectional.fromSTEB(
-                      //                   4, 4, 4, 4),
-                      //               child: Icon(
-                      //                 Icons.keyboard_arrow_right_rounded,
-                      //                 color: FlutterFlowTheme.of(context)
-                      //                     .secondaryText,
-                      //                 size: 24,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ).animated(
-                      //       [animationsMap['containerOnPageLoadAnimation4']]),
-                      // ),
+Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 290, 0, 20),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(125, 0, 125, 0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginWidget(),
+                            ),
+                          );
+                        },
+                        text: 'Cerrar Sesión',
+                        options: FFButtonOptions(
+                          width: 90,
+                          height: 40,
+                          color: Colors.white,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Lexend Deca',
+                                color: FlutterFlowTheme.of(context).black600,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                          elevation: 3,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 8,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
                     ],
                   ),
                 ),

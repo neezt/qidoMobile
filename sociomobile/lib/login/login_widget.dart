@@ -9,13 +9,9 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../lista_pacientes_v2/lista_pacientes_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 
 import 'package:page_transition/page_transition.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

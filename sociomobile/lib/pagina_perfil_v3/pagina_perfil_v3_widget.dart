@@ -10,35 +10,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../pagina_perfil_v3/pagina_perfil_v3_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../usertoken.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qido_colaboradores/utils/fire_auth.dart';
 import 'package:qido_colaboradores/utils/validator.dart';
 
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../lista_pacientes_v2/lista_pacientes_v2_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 
 import 'package:page_transition/page_transition.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import '../usertoken.dart';
 
 class PaginaPerfilV3Widget extends StatefulWidget {
   const PaginaPerfilV3Widget({Key key, this.id, this.list}) : super(key: key);
