@@ -152,7 +152,7 @@ class _AlimentacionBitacoraWidgetState
                                       alignment: AlignmentDirectional(0, -0.21),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 30, 0, 20),
+                                            0, 25, 0, 20),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -227,7 +227,7 @@ class _AlimentacionBitacoraWidgetState
                                       alignment: AlignmentDirectional(0, -0.21),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 30, 0, 20),
+                                            0, 25, 0, 20),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -302,7 +302,7 @@ class _AlimentacionBitacoraWidgetState
                                       alignment: AlignmentDirectional(0, -0.21),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 30, 0, 20),
+                                            0, 25, 0, 20),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:

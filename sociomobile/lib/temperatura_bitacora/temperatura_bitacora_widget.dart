@@ -25,6 +25,8 @@ class TemperaturaBitacoraWidget extends StatefulWidget {
 
 class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
   double sliderValue;
+  bool tempBaja = false;
+  bool tempAlta = false;
 
   String radioButtonValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -180,6 +182,14 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                                   setState(() {
                                     temperatura = temperatura - .1;
                                     temperaturaBitacora = temperatura;
+                                    if (temperatura <= 35.0) {
+                                      tempBaja = true;
+                                      tempAlta = false;
+                                    }
+                                    if (temperatura > 35.0 && temperatura < 37.0) {
+                                      tempBaja = false;
+                                      tempAlta = false;
+                                    }
                                   });
                                 },
                                 text: '-',
@@ -213,6 +223,14 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                                   setState(() {
                                     temperatura = temperatura + .1;
                                     temperaturaBitacora = temperatura;
+                                    if (temperatura >= 37.0) {
+                                      tempBaja = false;
+                                      tempAlta = true;
+                                    }
+                                    if (temperatura > 35.0 && temperatura < 37.0) {
+                                      tempBaja = false;
+                                      tempAlta = false;
+                                    }
                                   });
 
                                 },
@@ -238,6 +256,62 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                             ),
                           ],
                         ),
+                      ),
+                      if (tempAlta == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Temperatura Alta',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
+                      ),
+                      if (tempBaja == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Temperatura Baja',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),

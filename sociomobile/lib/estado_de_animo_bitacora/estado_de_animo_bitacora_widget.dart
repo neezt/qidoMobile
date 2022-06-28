@@ -145,6 +145,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -165,7 +166,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -233,6 +234,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -252,7 +254,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -320,6 +322,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -339,7 +342,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -416,6 +419,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -435,7 +439,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -503,6 +507,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -522,7 +527,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -590,6 +595,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -609,7 +615,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -686,6 +692,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -705,7 +712,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -773,6 +780,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -792,7 +800,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -860,6 +868,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -879,7 +888,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -992,6 +1001,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -1011,7 +1021,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1079,6 +1089,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     ansioso = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -1098,7 +1109,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1166,6 +1177,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     tranquilo = false;
                                     asco = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -1185,7 +1197,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1233,6 +1245,12 @@ class _EstadoDeAnimoBitacoraWidgetState
                           ],
                         ),
                       ),
+
+
+
+
+
+
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                         child: Row(
@@ -1262,6 +1280,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     tranquilo = false;
                                     ansioso = false;
                                     dolor = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -1281,7 +1300,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1349,6 +1368,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     tranquilo = false;
                                     ansioso = false;
                                     asco = false;
+                                    agresivo = false;
                                   }
                                    
                                 });
@@ -1368,7 +1388,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     alignment: AlignmentDirectional(0, -0.21),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 20),
+                                          0, 25, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1400,7 +1420,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                         Align(
                                           alignment: AlignmentDirectional(0, 0),
                                           child: Image.network(
-                                            'https://img.icons8.com/color/344/boring--v1.png',
+                                           'https://img.icons8.com/color/344/boring--v1.png',
                                             width: 50,
                                             height: 50,
                                             fit: BoxFit.cover,
@@ -1442,17 +1462,317 @@ class _EstadoDeAnimoBitacoraWidgetState
                               ),
                             ),
                         ),
+                        new GestureDetector(
+                          onTap: () {
+                                setState(() {
+                                  // Toggle light when tapped.
+                                  if(agresivo == true) {
+                                    agresivo = !agresivo;
+                                    estadoAnimoBitacora = null;
+                                  } else {
+                                    estadoAnimoBitacora = 15;
+                                    agresivo = !agresivo;
+                                    feliz = false;
+                                    buenHumor = false;
+                                    amoroso = false;
+                                    triste = false;
+                                    decaido = false;
+                                    deprimido = false;
+                                    asustado = false;
+                                    enojado = false;
+                                    nostalgico = false;
+                                    aburrido = false;
+                                    tranquilo = false;
+                                    ansioso = false;
+                                    asco = false;
+                                    dolor = false;
+                                  }
+                                   
+                                });
+                              },
+                            child:
                             Container(
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).background,
+                                color: Color(0xFFEEEEEE),
+                                border: agresivo? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, -0.21),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 25, 0, 20),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 35, 0, 0),
+                                            child: Text(
+                                              'Agresivo',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 30),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Image.network(
+                                            'https://img.icons8.com/fluency/48/000000/angry.png',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
+                        ),
                           ],
                         ),
                       ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      //   child: Row(
+                      //     mainAxisSize: MainAxisSize.max,
+                      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //     children: [
+                      //       new GestureDetector(
+                      //         onTap: () {
+                      //           setState(() {
+                      //             // Toggle light when tapped.
+                      //             if(asco == true) {
+                      //               asco = !asco;
+                      //               estadoAnimoBitacora = null;
+                      //             } else {
+                      //               estadoAnimoBitacora = 13;
+                      //               asco = !asco;
+                      //               feliz = false;
+                      //               buenHumor = false;
+                      //               amoroso = false;
+                      //               triste = false;
+                      //               decaido = false;
+                      //               deprimido = false;
+                      //               asustado = false;
+                      //               enojado = false;
+                      //               nostalgico = false;
+                      //               aburrido = false;
+                      //               tranquilo = false;
+                      //               ansioso = false;
+                      //               dolor = false;
+                      //             }
+                                   
+                      //           });
+                      //         },
+                      //         child:
+                      //       Container(
+                      //         width: 100,
+                      //         height: 100,
+                      //         decoration: BoxDecoration(
+                      //           color: Color(0xFFEEEEEE),
+                      //           border: asco? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
+                      //           borderRadius: BorderRadius.circular(20),
+                      //         ),
+                      //         child: Stack(
+                      //           children: [
+                      //             Align(
+                      //               alignment: AlignmentDirectional(0, -0.21),
+                      //               child: Padding(
+                      //                 padding: EdgeInsetsDirectional.fromSTEB(
+                      //                     0, 25, 0, 20),
+                      //                 child: Row(
+                      //                   mainAxisSize: MainAxisSize.max,
+                      //                   mainAxisAlignment:
+                      //                       MainAxisAlignment.center,
+                      //                   children: [
+                      //                     Padding(
+                      //                       padding:
+                      //                           EdgeInsetsDirectional.fromSTEB(
+                      //                               0, 35, 0, 0),
+                      //                       child: Text(
+                      //                         'Con Asco',
+                      //                         style:
+                      //                             FlutterFlowTheme.of(context)
+                      //                                 .bodyText1,
+                      //                       ),
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             Padding(
+                      //               padding: EdgeInsetsDirectional.fromSTEB(
+                      //                   0, 0, 0, 30),
+                      //               child: Row(
+                      //                 mainAxisSize: MainAxisSize.max,
+                      //                 mainAxisAlignment:
+                      //                     MainAxisAlignment.center,
+                      //                 children: [
+                      //                   Align(
+                      //                     alignment: AlignmentDirectional(0, 0),
+                      //                     child: Image.network(
+                      //                       'https://img.icons8.com/color/344/vomited--v1.png',
+                      //                       width: 50,
+                      //                       height: 50,
+                      //                       fit: BoxFit.cover,
+                      //                     ),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ),
+                      //   ),
+                      //   new GestureDetector(
+                      //     onTap: () {
+                      //           setState(() {
+                      //             // Toggle light when tapped.
+                      //             if(dolor == true) {
+                      //               dolor = !dolor;
+                      //               estadoAnimoBitacora = null;
+                      //             } else {
+                      //               estadoAnimoBitacora = 14;
+                      //               dolor = !dolor;
+                      //               feliz = false;
+                      //               buenHumor = false;
+                      //               amoroso = false;
+                      //               triste = false;
+                      //               decaido = false;
+                      //               deprimido = false;
+                      //               asustado = false;
+                      //               enojado = false;
+                      //               nostalgico = false;
+                      //               aburrido = false;
+                      //               tranquilo = false;
+                      //               ansioso = false;
+                      //               asco = false;
+                      //             }
+                                   
+                      //           });
+                      //         },
+                      //         child:
+                      //       Container(
+                      //         width: 100,
+                      //         height: 100,
+                      //         decoration: BoxDecoration(
+                      //           color: Color(0xFFEEEEEE),
+                      //           border: dolor? Border.all(color:Colors.green, width: 1) : Border.all(color:Colors.transparent, width: 1),
+                      //           borderRadius: BorderRadius.circular(20),
+                      //         ),
+                      //         child: Stack(
+                      //           children: [
+                      //             Align(
+                      //               alignment: AlignmentDirectional(0, -0.21),
+                      //               child: Padding(
+                      //                 padding: EdgeInsetsDirectional.fromSTEB(
+                      //                     0, 25, 0, 20),
+                      //                 child: Row(
+                      //                   mainAxisSize: MainAxisSize.max,
+                      //                   mainAxisAlignment:
+                      //                       MainAxisAlignment.center,
+                      //                   children: [
+                      //                     Padding(
+                      //                       padding:
+                      //                           EdgeInsetsDirectional.fromSTEB(
+                      //                               0, 35, 0, 0),
+                      //                       child: Text(
+                      //                         'Con Dolor',
+                      //                         style:
+                      //                             FlutterFlowTheme.of(context)
+                      //                                 .bodyText1,
+                      //                       ),
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             Padding(
+                      //               padding: EdgeInsetsDirectional.fromSTEB(
+                      //                   0, 0, 0, 30),
+                      //               child: Row(
+                      //                 mainAxisSize: MainAxisSize.max,
+                      //                 mainAxisAlignment:
+                      //                     MainAxisAlignment.center,
+                      //                 children: [
+                      //                   Align(
+                      //                     alignment: AlignmentDirectional(0, 0),
+                      //                     child: Image.network(
+                      //                       'https://img.icons8.com/color/344/boring--v1.png',
+                      //                       width: 50,
+                      //                       height: 50,
+                      //                       fit: BoxFit.cover,
+                      //                     ),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //             Stack(
+                      //               children: [
+                      //                 Padding(
+                      //                   padding: EdgeInsetsDirectional.fromSTEB(
+                      //                       0, 0, 0, 30),
+                      //                   child: Row(
+                      //                     mainAxisSize: MainAxisSize.max,
+                      //                     mainAxisAlignment:
+                      //                         MainAxisAlignment.center,
+                      //                     children: [
+                      //                       Align(
+                      //                         alignment:
+                      //                             AlignmentDirectional(0, 0),
+                      //                         child: Padding(
+                      //                           padding: EdgeInsetsDirectional
+                      //                               .fromSTEB(0, 0, 20, 30),
+                      //                           child: Image.network(
+                      //                             'https://img.icons8.com/color/344/bandage.png',
+                      //                             width: 50,
+                      //                             height: 50,
+                      //                             fit: BoxFit.cover,
+                      //                           ),
+                      //                         ),
+                      //                       ),
+                      //                     ],
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ),
+                      //   ),
+                      //       Container(
+                      //         width: 100,
+                      //         height: 100,
+                      //         decoration: BoxDecoration(
+                      //           color: FlutterFlowTheme.of(context).background,
+                      //           borderRadius: BorderRadius.circular(20),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -1521,3 +1841,4 @@ bool tranquilo = false;
 bool ansioso = false;
 bool asco = false;
 bool dolor = false;
+bool agresivo = false;

@@ -116,6 +116,34 @@ Future grabarBitacora() async {
     // fetchData1();
   }
 
+    String stringResponse = '';
+  List listResponse = [];
+  List listResponse1 = [];
+  List idClientes = [];
+  Map mapResponse = {};
+  Map mapResponse1 = {};
+  String listLen = "";
+  String nombreMedico = "";
+  String telefonoContacto = "";
+    Future fetchData() async {
+    http.Response response;
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/lastBitacora?idServicio=${widget.listTemp[widget.idTemp]['idServicio']}'), headers: {"Token": FireAuth.token,});
+    print(response.statusCode);
+    if (response.statusCode==200) {
+      setState(() {
+        mapResponse = json.decode(response.body);
+        listResponse = mapResponse['data'];
+
+      });
+    }
+  }
+
+      @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
 
   String uploadedFileUrl = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -185,6 +213,23 @@ Future grabarBitacora() async {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                             child: Text(
                               'Nombre: ${widget.nombrePaciente} - ID: ${widget.idPaciente}',
+                              // 'Nombre: Rosario Armenta - ID: 24',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xB4FFFFFF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ),
+                          if (listResponse.length > 0)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                            child: Text(
+                              'Última bitácora: ${listResponse[0]["fechaCaptura"]}',
                               // 'Nombre: Rosario Armenta - ID: 24',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)

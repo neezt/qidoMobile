@@ -27,6 +27,8 @@ class AzucarBitacoraWidget extends StatefulWidget {
 
 class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
   String radioButtonValue;
+  bool glucosaBaja = false;
+  bool glucosaAlta = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -177,9 +179,77 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                           divisions: 290,
                           onChanged: (newValue) {
                             setState(() => sliderValue = newValue);
+                            if (sliderValue.toInt() >= 140) {
+                              glucosaAlta = true;
+                              glucosaBaja = false;
+                            }
+                            if (sliderValue.toInt() <= 70) {
+                              glucosaAlta = false;
+                              glucosaBaja = true;
+                            }
+                            if (sliderValue.toInt() > 70 && sliderValue.toInt() < 140) {
+                              glucosaAlta = false;
+                              glucosaBaja = false;
+                            }
                             cambiarAzucar(sliderValue);
                           },
                         ),
+                      ),
+                      if (glucosaAlta == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Glucosa Alta',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
+                      ),
+                      if (glucosaBaja == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Glucosa Baja',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),

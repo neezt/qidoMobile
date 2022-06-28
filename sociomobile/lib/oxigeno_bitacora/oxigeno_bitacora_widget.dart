@@ -27,7 +27,7 @@ class OxigenoBitacoraWidget extends StatefulWidget {
 class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
 
   String radioButtonValue;
-
+  bool oxigenoBajo = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -171,16 +171,51 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                           activeColor:
                               FlutterFlowTheme.of(context).primaryColor,
                           inactiveColor: FlutterFlowTheme.of(context).lineColor,
-                          min: 80,
+                          min: 50,
                           max: 100,
                           value: sliderValue ??= 97,
-                          divisions: 20,
+                          divisions: 50,
                           onChanged: (newValue) {
                             setState(() => sliderValue = newValue);
+                            if (sliderValue.toInt() <= 92) {
+                              oxigenoBajo = true;
+                            }
+                            if (sliderValue.toInt() > 92) {
+                              oxigenoBajo = false;
+                            }
                             cambiarOxigeno(sliderValue);
                           },
                         ),
-                      ),Padding(
+                      ),
+                      if (oxigenoBajo == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Oxigeno Bajo',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
+                      ),
+                      Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -293,7 +328,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
     );
   }
 }
-double sliderValue = 80.0;
+double sliderValue = 50.0;
 //int oxigeno = 97;
 cambiarOxigeno(oxi){
   //oxigeno = oxi;

@@ -28,7 +28,8 @@ class _PresionSistolicaBitacoraWidgetState
     extends State<PresionSistolicaBitacoraWidget> {
   double sliderValue;
   String radioButtonValue;
-
+  bool sistolicaAlta = false;
+  bool sistolicaBaja = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -191,6 +192,18 @@ class _PresionSistolicaBitacoraWidgetState
                                   setState(() {
                                     presionSistolica = presionSistolica - 1;
                                     presionSistolicaBitacora = presionSistolica;
+                                    if (presionSistolica >= 120.0) {
+                                      sistolicaAlta = true;
+                                      sistolicaBaja = false;
+                                    }
+                                    if (presionSistolica <= 90) {
+                                      sistolicaAlta = false;
+                                      sistolicaBaja = true;
+                                    }
+                                    if (presionSistolica < 120.0 && presionSistolica > 90) {
+                                      sistolicaAlta = false;
+                                      sistolicaBaja = false;
+                                    }
                                   });
                                 },
                                 text: '-',
@@ -224,6 +237,18 @@ class _PresionSistolicaBitacoraWidgetState
                                   setState(() {
                                     presionSistolica = presionSistolica + 1;
                                     presionSistolicaBitacora = presionSistolica;
+                                    if (presionSistolica >= 120.0) {
+                                      sistolicaAlta = true;
+                                      sistolicaBaja = false;
+                                    }
+                                    if (presionSistolica <= 90) {
+                                      sistolicaAlta = false;
+                                      sistolicaBaja = true;
+                                    }
+                                    if (presionSistolica < 120.0 && presionSistolica > 90) {
+                                      sistolicaAlta = false;
+                                      sistolicaBaja = false;
+                                    }
                                   });
 
                                 },
@@ -249,6 +274,62 @@ class _PresionSistolicaBitacoraWidgetState
                             ),
                           ],
                         ),
+                      ),
+                      if (sistolicaAlta == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Presión Sistólica Alta',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
+                      ),
+                      if (sistolicaBaja == true)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: 100,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color(0xFFFF0000),
+            ),
+            child: Text(
+              'Presión Sistólica Baja',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
+        ),
+      ],
+    ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),

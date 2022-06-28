@@ -304,7 +304,7 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                         child: Text(
-                          'Recomendaciones',
+                          'Procedimientos Requeridos',
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Lexend Deca',
@@ -340,6 +340,63 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                     Expanded(
                       child: Text(
                         widget.list[widget.id]['procedimientos'],
+                        // 'La persona que se quede a cuidar a doña Rosario debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que ella a veces es un poco terca. Se debe ser limpio ya que a doña Rosario no le gusta el desorden.',
+                        style: FlutterFlowTheme.of(context).bodyText2.override(
+                              fontFamily: 'Lexend Deca',
+                              color: Color(0xFF57636C),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                        child: Text(
+                          'Notas y Observaciones',
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF090F13),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    if(widget.list[widget.id]['notas'] == null)
+                    Expanded(
+                      child: Text(
+                        "Sin datos",
+                        // 'La persona que se quede a cuidar a doña Rosario debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que ella a veces es un poco terca. Se debe ser limpio ya que a doña Rosario no le gusta el desorden.',
+                        style: FlutterFlowTheme.of(context).bodyText2.override(
+                              fontFamily: 'Lexend Deca',
+                              color: Color(0xFF57636C),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                    ),
+                    if(widget.list[widget.id]['notas'] != null)
+                    Expanded(
+                      child: Text(
+                        widget.list[widget.id]['notas'],
                         // 'La persona que se quede a cuidar a doña Rosario debe saber cocinar, es muy puntual para sus horarios de comidas, le gusta platicar y hacer bromas, debe ser paciente ya que ella a veces es un poco terca. Se debe ser limpio ya que a doña Rosario no le gusta el desorden.',
                         style: FlutterFlowTheme.of(context).bodyText2.override(
                               fontFamily: 'Lexend Deca',
