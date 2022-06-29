@@ -16,6 +16,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import '../usertoken.dart';
+import '../services/back_service.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key key}) : super(key: key);
@@ -37,33 +38,19 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   bool passwordVisibility;
 
+  User user;
+
   String stringResponse = '';
   List listResponse = [];
   List listResponse1 = [];
   Map mapResponse = {};
   Map mapResponse1 = {};
+  dynamic colaborador;
   Future fetchData() async {
-    http.Response response;
-    response = await http.post(
-        Uri.parse('https://otconsultingback.comercioincoterms.com/colaborador/colaboradores'),
-        headers: {
-          "Token": FireAuth.token,
-        });
-    // print('response: $response');
-    print(FireAuth.token);
-    if (response.statusCode == 200) {
-      setState(() {
-        mapResponse = json.decode(response.body);
-        listResponse = mapResponse['data'];
-        for (var i = 0; i < listResponse.length; i++) {
-          listResponse1
-              .add(mapResponse['data'][i]['correoElectronico'].toString());
-          print('listResponse: $listResponse1');
-        }
-        // mapResponse = mapResponse['polizas'][0];
-        print('YES $mapResponse');
-      });
-    }
+        BackService backService = new BackService();
+        colaborador = await backService.obtenerColaboradores(user.email);
+        print("listResponse123: ${colaborador[0]['correoElectronico']}");
+        // idController();
   }
 
   @override
@@ -74,8 +61,10 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   idController() {
     for (var i = 0; i < listResponse.length; i++) {
+      print("CorreoElectronico: ${listResponse[i]['correoElectronico']}");
       if (listResponse[i]['correoElectronico'].toString() ==
           _emailTextController.text) {
+            print("Entro al IF");
         idColaborador = listResponse[i]['idColaborador'];
         idColaboradorBitacora = int.parse(idColaborador);
         break;
@@ -337,11 +326,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       _isProcessing = true;
                                     });
 
-                                    User user =
+                                    user =
                                         await FireAuth.signInUsingEmailPassword(
                                       email: _emailTextController.text,
                                       password: _passwordTextController.text,
                                     );
+                                    print("user: $user");
 
                                     setState(() {
                                       _isProcessing = false;
@@ -350,8 +340,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     if (user != null) {
                                       await fetchData();
 
-                                      if (listResponse1.contains(
-                                          _emailTextController.text)) {
+                                      // if (idColaborador != '') {
+                                        if(colaborador != null) {
                                         email = _emailTextController.text;
                                         await idController();
                                         Navigator.of(context).pushReplacement(

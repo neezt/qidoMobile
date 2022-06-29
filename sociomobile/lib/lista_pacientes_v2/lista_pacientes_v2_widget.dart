@@ -8,6 +8,7 @@ import '../pagina_perfil_v3/pagina_perfil_v3_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../services/back_service.dart';
 import '../usertoken.dart';
 
 import 'package:qido_colaboradores/utils/fire_auth.dart';
@@ -37,7 +38,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
   bool _isSendingVerification = false;
   bool _isSigningOut = false;
 
-  // User? _currentUser = widget.user;
+  //User? _currentUser = widget.user;
 
   Map<String, String> get headers => {
         "Content-Type": "application/json",
@@ -56,7 +57,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
     http.Response response;
     response = await http.post(
         Uri.parse(
-            'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=$idColaborador'),
+            'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=${colaborador[0]['idColaborador']}'),
         headers: {
           "Token": FireAuth.token,
         });
@@ -77,6 +78,32 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
       });
     }
   }
+
+  List listResponseColab = [];
+  Map mapResponseColab = {};
+  dynamic colaborador;
+  Future obtenerIdColaborador() async {
+        BackService backService = new BackService();       
+        colaborador = await backService.obtenerColaboradores(widget.user.email);
+        print("listResponse123456: ${widget.user}");
+        // idController();
+        fetchData();
+  }
+
+  // idController() {
+  //   for (var i = 0; i < listResponse.length; i++) {
+  //     print("CorreoElectronico: ${listResponse[i]['correoElectronico']}");
+  //     if (listResponse[i]['correoElectronico'].toString() ==
+  //         _emailTextController.text) {
+  //           print("Entro al IF");
+  //       idColaborador = listResponse[i]['idColaborador'];
+  //       idColaboradorBitacora = int.parse(idColaborador);
+  //       break;
+  //     }
+  //     print('idColaborador: $idColaborador');
+  //   }
+  //   fetchData();
+  // }
 
   final animationsMap = {
     'containerOnPageLoadAnimation1': AnimationInfo(
@@ -146,7 +173,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
   @override
   void initState() {
     super.initState();
-    fetchData();
+    obtenerIdColaborador();
     startPageLoadAnimations(
       animationsMap.values
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
