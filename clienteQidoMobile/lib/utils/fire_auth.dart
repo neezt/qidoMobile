@@ -5,13 +5,13 @@ import 'dart:convert';
 class FireAuth {
   static String token="";
   // For registering a new user
-  static Future<User?> registerUsingEmailPassword({
-    required String name,
-    required String email,
-    required String password,
+  static Future<User> registerUsingEmailPassword({
+    String name,
+    String email,
+    String password,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
+    User user;
 
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -20,7 +20,7 @@ class FireAuth {
       );
 
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
+      await user.updateProfile(displayName: name);
       await user.reload();
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
@@ -37,12 +37,12 @@ class FireAuth {
   }
 
   // For signing in an user (have already registered)
-  static Future<User?> signInUsingEmailPassword({
-    required String email,
-    required String password,
+  static Future<User> signInUsingEmailPassword({
+    String email,
+    String password,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
+    User user;
 
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -63,11 +63,11 @@ class FireAuth {
     return user;
   }
 
-  static Future<User?> refreshUser(User user) async {
+  static Future<User> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     await user.reload();
-    User? refreshedUser = auth.currentUser;
+    User refreshedUser = auth.currentUser;
 
     return refreshedUser;
   }
