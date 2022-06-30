@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qido_colaboradores/bitacoravariables.dart';
+import 'package:qido_colaboradores/model/usuario.dart';
+import 'package:qido_colaboradores/services/sqlite_service.dart';
 import 'package:qido_colaboradores/utils/fire_auth.dart';
 import 'package:qido_colaboradores/utils/validator.dart';
 
@@ -46,16 +48,25 @@ class _LoginWidgetState extends State<LoginWidget> {
   Map mapResponse = {};
   Map mapResponse1 = {};
   dynamic colaborador;
+
+  SqliteService _sqliteService;
+
   Future fetchData() async {
         BackService backService = new BackService();
         colaborador = await backService.obtenerColaboradores(user.email);
-        print("listResponse123: ${colaborador[0]['correoElectronico']}");
+        print("listResponse123: ${colaborador["idColaborador"]}");
         // idController();
+        Usuario usuario = new Usuario(int.parse(colaborador["idColaborador"]), colaborador["nombre"], colaborador["correoElectronico"], FireAuth.token);
+        SqliteService.createItem(usuario);
   }
 
   @override
   void initState() {
     super.initState();
+    this._sqliteService= SqliteService();
+    SqliteService.initizateDb().whenComplete(() async {
+      setState(() {});
+    });
     passwordVisibility = false;
   }
 
@@ -342,6 +353,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                                       // if (idColaborador != '') {
                                         if(colaborador != null) {
+
                                         email = _emailTextController.text;
                                         await idController();
                                         Navigator.of(context).pushReplacement(

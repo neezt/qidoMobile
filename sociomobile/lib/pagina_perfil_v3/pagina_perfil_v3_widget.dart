@@ -1,4 +1,5 @@
 import 'package:qido_colaboradores/bitacoravariables.dart';
+import 'package:qido_colaboradores/model/usuario.dart';
 
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -27,10 +28,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PaginaPerfilV3Widget extends StatefulWidget {
-  const PaginaPerfilV3Widget({Key key, this.id, this.list}) : super(key: key);
+  const PaginaPerfilV3Widget({Key key, this.id, this.list,this.usuario}) : super(key: key);
 
   final int id;
   final List list;
+  final Usuario usuario;
   @override
   _PaginaPerfilV3WidgetState createState() => _PaginaPerfilV3WidgetState();
 }
@@ -60,7 +62,8 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
   String telefonoContacto = "";
   Future fetchData() async {
     http.Response response;
-    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/colaborador/colaboradorById?idCliente=${widget.list[widget.id]['cliente']}'), headers: {"Token": FireAuth.token,});
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/colaborador/colaboradorById?idCliente=${widget.list[widget.id]['cliente']}'),
+                              headers: {"Token": widget.usuario.token,});
     print(response.statusCode);
     if (response.statusCode==200) {
       setState(() {

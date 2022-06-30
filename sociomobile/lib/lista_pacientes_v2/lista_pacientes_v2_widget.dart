@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qido_colaboradores/index.dart';
+import 'package:qido_colaboradores/services/sqlite_service.dart';
 
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../model/usuario.dart';
 import '../pagina_perfil_v3/pagina_perfil_v3_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,18 +35,6 @@ class ListaPacientesV2Widget extends StatefulWidget {
 class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
     with TickerProviderStateMixin {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  // late User? _currentUser = widget.user;
-
-  bool _isSendingVerification = false;
-  bool _isSigningOut = false;
-
-  //User? _currentUser = widget.user;
-
-  Map<String, String> get headers => {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": token,
-      };
 
   String stringResponse = '';
   List listResponse = [];
@@ -57,9 +47,9 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
     http.Response response;
     response = await http.post(
         Uri.parse(
-            'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=${colaborador[0]['idColaborador']}'),
+            'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=${usuario.id}'),
         headers: {
-          "Token": FireAuth.token,
+          "Token": usuario.token,
         });
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -81,13 +71,12 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
 
   List listResponseColab = [];
   Map mapResponseColab = {};
-  dynamic colaborador;
+  Usuario usuario;
+
   Future obtenerIdColaborador() async {
-        BackService backService = new BackService();       
-        colaborador = await backService.obtenerColaboradores(widget.user.email);
         print("listResponse123456: ${widget.user}");
-        // idController();
-        fetchData();
+        SqliteService.getItems().then((value) => setState(
+                () =>usuario= value) ).whenComplete(() => fetchData());
   }
 
   // idController() {
@@ -179,7 +168,6 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
       this,
     );
-
     textController = TextEditingController(text: '');
   }
 
@@ -278,7 +266,7 @@ class _ListaPacientesV2WidgetState extends State<ListaPacientesV2Widget>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => PaginaPerfilV3Widget(
-                                      id: i, list: listResponse),
+                                      id: i, list: listResponse, usuario: usuario,),
                                 ),
                               );
                             },

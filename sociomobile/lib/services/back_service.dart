@@ -25,7 +25,7 @@ class BackService {
         mapResponse = json.decode(response.body);
         listResponse = mapResponse['data'];
         colaborador = mapResponse['data'];
-        print("listResponse123: $colaborador");
+        print("returnAPI: $colaborador");
         // for (var i = 0; i < listResponse.length; i++) {
         //   listResponse1
         //       .add(mapResponse['data'][i]['correoElectronico'].toString());
@@ -34,7 +34,7 @@ class BackService {
         // mapResponse = mapResponse['polizas'][0];
         print('YES $mapResponse');
     }
-    return colaborador;
+    return colaborador != null ? colaborador[0] : null;
   }
 
 }
