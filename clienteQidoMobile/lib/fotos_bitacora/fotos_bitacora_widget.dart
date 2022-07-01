@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -5,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FotosBitacoraWidget extends StatefulWidget {
-  const FotosBitacoraWidget({Key key}) : super(key: key);
-
+  const FotosBitacoraWidget({Key key, this.usuario}) : super(key: key);
+  final Usuario usuario;
   @override
   _FotosBitacoraWidgetState createState() => _FotosBitacoraWidgetState();
 }

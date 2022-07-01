@@ -15,12 +15,13 @@ import 'dart:convert';
 
 import '../usertoken.dart';
 import '../utils/fire_auth.dart';
+import '../model/usuario.dart';
 
 class ListaPacientesWidget extends StatefulWidget {
  // const ListaPacientesWidget({Key key}) : super(key: key);
   final User user;
-  const ListaPacientesWidget({this.user});
-
+  const ListaPacientesWidget({this.user, this.usuario});
+  final Usuario usuario;
   @override
   _ListaPacientesWidgetState createState() => _ListaPacientesWidgetState();
 }
@@ -49,7 +50,7 @@ class _ListaPacientesWidgetState extends State<ListaPacientesWidget> with Ticker
   String listLen = "";
   Future fetchData() async {
     http.Response response;
-    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/clientesByContacto?correoContacto=$email'), headers: {"Token": FireAuth.token,});
+    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/clientesByContacto?correoContacto=${widget.usuario.email}'), headers: {"Token": widget.usuario.token,});
 
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -90,7 +91,7 @@ class _ListaPacientesWidgetState extends State<ListaPacientesWidget> with Ticker
       var id = idClientes[j];
      // id = int.parse(id);
       print("todo bien $id");
-      response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/colaboradoresByCliente?cliente=$id'), headers: {"Token": FireAuth.token,});
+      response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/colaboradoresByCliente?cliente=${widget.usuario.id}'), headers: {"Token": widget.usuario.token,});
       print("holaaa ${response.statusCode}");
       if (response.statusCode==200) {
 
@@ -428,7 +429,7 @@ class _ListaPacientesWidgetState extends State<ListaPacientesWidget> with Ticker
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           PerfilPacienteWidget(
-                                              id: i, list: listResponse, procedimientos: procedimientos
+                                              id: i, list: listResponse, procedimientos: procedimientos, usuario: widget.usuario,
                                           ),
                                     ),
                                   );

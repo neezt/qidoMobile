@@ -4,9 +4,11 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MedicamentosBitacoraV2Widget extends StatefulWidget {
-  const MedicamentosBitacoraV2Widget({Key key}) : super(key: key);
+import '../model/usuario.dart';
 
+class MedicamentosBitacoraV2Widget extends StatefulWidget {
+  const MedicamentosBitacoraV2Widget({Key key, this.usuario}) : super(key: key);
+  final Usuario usuario;
   @override
   _MedicamentosBitacoraV2WidgetState createState() =>
       _MedicamentosBitacoraV2WidgetState();

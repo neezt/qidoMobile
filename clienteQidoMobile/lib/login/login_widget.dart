@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:qido_colaboradores/utils/fire_auth.dart';
 import 'package:qido_colaboradores/utils/validator.dart';
+import 'package:qido_colaboradores/model/usuario.dart';
 
 import '../dashboard_cliente/dashboard_cliente_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -12,6 +13,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../services/back_service.dart';
+import '../services/sqlite_service.dart';
 import '../usertoken.dart';
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key key}) : super(key: key);
@@ -33,38 +36,56 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   bool passwordVisibility;
 
+    User user;
+
   String stringResponse = '';
   List listResponse = [];
   List listResponse1 = [];
   Map mapResponse = {};
   Map mapResponse1 = {};
-  Future fetchData() async {
-    http.Response response;
-    response = await http.post(
-        Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/usuariosFacturacion'),
-        headers: {
-          "Token": FireAuth.token,
-        });
-     print('response: $response');
-    print(FireAuth.token);
-    if (response.statusCode == 200) {
-      setState(() {
-        mapResponse = json.decode(response.body);
-        listResponse = mapResponse['data'];
-        for (var i = 0; i < listResponse.length; i++) {
-          listResponse1
-              .add(mapResponse['data'][i]['correoElectronico'].toString());
-          print('listResponse: $listResponse1');
-        }
-        // mapResponse = mapResponse['polizas'][0];
-        print('YES $mapResponse');
-      });
-    }
+  // Future fetchData() async {
+  //   http.Response response;
+  //   response = await http.post(
+  //       Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/usuariosFacturacion'),
+  //       headers: {
+  //         "Token": FireAuth.token,
+  //       });
+  //    print('response: $response');
+  //   print(FireAuth.token);
+  //   if (response.statusCode == 200) {
+  //     setState(() {
+  //       mapResponse = json.decode(response.body);
+  //       listResponse = mapResponse['data'];
+  //       for (var i = 0; i < listResponse.length; i++) {
+  //         listResponse1
+  //             .add(mapResponse['data'][i]['correoElectronico'].toString());
+  //         print('listResponse: $listResponse1');
+  //       }
+  //       // mapResponse = mapResponse['polizas'][0];
+  //       print('YES $mapResponse');
+  //     });
+  //   }
+  // }
+    dynamic usuarioFacturacion;
+    SqliteService _sqliteService;
+
+    Future fetchData() async {
+      print("UserUser: $user");
+        BackService backService = new BackService();
+        usuarioFacturacion = await backService.obtenerUsuariosFacturacion(user.email);
+        print("listResponse123: ${usuarioFacturacion["idColaborador"]}");
+        // idController();
+        Usuario usuario = new Usuario(int.parse(usuarioFacturacion["idUsuarioFacturacion"]), usuarioFacturacion["nombre"], usuarioFacturacion["correoElectronico"], FireAuth.token);
+        SqliteService.createItem(usuario);
   }
 
   @override
   void initState() {
     super.initState();
+    this._sqliteService= SqliteService();
+    SqliteService.initizateDb().whenComplete(() async {
+      setState(() {});
+    });
     passwordVisibility = false;
   }
 
@@ -334,7 +355,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       _isProcessing = true;
                                     });
 
-                                    User user =
+                                    user =
                                     await FireAuth.signInUsingEmailPassword(
                                       email: _emailTextController.text,
                                       password: _passwordTextController.text,
@@ -347,8 +368,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     if (user != null) {
                                       await fetchData();
 
-                                      if (listResponse1.contains(
-                                          _emailTextController.text)) {
+                                      if (usuarioFacturacion != null) {
                                         email = _emailTextController.text;
                                         await idController();
                                         Navigator.of(context).pushReplacement(

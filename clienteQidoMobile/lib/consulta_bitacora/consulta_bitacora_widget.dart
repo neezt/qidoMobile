@@ -9,17 +9,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../model/usuario.dart';
 import '../usertoken.dart';
 import '../utils/fire_auth.dart';
 
 class ConsultaBitacoraWidget extends StatefulWidget {
-  const ConsultaBitacoraWidget({Key key,this.list, this.list2 ,this.idTemp, this.idCliente, this.procedimientos}) : super(key: key);
+  const ConsultaBitacoraWidget({Key key,this.list, this.list2 ,this.idTemp, this.idCliente, this.procedimientos, this.usuario}) : super(key: key);
   final List list;
 
   final List list2;
   final List procedimientos;
   final int idTemp;
   final String idCliente;
+  final Usuario usuario;
   @override
   _ConsultaBitacoraWidgetState createState() => _ConsultaBitacoraWidgetState();
 }
@@ -47,7 +49,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
   Map mapResponse1 = {};
   Future fetchData() async {
     http.Response response;
-    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/estadosAnimo'), headers: {"Token": FireAuth.token,});
+    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/estadosAnimo'), headers: {"Token": widget.usuario.token,});
     if (response.statusCode==200) {
       setState(() {
         mapResponse = json.decode(response.body);
@@ -75,7 +77,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
   Map mapResponse3 = {};
   Future fetchData1() async {
     http.Response response;
-    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/actividad'), headers: {"Token": FireAuth.token,});
+    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/actividad'), headers: {"Token": widget.usuario.token,});
     if (response.statusCode==200) {
       setState(() {
         mapResponse2 = json.decode(response.body);
@@ -127,7 +129,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                   id:
                       1,
                   //widget.idTemp,
-                  idCliente: widget.idCliente, list: widget.list2,procedimientos: widget.procedimientos,),
+                  idCliente: widget.idCliente, list: widget.list2,procedimientos: widget.procedimientos, usuario: widget.usuario,),
               ),
             );
           },
@@ -844,7 +846,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            InyeccionesBitacoraV2Widget(),
+                                            InyeccionesBitacoraV2Widget(usuario: widget.usuario),
                                       ),
                                     );
                                   },
@@ -885,7 +887,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              MedicamentosBitacoraV2Widget(),
+                                              MedicamentosBitacoraV2Widget(usuario: widget.usuario),
                                         ),
                                       );
                                     },
@@ -917,7 +919,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ConsultaBitacoraWidget(list: widget.list,list2: widget.list2, idTemp: (widget.idTemp - 1),idCliente: widget.idCliente,procedimientos: widget.procedimientos),
+                                builder: (context) => ConsultaBitacoraWidget(list: widget.list,list2: widget.list2, idTemp: (widget.idTemp - 1),idCliente: widget.idCliente,procedimientos: widget.procedimientos, usuario: widget.usuario,),
                               ),
                             );
                           },
@@ -972,7 +974,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ConsultaBitacoraWidget(list: widget.list,list2: widget.list2, idTemp: (widget.idTemp + 1),idCliente: widget.idCliente,procedimientos: widget.procedimientos),
+                              builder: (context) => ConsultaBitacoraWidget(list: widget.list,list2: widget.list2, idTemp: (widget.idTemp + 1),idCliente: widget.idCliente,procedimientos: widget.procedimientos, usuario: widget.usuario,),
                             ),
                           );
                         },

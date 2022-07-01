@@ -7,6 +7,8 @@ import '../lista_pacientes/lista_pacientes_widget.dart';
 import '../login/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../model/usuario.dart';
+import '../services/sqlite_service.dart';
 import '../usertoken.dart';
 import 'package:qido_colaboradores/utils/fire_auth.dart';
 import 'package:http/http.dart' as http;
@@ -45,41 +47,41 @@ class _DashboardClienteWidgetState extends State<DashboardClienteWidget> with Ti
   String listLen = "";
 
 
-  Future fetchData() async {
-    http.Response response;
-    response = await http.post(
-        Uri.parse(
-            'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=$idColaborador'),
-        headers: {
-          "Token": FireAuth.token,
-        });
-    print(response.statusCode);
-    if (response.statusCode == 200) {
-      setState(() {
-        mapResponse = json.decode(response.body);
-        listResponse = mapResponse['data'];
+  // Future fetchData() async {
+  //   http.Response response;
+  //   response = await http.post(
+  //       Uri.parse(
+  //           'https://otconsultingback.comercioincoterms.com/colaborador/pacientesByColaborador?idColaborador=$idColaborador'),
+  //       headers: {
+  //         "Token": FireAuth.token,
+  //       });
+  //   print(response.statusCode);
+  //   if (response.statusCode == 200) {
+  //     setState(() {
+  //       mapResponse = json.decode(response.body);
+  //       listResponse = mapResponse['data'];
 
-        listLen = listResponse.length.toString();
-        print('listResponseLista: $listResponse');
-        for (var i = 0; i < listResponse.length; i++) {
-          listResponse1
-              .add(mapResponse['data'][i]['nombrecompleto'].toString());
-          idClientes.add(mapResponse['data'][i]['cliente'].toString());
-          print('listResponseListaN: $listResponse1');
-        }
-      });
-    }
-    fetchData1();
-  }
+  //       listLen = listResponse.length.toString();
+  //       print('listResponseLista: $listResponse');
+  //       for (var i = 0; i < listResponse.length; i++) {
+  //         listResponse1
+  //             .add(mapResponse['data'][i]['nombrecompleto'].toString());
+  //         idClientes.add(mapResponse['data'][i]['cliente'].toString());
+  //         print('listResponseListaN: $listResponse1');
+  //       }
+  //     });
+  //   }
+  //   fetchData1();
+  // }
   Future fetchData1() async {
+    print("Usuario: ${usuario.token}");
     http.Response response;
     response = await http.post(
-        Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/usuariosFacturacionCorreo?correoElectronico=$email'),
+        Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/usuariosFacturacionCorreo?correoElectronico=${usuario.email}'),
         headers: {
-          "Token": FireAuth.token,
+          "Token": usuario.token,
         });
-    print('response: $response');
-    print(FireAuth.token);
+    print('response: ${response.body}');
     if (response.statusCode == 200) {
       setState(() {
         mapResponse = json.decode(response.body);
@@ -90,10 +92,20 @@ class _DashboardClienteWidgetState extends State<DashboardClienteWidget> with Ti
       });
     }
   }
+
+    Usuario usuario;
+
+    Future obtenerIdUsuarioFacturacion() async {
+        print("listResponse123456: ${widget.user}");
+        SqliteService.getItems().then((value) => setState(
+                () =>usuario= value) ).whenComplete(() => fetchData1());
+  }
+
   @override
   void initState() {
     super.initState();
-    fetchData1();
+    obtenerIdUsuarioFacturacion();
+    // fetchData1();
   }
   @override
   Widget build(BuildContext context) {
@@ -338,7 +350,7 @@ class _DashboardClienteWidgetState extends State<DashboardClienteWidget> with Ti
                             context,
                             MaterialPageRoute(
                               builder: (context) => ListaPacientesWidget(
-                                 user: currentUser.user
+                                 user: currentUser.user, usuario: usuario,
                               ),
                             ),
                           );

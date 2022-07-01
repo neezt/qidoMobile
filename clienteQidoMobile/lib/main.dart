@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,6 @@ import 'index.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
-  FFAppState(); // Initialize FFAppState
 
   runApp(MyApp());
 }
@@ -30,6 +29,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
+  final _navigatorKey = new GlobalKey<NavigatorState>();
 
   Stream<QidoColaboradoresFirebaseUser> userStream;
   QidoColaboradoresFirebaseUser initialUser;
@@ -53,8 +53,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User user = auth.currentUser;
+
     return MaterialApp(
-      title: 'Qido Colaboradores',
+      title: 'Qido Clientes',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -63,26 +66,16 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       supportedLocales: const [Locale('en', '')],
+        debugShowCheckedModeBanner: false,
+        navigatorKey: _navigatorKey,
+        initialRoute:
+        FirebaseAuth.instance.currentUser == null ? '/' : '/dashboardCliente',
+        routes: {
+          '/dashboardCliente': (context) => DashboardClienteWidget(user: user)
+        },
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
-      home: initialUser == null || displaySplashImage
-          ? Container(
-              color: Colors.transparent,
-              child: Center(
-                child: Builder(
-                  builder: (context) => Image.asset(
-                    'assets/images/Sniff_0.0_Splash@2x.png',
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            )
-          : currentUser.loggedIn
-              ? LoginWidget()
-              : LoginWidget(),
-
+      home: LoginWidget()
     );
   }
 }

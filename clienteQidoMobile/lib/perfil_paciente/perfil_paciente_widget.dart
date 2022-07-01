@@ -5,18 +5,19 @@ import '../lista_bitacoras/lista_bitacoras_widget.dart';
 import '../lista_pacientes/lista_pacientes_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../model/usuario.dart';
 import '../usertoken.dart';
 
 import '../utils/fire_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 class PerfilPacienteWidget extends StatefulWidget {
-  const PerfilPacienteWidget({Key key, this.id, this.list,this.procedimientos}) : super(key: key);
+  const PerfilPacienteWidget({Key key, this.id, this.list,this.procedimientos, this.usuario}) : super(key: key);
 
   final int id;
   final List list;
   final List procedimientos;
-
+  final Usuario usuario;
   @override
   _PerfilPacienteWidgetState createState() => _PerfilPacienteWidgetState();
 }
@@ -72,7 +73,7 @@ class _PerfilPacienteWidgetState extends State<PerfilPacienteWidget> {
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ListaPacientesWidget(),
+                builder: (context) => ListaPacientesWidget(usuario: widget.usuario),
               ),
             );
           },
@@ -343,7 +344,7 @@ class _PerfilPacienteWidgetState extends State<PerfilPacienteWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ListaBitacorasWidget( idCliente: widget.list[widget.id]['idCliente'],id: widget.id, list: widget.list, procedimientos: widget.procedimientos ),
+                          builder: (context) => ListaBitacorasWidget( idCliente: widget.list[widget.id]['idCliente'],id: widget.id, list: widget.list, procedimientos: widget.procedimientos, usuario: widget.usuario ),
                         ),
                       );
                     },

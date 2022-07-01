@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../fotos_bitacora/fotos_bitacora_widget.dart';
+import '../model/usuario.dart';
 import '../perfil_paciente/perfil_paciente_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,11 +13,12 @@ import '../usertoken.dart';
 import '../utils/fire_auth.dart';
 
 class ListaBitacorasWidget extends StatefulWidget {
-  const ListaBitacorasWidget({Key key, this.idCliente ,this.id, this.list,this.procedimientos}) : super(key: key);
+  const ListaBitacorasWidget({Key key, this.idCliente ,this.id, this.list,this.procedimientos, this.usuario}) : super(key: key);
   final int id;
   final List list;
   final List procedimientos;
   final String idCliente;
+  final Usuario usuario;
   //const ListaBitacorasWidget({this.idCliente});
 
   @override
@@ -47,7 +49,7 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
     print("EL ID CLIENTE : ${widget.idCliente}");
     http.Response response;
     var id = widget.idCliente;
-    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/colaboradoresByCliente?cliente=$id'), headers: {"Token": FireAuth.token,});
+    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/colaboradoresByCliente?cliente=$id'), headers: {"Token": widget.usuario.token,});
     if (response.statusCode==200) {
       setState(() {
         mapResponse = json.decode(response.body);
@@ -61,6 +63,7 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
         print('ColaboradoresByCliente $listResponse1');
       });
     }
+    print("llllll: $listResponse1");
     fetchData1();
   }
 
@@ -75,11 +78,12 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
 
     var idServicio = listResponse1[0];
     print("ID servicio: $idServicio");
-    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/bitacorasByServicio?idServicio=$idServicio'), headers: {"Token": FireAuth.token,});
+    response = await http.get(Uri.parse('https://otconsultingback.comercioincoterms.com/cliente/bitacorasByServicio?idServicio=$idServicio'), headers: {"Token": widget.usuario.token,});
     if (response.statusCode==200) {
       setState(() {
         mapResponse2 = json.decode(response.body);
         listResponse2 = mapResponse2['data'];
+            print("rrrr: ${response.body}");
         for (var i = 0; i < listResponse2.length; i++) {
           listResponse3.add(mapResponse2['data'][i]);
         }
@@ -122,7 +126,7 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => PerfilPacienteWidget(
-                              id: widget.id, list: widget.list, procedimientos: widget.procedimientos
+                              id: widget.id, list: widget.list, procedimientos: widget.procedimientos, usuario: widget.usuario,
                           ),
                         ),
                       );
@@ -155,7 +159,7 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ConsultaBitacoraWidget(
-                          list: listResponse3,list2: widget.list, idTemp: i, idCliente: widget.idCliente, procedimientos: widget.procedimientos,),
+                          list: listResponse3,list2: widget.list, idTemp: i, idCliente: widget.idCliente, procedimientos: widget.procedimientos, usuario: widget.usuario),
                       ),
                     );
                   },
@@ -217,7 +221,7 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              FotosBitacoraWidget(),
+                                              FotosBitacoraWidget(usuario: widget.usuario),
                                         ),
                                       );
                                     },
@@ -271,7 +275,7 @@ class _ListaBitacorasWidgetState extends State<ListaBitacorasWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  ListaBitacorasWidget(),
+                                                  ListaBitacorasWidget(usuario: widget.usuario,),
                                             ),
                                           );
                                         },

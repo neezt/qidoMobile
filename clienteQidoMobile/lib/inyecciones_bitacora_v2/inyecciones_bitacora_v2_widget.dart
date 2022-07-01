@@ -4,9 +4,11 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InyeccionesBitacoraV2Widget extends StatefulWidget {
-  const InyeccionesBitacoraV2Widget({Key key}) : super(key: key);
+import '../model/usuario.dart';
 
+class InyeccionesBitacoraV2Widget extends StatefulWidget {
+  const InyeccionesBitacoraV2Widget({Key key, this.usuario}) : super(key: key);
+  final Usuario usuario;
   @override
   _InyeccionesBitacoraV2WidgetState createState() =>
       _InyeccionesBitacoraV2WidgetState();
