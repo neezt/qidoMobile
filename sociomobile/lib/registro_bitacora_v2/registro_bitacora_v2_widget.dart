@@ -11,6 +11,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import '../inyecciones_bitacora/inyecciones_bitacora_widget.dart';
+import '../model/usuario.dart';
 import '../pagina_perfil_v3/pagina_perfil_v3_widget.dart';
 import '../temperatura_bitacora/temperatura_bitacora_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,13 +38,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class RegistroBitacoraV2Widget extends StatefulWidget {
-  const RegistroBitacoraV2Widget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+  const RegistroBitacoraV2Widget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
     final int idTemp;
     final List listTemp;
     final String idPaciente;
     final String nombrePaciente;
-
+    final Usuario usuario;
   @override
   _RegistroBitacoraV2WidgetState createState() =>
       _RegistroBitacoraV2WidgetState();
@@ -71,7 +72,7 @@ Future grabarBitacora() async {
     'glucosaBitacora': glucosaBitacora,
     'oxigenoBitacora': oxigenoBitacora,
     'idServicioBitacora': idServicioBitacora,
-    'idColaboradorBitacora': idColaboradorBitacora,
+    'idColaboradorBitacora': widget.usuario.id,
     'actividadesBitacora': actividadesBitacora,
   };
   print(data);
@@ -79,7 +80,7 @@ Future grabarBitacora() async {
   var body = json.encode(data);
 
     http.Response response;
-    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/create'), headers: {"Token": FireAuth.token,}, body: body);
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/create'), headers: {"Token": widget.usuario.token,}, body: body);
     // if (response.statusCode==200) {
     //   setState(() {
     //     mapResponse = json.decode(response.body);
@@ -108,7 +109,7 @@ Future grabarBitacora() async {
   String telefonoContacto = "";
     Future fetchData() async {
     http.Response response;
-    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/lastBitacora?idServicio=${widget.listTemp[widget.idTemp]['idServicio']}'), headers: {"Token": FireAuth.token,});
+    response = await http.post(Uri.parse('https://otconsultingback.comercioincoterms.com/bitacora/lastBitacora?idServicio=${widget.listTemp[widget.idTemp]['idServicio']}'), headers: {"Token": widget.usuario.token,});
     print(response.statusCode);
     if (response.statusCode==200) {
       setState(() {
@@ -167,7 +168,7 @@ Future grabarBitacora() async {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PaginaPerfilV3Widget(id: widget.idTemp, list: widget.listTemp),
+                            child: PaginaPerfilV3Widget(id: widget.idTemp, list: widget.listTemp, usuario: widget.usuario,),
                           ),
                         );
                     },
@@ -238,7 +239,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DesayunoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    builder: (context) => DesayunoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -251,7 +252,7 @@ Future grabarBitacora() async {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                          builder: (context) => AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                         ),
                       );
                     },
@@ -315,7 +316,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ActividadesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    builder: (context) => ActividadesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -381,7 +382,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EstadoDeAnimoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    builder: (context) => EstadoDeAnimoBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -451,7 +452,7 @@ Future grabarBitacora() async {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TemperaturaBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                        builder: (context) => TemperaturaBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                       ),
                     );
                   },
@@ -518,7 +519,7 @@ Future grabarBitacora() async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => InyeccionesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    builder: (context) => InyeccionesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -724,7 +725,7 @@ Future grabarBitacora() async {
                   await Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BitacoraCompletadaWidget(),
+                      builder: (context) => BitacoraCompletadaWidget(usuario: widget.usuario),
                     ),
                   );
                 } else {

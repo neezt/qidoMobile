@@ -1,4 +1,5 @@
 import 'package:qido_colaboradores/bitacoravariables.dart';
+import 'package:qido_colaboradores/model/usuario.dart';
 
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -11,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 class ActividadesBitacoraWidget extends StatefulWidget {
   const ActividadesBitacoraWidget({
     Key key,
-    this.progreso, this.idPaciente1, this.idTemp, this.listTemp, this.nombrePaciente1,
+    this.progreso, this.idPaciente1, this.idTemp, this.listTemp, this.nombrePaciente1, this.usuario
   }) : super(key: key);
 
   final double progreso;
@@ -19,7 +20,7 @@ class ActividadesBitacoraWidget extends StatefulWidget {
   final String idPaciente1,nombrePaciente1;
   final List listTemp;
   final int idTemp;
-
+  final Usuario usuario;
   @override
   _ActividadesBitacoraWidgetState createState() =>
       _ActividadesBitacoraWidgetState();
@@ -30,6 +31,29 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
 
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+        @override
+  void initState() {
+    super.initState();
+    if(flagResetCuidadosActividades == true) {
+      dormir = false;
+      caminar = false;
+      verTV = false;
+      tomarElSol = false;
+      banoSolo = false;
+      banoAsistido = false;
+      ejercicioSolo = false;
+      juegosMentales = false;
+      cambioDePosicion = false;
+      defecar = false;
+      orinar = false;
+      cambioPanal = false;
+      vomitar = false;
+      visitaFamiliar = false;
+      salidaFamiliar = false;
+      flagResetCuidadosActividades = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +88,7 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),                  ),
+                    builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario,),                  ),
                 );
               },
             ),
@@ -1285,7 +1309,7 @@ class _ActividadesBitacoraWidgetState extends State<ActividadesBitacoraWidget> {
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
                                     reverseDuration: Duration(milliseconds: 0),
-                                     child:  RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                                     child:  RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario,),
                                   ),
                                 );
                               },

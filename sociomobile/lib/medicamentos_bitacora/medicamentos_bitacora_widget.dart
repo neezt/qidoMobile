@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../backend/firebase_storage/storage.dart';
 
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -14,12 +16,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class MedicamentosBitacoraWidget extends StatefulWidget {
-  const MedicamentosBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+  const MedicamentosBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
   final String idPaciente, nombrePaciente;
   final int idTemp;
   final List listTemp;
-
+  final Usuario usuario;
   @override
   _MedicamentosBitacoraWidgetState createState() =>
       _MedicamentosBitacoraWidgetState();
@@ -71,7 +73,7 @@ class _MedicamentosBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -247,7 +249,7 @@ class _MedicamentosBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: InyeccionesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: InyeccionesBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },
@@ -280,7 +282,7 @@ class _MedicamentosBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },

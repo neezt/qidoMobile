@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../model/usuario.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,13 +13,13 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class DesayunoBitacoraWidget extends StatefulWidget {
-  const DesayunoBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp}) : super(key: key);
+  const DesayunoBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
   final int idTemp;
   final List listTemp;
   final String idPaciente1;
   final String nombrePaciente1;
-
+  final Usuario usuario;
   @override
   _DesayunoBitacoraWidgetState createState() => _DesayunoBitacoraWidgetState();
 }
@@ -26,6 +27,15 @@ class DesayunoBitacoraWidget extends StatefulWidget {
 class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
   double sliderValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    @override
+  void initState() {
+    super.initState();
+    if(flagResetDesayuno == true) {
+      textoAlimento = "";
+      flagResetDesayuno = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +69,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario,),
                   ),
                 );
               },
@@ -260,7 +270,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente1, nombrePaciente1: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: AlimentacionBitacoraWidget(idPaciente1: widget.idPaciente1, nombrePaciente1: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },
@@ -293,7 +303,7 @@ class _DesayunoBitacoraWidgetState extends State<DesayunoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },

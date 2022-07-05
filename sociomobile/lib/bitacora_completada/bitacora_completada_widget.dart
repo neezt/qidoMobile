@@ -1,3 +1,6 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
+import '../bitacoravariables.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -7,18 +10,49 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class BitacoraCompletadaWidget extends StatefulWidget {
-  const BitacoraCompletadaWidget({Key key}) : super(key: key);
+  const BitacoraCompletadaWidget({Key key, this.usuario}) : super(key: key);
 
   // final int idTemp;
   // final List listTemp;
-
+  final Usuario usuario;
   @override
   _BitacoraCompletadaWidgetState createState() =>
       _BitacoraCompletadaWidgetState();
 }
 
+resetVariables() {
+  desayunoBitacora = 0;
+  comidaBitacora = 0;
+  cenaBitacora = 0;
+  estadoAnimoBitacora = null;
+  temperaturaBitacora = 0.0;
+  presionSistolicaBitacora = 0;
+  presionDiastolicaBitacora = 0;
+  glucosaBitacora = 0;
+  oxigenoBitacora = 0;
+  idServicioBitacora = 0;
+  idColaboradorBitacora = 0;
+  actividadesBitacora = [];
+  flagResetDesayuno = true;
+  flagResetComida = true;
+  flagResetCena = true;
+  flagResetCuidadosActividades = true;
+  flagResetEstadoAnimo = true;
+  flagResetTemperatura = true;
+  flagResetSistolica = true;
+  flagResetDiastolica = true;
+  flagResetGlucosa = true;
+  flagResetOxigeno = true;
+}
+
 class _BitacoraCompletadaWidgetState extends State<BitacoraCompletadaWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    @override
+  void initState() {
+    super.initState();
+    resetVariables();
+  }
 
   @override
   Widget build(BuildContext context) {

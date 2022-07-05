@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../model/usuario.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,12 +15,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class OxigenoBitacoraWidget extends StatefulWidget {
-  const OxigenoBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+  const OxigenoBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
     final String idPaciente, nombrePaciente;
     final int idTemp;
     final List listTemp;
-
+    final Usuario usuario;
   @override
   _OxigenoBitacoraWidgetState createState() => _OxigenoBitacoraWidgetState();
 }
@@ -29,6 +30,14 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
   String radioButtonValue;
   bool oxigenoBajo = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    void initState() {
+    super.initState();
+    if(flagResetOxigeno == true) {
+      sliderValue = 50;
+      flagResetOxigeno = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +71,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -263,7 +272,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: AzucarBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: AzucarBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },
@@ -296,7 +305,7 @@ class _OxigenoBitacoraWidgetState extends State<OxigenoBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },

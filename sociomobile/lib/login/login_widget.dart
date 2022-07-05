@@ -409,7 +409,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                              'Ver: 1.0.1',
+                              'Ver: 1.0.2',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
 

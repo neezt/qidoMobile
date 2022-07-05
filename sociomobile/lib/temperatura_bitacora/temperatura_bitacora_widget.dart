@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -12,12 +14,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class TemperaturaBitacoraWidget extends StatefulWidget {
-  const TemperaturaBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp}) : super(key: key);
+  const TemperaturaBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
   final String idPaciente1, nombrePaciente1;
   final int idTemp;
   final List listTemp;
-
+  final Usuario usuario;
   @override
   _TemperaturaBitacoraWidgetState createState() =>
       _TemperaturaBitacoraWidgetState();
@@ -30,6 +32,15 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
 
   String radioButtonValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+        @override
+  void initState() {
+    super.initState();
+    if(flagResetTemperatura == true) {
+      temperatura = 36.0;
+      flagResetTemperatura = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +74,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -386,7 +397,7 @@ class _TemperaturaBitacoraWidgetState extends State<TemperaturaBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PresionSistolicaBitacoraWidget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: PresionSistolicaBitacoraWidget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },

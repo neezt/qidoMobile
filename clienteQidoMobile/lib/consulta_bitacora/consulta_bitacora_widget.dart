@@ -135,7 +135,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
           },
         ),
         title: Text(
-          'Bitácora - ${widget.list[widget.idTemp]['fechaCaptura']}',
+          'Bitácora\n${widget.list[widget.idTemp]['fechaCaptura']}',
           textAlign: TextAlign.justify,
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'Lexend Deca',

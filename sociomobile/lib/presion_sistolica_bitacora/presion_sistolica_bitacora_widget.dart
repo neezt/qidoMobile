@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -13,12 +15,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class PresionSistolicaBitacoraWidget extends StatefulWidget {
-  const PresionSistolicaBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+  const PresionSistolicaBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
     final String idPaciente, nombrePaciente;
     final int idTemp;
     final List listTemp;
-
+    final Usuario usuario;
   @override
   _PresionSistolicaBitacoraWidgetState createState() =>
       _PresionSistolicaBitacoraWidgetState();
@@ -31,6 +33,15 @@ class _PresionSistolicaBitacoraWidgetState
   bool sistolicaAlta = false;
   bool sistolicaBaja = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+          @override
+  void initState() {
+    super.initState();
+    if(flagResetSistolica == true) {
+      presionSistolica = 120;
+      flagResetSistolica = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +75,7 @@ class _PresionSistolicaBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -379,7 +390,7 @@ class _PresionSistolicaBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: TemperaturaBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: TemperaturaBitacoraWidget(idPaciente1: widget.idPaciente, nombrePaciente1: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },
@@ -412,7 +423,7 @@ class _PresionSistolicaBitacoraWidgetState
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PresionDiastolicaBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: PresionDiastolicaBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },

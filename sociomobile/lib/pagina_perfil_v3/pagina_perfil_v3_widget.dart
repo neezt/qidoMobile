@@ -425,7 +425,7 @@ class _PaginaPerfilV3WidgetState extends State<PaginaPerfilV3Widget> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.list[widget.id]['cliente'], nombrePaciente: widget.list[widget.id]['nombrecompleto'], listTemp: widget.list, idTemp: widget.id),
+                        builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.list[widget.id]['cliente'], nombrePaciente: widget.list[widget.id]['nombrecompleto'], listTemp: widget.list, idTemp: widget.id, usuario: widget.usuario),
                         // idPaciente: widget.list[widget.id]['cliente'], nombrePaciente: widget.list[widget.id]['nombrecompleto']
                       ),
                     );

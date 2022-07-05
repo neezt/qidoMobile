@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../bitacoravariables.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -10,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 class EstadoDeAnimoBitacoraWidget extends StatefulWidget {
   const EstadoDeAnimoBitacoraWidget({
     Key key,
-    this.progreso, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp,
+    this.progreso, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp, this.usuario
   }) : super(key: key);
 
   final double progreso;
@@ -18,7 +20,7 @@ class EstadoDeAnimoBitacoraWidget extends StatefulWidget {
   final String idPaciente1, nombrePaciente1;
   final int idTemp;
   final List listTemp;
-
+  final Usuario usuario;
   @override
   _EstadoDeAnimoBitacoraWidgetState createState() =>
       _EstadoDeAnimoBitacoraWidgetState();
@@ -28,22 +30,45 @@ class _EstadoDeAnimoBitacoraWidgetState
     extends State<EstadoDeAnimoBitacoraWidget> {
   List<String> estadosDeAnimo;
 
-  bool Feliz = false;
-  bool Alegre = false;
-  bool Amoroso = false;
-  bool Triste = false;
-  bool Decaido = false;
-  bool Deprimido = false;
-  bool Miedo = false;
-  bool Enojado = false;
-  bool Nostalgico = false;
-  bool Aburrido = false;
-  bool Tranquilo = false;
-  bool Ansioso = false;
-  bool Asco = false;
-  bool Dolor = false;
+  // bool Feliz = false;
+  // bool Alegre = false;
+  // bool Amoroso = false;
+  // bool Triste = false;
+  // bool Decaido = false;
+  // bool Deprimido = false;
+  // bool Miedo = false;
+  // bool Enojado = false;
+  // bool Nostalgico = false;
+  // bool Aburrido = false;
+  // bool Tranquilo = false;
+  // bool Ansioso = false;
+  // bool Asco = false;
+  // bool Dolor = false;
   
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+          @override
+  void initState() {
+    super.initState();
+    if(flagResetEstadoAnimo == true) {
+      feliz = false;
+      buenHumor = false;
+      amoroso = false;
+      triste = false;
+      decaido = false;
+      deprimido = false;
+      asustado = false;
+      enojado = false;
+      nostalgico = false;
+      aburrido = false;
+      tranquilo = false;
+      ansioso = false;
+      asco = false;
+      dolor = false;
+      agresivo = false;
+      flagResetEstadoAnimo = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +103,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    builder: (context) => RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -1569,7 +1594,7 @@ class _EstadoDeAnimoBitacoraWidgetState
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
                                     reverseDuration: Duration(milliseconds: 0),
-                                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                                   ),
                                 );
                               },

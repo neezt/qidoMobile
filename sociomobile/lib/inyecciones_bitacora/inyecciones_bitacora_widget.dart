@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/upload_media.dart';
 
@@ -12,12 +14,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class InyeccionesBitacoraWidget extends StatefulWidget {
-  const InyeccionesBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp}) : super(key: key);
+  const InyeccionesBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
   final String idPaciente1, nombrePaciente1;
   final int idTemp;
   final List listTemp;
-
+  final Usuario usuario;
   @override
   _InyeccionesBitacoraWidgetState createState() =>
       _InyeccionesBitacoraWidgetState();
@@ -67,7 +69,7 @@ class _InyeccionesBitacoraWidgetState extends State<InyeccionesBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -266,7 +268,7 @@ class _InyeccionesBitacoraWidgetState extends State<InyeccionesBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: MedicamentosBitacoraWidget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: MedicamentosBitacoraWidget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },

@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../model/usuario.dart';
 import '../registro_bitacora_v2/registro_bitacora_v2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,13 +13,13 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class AlimentacionBitacoraWidget extends StatefulWidget {
-  const AlimentacionBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp}) : super(key: key);
+  const AlimentacionBitacoraWidget({Key key, this.idPaciente1, this.nombrePaciente1, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
   final int idTemp;
   final List listTemp;
   final String idPaciente1;
   final String nombrePaciente1;
-
+  final Usuario usuario;
   @override
   _AlimentacionBitacoraWidgetState createState() =>
       _AlimentacionBitacoraWidgetState();
@@ -60,7 +61,7 @@ class _AlimentacionBitacoraWidgetState
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente1, nombrePaciente: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario,),
                   ),
                 );
               },
@@ -142,7 +143,7 @@ class _AlimentacionBitacoraWidgetState
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          DesayunoBitacoraWidget(idPaciente1: widget.idPaciente1, nombrePaciente1: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                                          DesayunoBitacoraWidget(idPaciente1: widget.idPaciente1, nombrePaciente1: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario,),
                                     ),
                                   );
                                 },
@@ -217,7 +218,7 @@ class _AlimentacionBitacoraWidgetState
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ComidaBitacoraWidget(idPaciente2: widget.idPaciente1, nombrePaciente2: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                                          ComidaBitacoraWidget(idPaciente2: widget.idPaciente1, nombrePaciente2: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                                     ),
                                   );
                                 },
@@ -292,7 +293,7 @@ class _AlimentacionBitacoraWidgetState
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          CenaBitacoraWidget(idPaciente3: widget.idPaciente1, nombrePaciente3: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                                          CenaBitacoraWidget(idPaciente3: widget.idPaciente1, nombrePaciente3: widget.nombrePaciente1, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                                     ),
                                   );
                                 },

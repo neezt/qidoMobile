@@ -1,3 +1,5 @@
+import 'package:qido_colaboradores/model/usuario.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -15,12 +17,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../bitacoravariables.dart';
 
 class AzucarBitacoraWidget extends StatefulWidget {
-  const AzucarBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp}) : super(key: key);
+  const AzucarBitacoraWidget({Key key, this.idPaciente, this.nombrePaciente, this.idTemp, this.listTemp, this.usuario}) : super(key: key);
 
     final String idPaciente, nombrePaciente;
     final int idTemp;
     final List listTemp;
-
+    final Usuario usuario;
   @override
   _AzucarBitacoraWidgetState createState() => _AzucarBitacoraWidgetState();
 }
@@ -31,6 +33,15 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
   bool glucosaAlta = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+              @override
+  void initState() {
+    super.initState();
+    if(flagResetGlucosa == true) {
+      sliderValue = 60;
+      flagResetGlucosa = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +75,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                     type: PageTransitionType.topToBottom,
                     duration: Duration(milliseconds: 300),
                     reverseDuration: Duration(milliseconds: 300),
-                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                    child: RegistroBitacoraV2Widget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                   ),
                 );
               },
@@ -299,7 +310,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: PresionDiastolicaBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: PresionDiastolicaBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },
@@ -332,7 +343,7 @@ class _AzucarBitacoraWidgetState extends State<AzucarBitacoraWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: OxigenoBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp),
+                            child: OxigenoBitacoraWidget(idPaciente: widget.idPaciente, nombrePaciente: widget.nombrePaciente, idTemp: widget.idTemp, listTemp: widget.listTemp, usuario: widget.usuario),
                           ),
                         );
                       },
