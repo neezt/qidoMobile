@@ -913,61 +913,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if(widget.idTemp > 0)
-                        FFButtonWidget(
-                          onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ConsultaBitacoraWidget(list: widget.list,list2: widget.list2, idTemp: (widget.idTemp - 1),idCliente: widget.idCliente,procedimientos: widget.procedimientos, usuario: widget.usuario,),
-                              ),
-                            );
-                          },
-                          text: 'Anterior',
-                          options: FFButtonOptions(
-                            width: 90,
-                            height: 40,
-                            color: Colors.white,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
-                                .override(
-                              fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.of(context).black600,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            elevation: 3,
-                            borderSide: BorderSide(
-                              color: Colors.black12,
-                              width: 1,
-                            ),
-                            borderRadius: 8,
-                          ),
-                        ),
-                      if(widget.idTemp <= 0)
-                        FFButtonWidget(
 
-                        text: 'Anterior',
-                        options: FFButtonOptions(
-                          width: 90,
-                          height: 40,
-                          color: Colors.grey,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText2
-                              .override(
-                            fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.of(context).black600,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          elevation: 3,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 8,
-                        ),
-                      ),
                       if(widget.idTemp < (widget.list.length-1))
                       FFButtonWidget(
                         onPressed: () async {
@@ -978,7 +924,7 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                             ),
                           );
                         },
-                        text: 'Siguiente',
+                        text: 'Anterior',
                         options: FFButtonOptions(
                           width: 90,
                           height: 40,
@@ -1002,11 +948,66 @@ class _ConsultaBitacoraWidgetState extends State<ConsultaBitacoraWidget> {
                       if((widget.idTemp+1) == widget.list.length)
                         FFButtonWidget(
 
-                          text: 'Siguiente',
+                          text: 'Anterior',
                           options: FFButtonOptions(
                             width: 90,
                             height: 40,
                             color: Colors.black12,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyText2
+                                .override(
+                              fontFamily: 'Lexend Deca',
+                              color: FlutterFlowTheme.of(context).black600,
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
+                          ),
+                        ),
+                      if(widget.idTemp > 0)
+                        FFButtonWidget(
+                          onPressed: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ConsultaBitacoraWidget(list: widget.list,list2: widget.list2, idTemp: (widget.idTemp - 1),idCliente: widget.idCliente,procedimientos: widget.procedimientos, usuario: widget.usuario,),
+                              ),
+                            );
+                          },
+                          text: 'Siguiente',
+                          options: FFButtonOptions(
+                            width: 90,
+                            height: 40,
+                            color: Colors.white,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyText2
+                                .override(
+                              fontFamily: 'Lexend Deca',
+                              color: FlutterFlowTheme.of(context).black600,
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.black12,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
+                          ),
+                        ),
+                      if(widget.idTemp <= 0)
+                        FFButtonWidget(
+
+                          text: 'Siguiente',
+                          options: FFButtonOptions(
+                            width: 90,
+                            height: 40,
+                            color: Colors.grey,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyText2
                                 .override(

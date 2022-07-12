@@ -89,7 +89,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Scaffold(
       key: _formKey,
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      resizeToAvoidBottomInset: false, // configuracion de teclado
+     // resizeToAvoidBottomInset: false, // configuracion de teclado
       body: SingleChildScrollView(
         //width: double.infinity,
         //height: double.infinity,
@@ -125,8 +125,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                   // mainAxisAlignment: MainAxisAlignment.start,
+                  //  crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 12),
